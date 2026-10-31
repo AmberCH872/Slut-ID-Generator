@@ -24,33 +24,51 @@
 
 <body class="h-screen flex flex-col overflow-hidden select-none" data-mobile-mode="edit">
 
-    <!-- 顶部统一导航条 (支持手机横向滚动) -->
-    <header class="h-14 bg-gray-950/95 border-b border-gray-800/80 px-2.5 sm:px-5 flex items-center justify-between shrink-0 z-40 no-print gap-1.5">
-        <div class="flex items-center gap-1.5 shrink-0">
+    <!-- 顶部统一导航条 (手机端下拉菜单 / 桌面端横向Tab) -->
+    <header class="h-14 bg-gray-950/95 border-b border-gray-800/80 px-3 sm:px-5 flex items-center justify-between shrink-0 z-40 no-print gap-2">
+        <div class="flex items-center gap-2 shrink-0">
             <span class="text-xl sm:text-2xl">🪪</span>
             <div class="flex flex-col">
-                <span class="font-black text-white text-xs sm:text-base leading-tight tracking-wide">卡片工坊</span>
+                <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide">卡片工坊</span>
                 <span class="text-[10px] text-gray-400 font-mono hidden md:inline">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
         </div>
 
-        <!-- 4款模版快速切换 Tab -->
-        <nav class="flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 overflow-x-auto max-w-[70vw] sm:max-w-none custom-scrollbar shrink-0">
+        <!-- 移动端模版下拉菜单 (在小于 md 屏幕显示) -->
+        <div class="relative md:hidden flex-1 max-w-[210px] flex justify-end">
+            <div class="relative w-full">
+                <select id="mobile-template-select" onchange="switchTemplate(this.value)"
+                    class="w-full bg-gray-900 text-white font-bold text-xs py-2 pl-3 pr-8 rounded-xl border border-red-600 focus:outline-none appearance-none shadow-sm cursor-pointer truncate">
+                    <option value="slave">🏷️ 奴隶身份卡</option>
+                    <option value="bbc">♠️ 身份证</option>
+                    <option value="cert">📜 登记证书</option>
+                    <option value="bimbo">🎀 双面身份卡</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 桌面端 4 款模版快速切换 Tab (在 md 及以上屏幕显示) -->
+        <nav class="hidden md:flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 shrink-0">
             <button type="button" onclick="switchTemplate('slave')" id="tab-btn-slave"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap bg-red-600 text-white shadow-md">
-                <span>🏷️</span> <span class="hidden md:inline">模版一: </span>奴隶卡
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap bg-red-600 text-white shadow-md">
+                <span>🏷️</span> <span>模版一: 奴隶卡</span>
             </button>
             <button type="button" onclick="switchTemplate('bbc')" id="tab-btn-bbc"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>♠️</span> <span class="hidden md:inline">模版二: </span>身份证
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>♠️</span> <span>模版二: 身份证</span>
             </button>
             <button type="button" onclick="switchTemplate('cert')" id="tab-btn-cert"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>📜</span> <span class="hidden md:inline">模版三: </span>登记证书
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>📜</span> <span>模版三: 登记证书</span>
             </button>
             <button type="button" onclick="switchTemplate('bimbo')" id="tab-btn-bimbo"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>🎀</span> <span class="hidden md:inline">模版四: </span>双面卡
+                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>🎀</span> <span>模版四: 双面卡</span>
             </button>
         </nav>
     </header>

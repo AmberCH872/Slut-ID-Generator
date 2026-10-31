@@ -62,10 +62,22 @@ function switchTemplate(tpl) {
         const btn = document.getElementById(`tab-btn-${t}`);
         if (btn) {
             btn.className = (t === tpl)
-                ? `px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${tabColors[t]} text-white shadow-md`
-                : 'px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white';
+                ? `px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap ${tabColors[t]} text-white shadow-md`
+                : 'px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white';
         }
     });
+
+    const mobileSel = document.getElementById('mobile-template-select');
+    if (mobileSel) {
+        mobileSel.value = tpl;
+        const borderColors = {
+            slave: 'border-red-600',
+            bbc: 'border-purple-600',
+            cert: 'border-blue-600',
+            bimbo: 'border-pink-600'
+        };
+        mobileSel.className = `w-full bg-gray-900 text-white font-bold text-xs rounded-xl border ${borderColors[tpl] || 'border-gray-700'} focus:outline-none appearance-none shadow-sm cursor-pointer truncate`;
+    }
 
     document.getElementById('tpl1-editor')?.classList.toggle('hidden', tpl !== 'slave');
     document.getElementById('tpl2-editor')?.classList.toggle('hidden', tpl !== 'bbc');
