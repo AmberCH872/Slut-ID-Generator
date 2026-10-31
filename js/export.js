@@ -51,7 +51,7 @@ async function triggerExport(node, defaultFilename, scaleRatio, bgColor, origina
     const loadingText = document.getElementById('loading-text');
 
     if (overlay) overlay.classList.remove('hidden');
-    if (loadingText) loadingText.innerText = `正在渲染 ${Math.round(originalWidth * scaleRatio)}px 极清画质...`;
+    if (loadingText) loadingText.innerText = `正在极速渲染 ${Math.round(originalWidth * scaleRatio)}px 极清画质...`;
 
     try {
         if (typeof htmlToImage === 'undefined') {
@@ -64,7 +64,8 @@ async function triggerExport(node, defaultFilename, scaleRatio, bgColor, origina
         const dataUrl = await htmlToImage.toPng(node, {
             pixelRatio: scaleRatio,
             backgroundColor: bgColor,
-            cacheBust: true,
+            skipFonts: true,
+            cacheBust: false,
             width: originalWidth,
             height: originalHeight,
             style: { transform: 'none', position: 'static', margin: '0', left: '0', top: '0' }
@@ -133,6 +134,8 @@ async function copyCardToClipboard(tpl) {
         const blob = await htmlToImage.toBlob(node, {
             pixelRatio: 2,
             backgroundColor: bg,
+            skipFonts: true,
+            cacheBust: false,
             width: w,
             height: h,
             style: { transform: 'none', position: 'static', margin: '0', left: '0', top: '0' }
@@ -152,5 +155,5 @@ function quickExportActive() {
     if (currentTemplate === 'slave') exportSc(1);
     else if (currentTemplate === 'bbc') exportBbc(1);
     else if (currentTemplate === 'bimbo') exportBimbo(bimboCurrentSide, 1);
-    else exportCert(2);
+    else exportCert(1);
 }
