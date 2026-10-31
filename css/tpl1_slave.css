@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Template 1: 奴隶身份卡 (Slave ID Card - 1011 × 638 px @ 300 PPI)
+   ========================================================================== */
+
+.sc-card-grid-bg {
+    background-color: var(--sc-card-bg, #ede4f8);
+    background-image: 
+        linear-gradient(to right, var(--sc-grid-line, rgba(185, 165, 220, 0.45)) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--sc-grid-line, rgba(185, 165, 220, 0.45)) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 6px 6px;
+}
+
+.sc-dotted-row {
+    border-bottom: 1.5px dotted var(--sc-dotted-line, rgba(160, 140, 190, 0.6));
+    padding-bottom: 4px;
+}
+
+#sc-card-node {
+    width: 1011px;
+    height: 638px;
+    border-radius: 14px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.25);
+    font-family: var(--sc-card-font, 'Noto Sans SC', sans-serif);
+    --sc-card-bg: #ede4f8;
+    --sc-grid-line: rgba(185, 165, 220, 0.45);
+    --sc-dotted-line: rgba(160, 140, 190, 0.6);
+    transform-origin: top left;
+}
+
+/* Eye Mask Sticker */
+#sc-out-sticker {
+    position: absolute;
+    left: -15px;
+    width: 235px;
+    height: 42px;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.35em;
+    transform: rotate(-3.5deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+    z-index: 20;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Dynamic QR Code Box */
+#sc-out-qr-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sc-out-qr-box img,
+#sc-out-qr-box canvas,
+#sc-out-qr-box svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}

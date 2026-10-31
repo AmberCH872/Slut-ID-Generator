@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Template 4: 极清双面卡 (Bimbo Prostitute Card - 1011 × 638 px @ 300 PPI)
+   ========================================================================== */
+
+#bimbo-card-node {
+    width: 1011px;
+    height: 638px;
+    transform-origin: top left;
+}
+
+.bimbo-card-face {
+    width: 1011px;
+    height: 638px;
+    border-radius: 30px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.25);
+    font-family: var(--bimbo-card-font, 'Noto Sans SC', sans-serif);
+    background: linear-gradient(135deg, #fae8ff 0%, #f0abfc 15%, #e879f9 45%, #c026d3 80%, #9333ea 100%);
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+}
+
+/* Front Header Ribbon */
+.bimbo-front-ribbon {
+    background: linear-gradient(90deg, #fce7f3 0%, #f472b6 40%, #db2777 80%, #be185d 100%);
+    height: 92px;
+    border-bottom: 2.5px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Back Header Ribbon */
+.bimbo-back-ribbon {
+    background: linear-gradient(90deg, #fce7f3 0%, #f472b6 40%, #db2777 80%, #be185d 100%);
+    height: 92px;
+    border-bottom: 2.5px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Traits badge item */
+.bimbo-trait-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: rgba(244, 114, 182, 0.2);
+    border: 1.5px solid rgba(219, 39, 119, 0.45);
+    color: #701a75;
+    font-weight: 800;
+    font-size: 14.5px;
+    letter-spacing: 0.02em;
+}

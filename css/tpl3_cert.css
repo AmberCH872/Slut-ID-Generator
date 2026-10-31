@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Template 3: 登记证书 (Certificate of Registration - 850 × 1200 px)
+   ========================================================================== */
+
+#cert-certificate-node {
+    width: 850px;
+    min-height: 1200px;
+    background-color: #ffffff;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.15);
+    font-family: var(--cert-card-font, 'Noto Serif SC', serif);
+    transform-origin: top left;
+}
+
+/* Classical certificate border */
+.cert-outer-border {
+    border: 14px solid #1e3a8a;
+    padding: 6px;
+    background-color: #ffffff;
+}
+
+.cert-inner-border {
+    border: 2.5px solid #1e3a8a;
+    padding: 36px 42px;
+    position: relative;
+}
+
+/* Blank underline line for filling information */
+.cert-input-line {
+    position: relative;
+    display: inline-block;
+    min-width: 48px;
+    text-align: center;
+    padding: 0 6px 1px 6px;
+    margin: 0 2px;
+    line-height: 1.4;
+    font-weight: 700;
+    vertical-align: baseline;
+    border-bottom: 1.8px solid #111827;
+    color: #030712;
+    word-break: break-all;
+}
+
+.cert-paper-texture {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(248, 245, 238, 0.45) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Dynamic QR Code Box for Certificate */
+#cert-out-qr-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cert-out-qr-box img,
+#cert-out-qr-box canvas,
+#cert-out-qr-box svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
