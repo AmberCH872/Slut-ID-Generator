@@ -233,5 +233,8 @@ function exportSc(scaleRatio = 1) {
     const node = document.getElementById('sc-card-node');
     const name = document.getElementById('sc-in-name')?.value.trim() || '奴隶';
     const code = (document.getElementById('sc-in-badge-code')?.value.match(/\d+/) || ['000'])[0];
-    triggerExport(node, `奴隶身份卡_${name}_NO.${code}_${scaleRatio}X.png`, scaleRatio, scCurrentBgColor, 1011, 638);
+    const filename = `奴隶身份卡_${name}_NO.${code}_${scaleRatio}X.png`;
+    const btnName = scaleRatio === 1 ? '标准卡片 (1X)' : '超清印刷版 (2X)';
+    trackDownload('slave', '奴隶身份卡', btnName, filename, scaleRatio);
+    triggerExport(node, filename, scaleRatio, scCurrentBgColor, 1011, 638);
 }

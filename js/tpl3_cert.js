@@ -220,5 +220,16 @@ function exportCert(scaleRatio = 2) {
     const name = document.getElementById('cert-in-name')?.value.trim() || '母狗';
     const code = document.getElementById('cert-in-code')?.value.trim() || '2026';
     const h = node ? node.offsetHeight : 1200;
-    triggerExport(node, `登记证书_${name}_${code}_${scaleRatio}X.png`, scaleRatio, '#ffffff', 850, h);
+    const filename = `登记证书_${name}_${code}_${scaleRatio}X.png`;
+    const btnName = `高清证书 (${scaleRatio}X)`;
+    trackDownload('cert', '登记证书', btnName, filename, scaleRatio);
+    triggerExport(node, filename, scaleRatio, '#ffffff', 850, h);
+}
+
+function printCert() {
+    trackEvent('card_print', {
+        template_id: 'cert',
+        button_name: 'PDF / 打印'
+    });
+    window.print();
 }

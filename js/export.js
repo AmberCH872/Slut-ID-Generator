@@ -2,6 +2,50 @@
  * Export and Utility Engine
  */
 
+/**
+ * Google Analytics 4 (GA4) Tracking Helpers
+ */
+function trackEvent(eventName, params = {}) {
+    try {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params);
+        }
+    } catch (e) {
+        console.warn('[GA4] Event tracking failed:', e);
+    }
+}
+
+function trackPageView(pagePath, pageTitle) {
+    try {
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', 'page_view', {
+                page_path: pagePath,
+                page_title: pageTitle,
+                page_location: window.location.origin + window.location.pathname + (pagePath.startsWith('/') ? pagePath.slice(1) : pagePath)
+            });
+        }
+    } catch (e) {
+        console.warn('[GA4] Pageview tracking failed:', e);
+    }
+}
+
+function trackDownload(templateId, templateName, buttonName, filename, scaleRatio, side = null) {
+    const params = {
+        template_id: templateId,
+        template_name: templateName,
+        button_name: buttonName,
+        file_name: filename,
+        file_extension: 'png',
+        scale: scaleRatio
+    };
+    if (side) params.card_side = side;
+
+    // 1. GA4 推荐的标准文件下载事件 (file_download)
+    trackEvent('file_download', params);
+    // 2. 自定义卡片导出专属事件 (card_export)
+    trackEvent('card_export', params);
+}
+
 function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -97,6 +141,12 @@ function openExportModal(dataUrl, filename) {
     if (downloadBtn) {
         downloadBtn.href = dataUrl;
         downloadBtn.download = filename;
+        downloadBtn.onclick = () => {
+            trackEvent('modal_download_click', {
+                file_name: filename,
+                button_name: '弹窗立即下载原图'
+            });
+        };
     }
     if (modal) modal.classList.remove('hidden');
 }
@@ -107,6 +157,11 @@ function closeExportModal() {
 }
 
 async function copyCardToClipboard(tpl) {
+    trackEvent('card_copy_clipboard', {
+        template_id: tpl || currentTemplate,
+        button_name: '复制到剪贴板'
+    });
+
     let node;
     if (tpl === 'bimbo' || currentTemplate === 'bimbo') {
         node = (bimboCurrentSide === 'front')
@@ -152,6 +207,12 @@ async function copyCardToClipboard(tpl) {
 }
 
 function quickExportActive() {
+    const source = (window.innerWidth < 768) ? 'mobile_bottom_bar' : 'desktop_top_bar';
+    trackEvent('quick_export', {
+        template_id: currentTemplate,
+        trigger_source: source,
+        button_name: '快捷导出原图'
+    });
     if (currentTemplate === 'slave') exportSc(1);
     else if (currentTemplate === 'bbc') exportBbc(1);
     else if (currentTemplate === 'bimbo') exportBimbo(bimboCurrentSide, 1);

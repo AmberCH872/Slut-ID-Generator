@@ -168,5 +168,8 @@ function resetBbcDefaults() {
 function exportBbc(scaleRatio = 1) {
     const node = document.getElementById('bbc-card-node');
     const name = document.getElementById('bbc-in-name')?.value.trim() || '媚黑奴';
-    triggerExport(node, `媚黑身份证_${name}_${scaleRatio}X.png`, scaleRatio, '#ffffff', 1011, 638);
+    const filename = `媚黑身份证_${name}_${scaleRatio}X.png`;
+    const btnName = scaleRatio === 1 ? '标准卡片 (1X)' : '超清印刷版 (2X)';
+    trackDownload('bbc', '身份证', btnName, filename, scaleRatio);
+    triggerExport(node, filename, scaleRatio, '#ffffff', 1011, 638);
 }

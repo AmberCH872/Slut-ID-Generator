@@ -115,6 +115,13 @@ function resetBimboRules() {
 
 function switchBimboSide(side) {
     bimboCurrentSide = side;
+    trackPageView(`/#bimbo-${side}`, `双面身份卡 (${side === 'front' ? '正面' : '背面'}) - 证件与协议工坊`);
+    trackEvent('bimbo_side_switch', {
+        template_id: 'bimbo',
+        side: side,
+        side_name: side === 'front' ? '正面' : '背面'
+    });
+
     const frontNode = document.getElementById('bimbo-front-node');
     const backNode = document.getElementById('bimbo-back-node');
     if (frontNode) frontNode.classList.toggle('hidden', side !== 'front');
@@ -282,14 +289,18 @@ function resetBimboDefaults() {
     switchBimboSide('front');
 }
 
-function exportBimbo(side, scaleRatio = 1) {
+function exportBimbo(side, scaleRatio = 1, isBatch = false) {
     const node = (side === 'front')
         ? document.getElementById('bimbo-front-node')
         : document.getElementById('bimbo-back-node');
     const name = document.getElementById('bimbo-in-name')?.value.trim() || '档案';
     const code = document.getElementById('bimbo-in-qr-id')?.value.trim() || 'ID';
     const sideName = (side === 'front') ? '正面' : '背面';
-    const filename = `妓女身份识别卡_${name}_${sideName}_${code}_${scaleRatio}X.png`;
+    const filename = `双面身份卡_${name}_${sideName}_${code}_${scaleRatio}X.png`;
+    const btnName = (side === 'front') ? '导出正面 (1X)' : '导出背面 (1X)';
+    if (!isBatch) {
+        trackDownload('bimbo', '双面身份卡', btnName, filename, scaleRatio, side);
+    }
 
     const wasHidden = node.classList.contains('hidden');
     if (wasHidden) node.classList.remove('hidden');
@@ -300,8 +311,9 @@ function exportBimbo(side, scaleRatio = 1) {
 }
 
 async function exportBimboBoth(scaleRatio = 1) {
-    exportBimbo('front', scaleRatio);
+    trackDownload('bimbo', '双面身份卡', '一键导出正反两面', '双面卡_正反两面_打包.png', scaleRatio, 'both');
+    exportBimbo('front', scaleRatio, true);
     setTimeout(() => {
-        exportBimbo('back', scaleRatio);
+        exportBimbo('back', scaleRatio, true);
     }, 800);
 }

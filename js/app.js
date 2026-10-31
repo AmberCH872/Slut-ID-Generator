@@ -24,6 +24,11 @@ window.addEventListener('DOMContentLoaded', () => {
         switchTemplate(hash);
     } else {
         fitCurrentScreen();
+        trackPageView('/#slave', '🏷️ 奴隶身份卡 - 证件与协议工坊');
+        trackEvent('template_view', {
+            template_id: 'slave',
+            template_name: '🏷️ 奴隶身份卡'
+        });
     }
     window.addEventListener('resize', () => {
         fitCurrentScreen();
@@ -51,6 +56,19 @@ function switchTemplate(tpl) {
     if (location.hash !== '#' + tpl) {
         history.replaceState(null, '', '#' + tpl);
     }
+
+    const templateNames = {
+        slave: '🏷️ 奴隶身份卡',
+        bbc: '♠️ 身份证',
+        cert: '📜 登记证书',
+        bimbo: '🎀 双面身份卡'
+    };
+    const tplName = templateNames[tpl] || tpl;
+    trackPageView(`/#${tpl}`, `${tplName} - 证件与协议工坊`);
+    trackEvent('template_view', {
+        template_id: tpl,
+        template_name: tplName
+    });
 
     const tabColors = {
         slave: 'bg-red-600',
