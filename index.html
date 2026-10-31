@@ -1052,14 +1052,14 @@
                             <label class="block text-xs font-medium text-gray-400 mb-1">EXH. A 证物图片与标签</label>
                             <input type="file" accept="image/*" onchange="handleBimboExhUpload(event, 'a')"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 mb-1">
-                            <input type="text" id="bimbo-in-exh-a-title" value="制服束缚" oninput="updateBimboField('exh-a-title')"
+                            <input type="text" id="bimbo-in-exh-a-title" value="胸部特征" oninput="updateBimboField('exh-a-title')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-400 mb-1">EXH. B 证物图片与标签</label>
                             <input type="file" accept="image/*" onchange="handleBimboExhUpload(event, 'b')"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 mb-1">
-                            <input type="text" id="bimbo-in-exh-b-title" value="项圈调教" oninput="updateBimboField('exh-b-title')"
+                            <input type="text" id="bimbo-in-exh-b-title" value="腰腹大腿" oninput="updateBimboField('exh-b-title')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
                         </div>
                     </div>
@@ -1083,10 +1083,8 @@
                                 <span class="w-2 h-2 rounded-full bg-pink-500"></span> 右侧核验二维码与条形码
                             </h2>
                         </div>
-                        <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">更换二维码图片</label>
-                            <input type="file" id="bimbo-in-qr-file" accept="image/*" onchange="handleBimboQrUpload(event)"
-                                class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200">
+                        <div class="p-2.5 rounded-xl bg-pink-950/20 border border-pink-900/40 text-[11px] text-pink-300 flex items-center gap-1.5">
+                            <span>ℹ️</span> 二维码由下方核验编号实时自动矢量生成（保留粉色主题），无需手动上传。
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
@@ -1095,7 +1093,7 @@
                                     class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white font-mono">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">核验短ID</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1">核验短ID / 编号</label>
                                 <input type="text" id="bimbo-in-qr-id" value="MAKIMA" oninput="updateBimboField('qr-id')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-pink-300 font-mono font-bold">
                             </div>
@@ -1649,12 +1647,12 @@
                                 <div class="w-[215px] h-[195px] rounded-[22px] border-[3px] border-white/90 overflow-hidden relative shadow-lg bg-black">
                                     <img id="bimbo-out-exh-a" src="assets/tpl4/exh_a.webp" alt="EXH A" class="w-full h-full object-cover">
                                     <span class="absolute top-2.5 right-2.5 bg-black/50 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black border border-white/30">EXH. A</span>
-                                    <span id="bimbo-out-exh-a-title" class="hidden">制服束缚</span>
+                                    <span id="bimbo-out-exh-a-title" class="hidden">胸部特征</span>
                                 </div>
                                 <div class="w-[215px] h-[195px] rounded-[22px] border-[3px] border-white/90 overflow-hidden relative shadow-lg bg-black">
                                     <img id="bimbo-out-exh-b" src="assets/tpl4/exh_b.webp" alt="EXH B" class="w-full h-full object-cover">
                                     <span class="absolute top-2.5 right-2.5 bg-black/50 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black border border-white/30">EXH. B</span>
-                                    <span id="bimbo-out-exh-b-title" class="hidden">项圈调教</span>
+                                    <span id="bimbo-out-exh-b-title" class="hidden">腰腹大腿</span>
                                 </div>
                             </div>
 
@@ -1671,8 +1669,8 @@
 
                             <!-- 右侧二维码区域 (大圆角白卡，高度还原 new2.jpg) -->
                             <div class="absolute left-[745px] top-[100px] w-[220px] flex flex-col items-center select-none">
-                                <div class="w-[215px] h-[215px] bg-white rounded-[28px] p-4 shadow-xl border-2 border-white/60 flex items-center justify-center">
-                                    <img id="bimbo-out-qr" src="assets/tpl4/qr.png" alt="QR" class="w-full h-full object-contain">
+                                <div class="w-[215px] h-[215px] bg-white rounded-[28px] p-3.5 shadow-xl border-2 border-white/60 flex items-center justify-center">
+                                    <div id="bimbo-out-qr-box" class="w-full h-full flex items-center justify-center overflow-hidden"></div>
                                 </div>
                                 <span id="bimbo-out-qr-label" class="mt-4 text-white font-black text-[15px] tracking-[0.25em] drop-shadow-md text-center">SCAN FILE</span>
                                 <span class="mt-1 text-white/90 font-mono text-[13px] font-bold tracking-wider drop-shadow-sm text-center">

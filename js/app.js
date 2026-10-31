@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initBimboRules();
     updateScQR();
     updateCertQR();
+    updateBimboQR();
     initTouchZoom();
     setMobileMode('edit');
 

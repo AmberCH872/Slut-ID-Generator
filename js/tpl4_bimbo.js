@@ -35,6 +35,10 @@ function updateBimboField(field) {
     if (field === 'qr-id') {
         const topId = document.getElementById('bimbo-out-qr-id-top');
         if (topId) topId.innerText = input.value;
+        updateBimboQR();
+    }
+    if (field === 'footer-code') {
+        updateBimboQR();
     }
 }
 
@@ -67,8 +71,30 @@ function handleBimboExhUpload(e, exh) {
     handleImageUpload(e, `bimbo-out-exh-${exh}`);
 }
 
-function handleBimboQrUpload(e) {
-    handleImageUpload(e, 'bimbo-out-qr');
+function updateBimboQR() {
+    const code = document.getElementById('bimbo-in-qr-id')?.value.trim() 
+        || document.getElementById('bimbo-in-footer-code')?.value.trim() 
+        || 'MAKIMA';
+    const qrBox = document.getElementById('bimbo-out-qr-box');
+    if (!qrBox) return;
+    try {
+        if (typeof qrcode !== 'undefined') {
+            const qr = qrcode(0, 'M');
+            qr.addData(code);
+            qr.make();
+            let svgStr = qr.createSvgTag({ scalable: true, margin: 1 });
+            svgStr = svgStr.replace(/fill="black"/g, 'fill="#ff0782"');
+            qrBox.innerHTML = svgStr;
+            const svg = qrBox.querySelector('svg');
+            if (svg) {
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svg.style.display = 'block';
+            }
+        }
+    } catch (e) {
+        console.warn('Bimbo QR Error:', e);
+    }
 }
 
 function updateBimboRules() {
@@ -105,6 +131,9 @@ function switchBimboSide(side) {
             : 'px-2.5 py-1 rounded-md font-bold text-gray-300 hover:text-white transition';
     }
     switchBimboEditTab(side);
+    if (side === 'back') {
+        updateBimboQR();
+    }
     fitCurrentScreen();
 }
 
@@ -234,8 +263,8 @@ function resetBimboDefaults() {
         'stamp-text': '支配恶魔，自愿为犬，永久锁死，禁止反抗',
         'status-text': 'VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT',
         'signature': '玛奇玛',
-        'exh-a-title': '制服束缚',
-        'exh-b-title': '项圈调教',
+        'exh-a-title': '胸部特征',
+        'exh-b-title': '腰腹大腿',
         'qr-label': 'SCAN FILE',
         'qr-id': 'MAKIMA',
         'footer-code': 'OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001'
@@ -248,6 +277,7 @@ function resetBimboDefaults() {
     resetBimboPhoto();
     resetBimboBgImage();
     resetBimboRules();
+    updateBimboQR();
     selectBimboFont('sans');
     switchBimboSide('front');
 }
