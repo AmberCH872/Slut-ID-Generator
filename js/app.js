@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     initBimboRules();
     updateScQR();
     updateCertQR();
+    initTouchZoom();
+    setMobileMode('edit');
 
     const hash = location.hash.replace('#', '');
     if (hash === 'bimbo-back') {
@@ -22,7 +24,9 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
         fitCurrentScreen();
     }
-    window.addEventListener('resize', fitCurrentScreen);
+    window.addEventListener('resize', () => {
+        fitCurrentScreen();
+    });
 
     // Modern ResizeObserver to guarantee auto-fit when layout or window settles
     if (typeof ResizeObserver !== 'undefined') {
@@ -92,23 +96,87 @@ function switchTemplate(tpl) {
 
 function setMobileMode(mode) {
     mobileMode = mode;
+    document.body.setAttribute('data-mobile-mode', mode);
+
     const aside = document.getElementById('editor-aside');
     const area = document.getElementById('canvas-area-wrapper');
     const btnEdit = document.getElementById('m-btn-edit');
     const btnPrev = document.getElementById('m-btn-preview');
+    const floatBtnEdit = document.getElementById('m-float-btn-edit');
+    const floatBtnPrev = document.getElementById('m-float-btn-prev');
+
+    const activeClasses = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow';
+    const inactiveClasses = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-800';
+
+    const floatActive = 'flex-1 py-2 px-2.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-red-600 text-white shadow';
+    const floatInactive = 'flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-gray-900 text-gray-300 border border-gray-800';
 
     if (mode === 'edit') {
         aside?.classList.remove('hidden');
         area?.classList.add('hidden');
-        if (btnEdit) btnEdit.className = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow';
-        if (btnPrev) btnPrev.className = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-800';
+        if (btnEdit) btnEdit.className = activeClasses;
+        if (btnPrev) btnPrev.className = inactiveClasses;
+        if (floatBtnEdit) floatBtnEdit.className = floatActive;
+        if (floatBtnPrev) floatBtnPrev.className = floatInactive;
     } else {
         aside?.classList.add('hidden');
         area?.classList.remove('hidden');
-        if (btnPrev) btnPrev.className = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow';
-        if (btnEdit) btnEdit.className = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-800';
-        setTimeout(fitCurrentScreen, 50);
+        if (btnPrev) btnPrev.className = activeClasses;
+        if (btnEdit) btnEdit.className = inactiveClasses;
+        if (floatBtnPrev) floatBtnPrev.className = floatActive;
+        if (floatBtnEdit) floatBtnEdit.className = floatInactive;
+        fitCurrentScreen();
+        setTimeout(fitCurrentScreen, 30);
+        setTimeout(fitCurrentScreen, 150);
     }
+}
+
+let touchStartDist = 0;
+let touchStartScale = 1.0;
+let lastTapTime = 0;
+
+function initTouchZoom() {
+    const main = document.getElementById('canvas-main');
+    if (!main) return;
+
+    main.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            touchStartDist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            touchStartScale = currentScale;
+        }
+    }, { passive: true });
+
+    main.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2 && touchStartDist > 0) {
+            const currentDist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            const ratio = currentDist / touchStartDist;
+            const newScale = Math.max(0.18, Math.min(2.2, Math.round(touchStartScale * ratio * 100) / 100));
+            currentScale = newScale;
+            applyCurrentScale();
+        }
+    }, { passive: true });
+
+    // Double tap to toggle zoom between fit-screen and 100%
+    main.addEventListener('touchend', (e) => {
+        if (e.touches.length === 0) {
+            touchStartDist = 0;
+            const now = Date.now();
+            if (now - lastTapTime < 320) {
+                if (currentScale < 0.85) {
+                    resetCurrentZoom(1.0);
+                } else {
+                    fitCurrentScreen();
+                }
+            }
+            lastTapTime = now;
+        }
+    });
 }
 
 function getActiveCardDimensions() {
@@ -139,19 +207,22 @@ function fitCurrentScreen() {
         return;
     }
 
-    const isMobile = window.innerWidth < 768;
-    const padX = isMobile ? 24 : 48;
-    const padY = isMobile ? 24 : 48;
+    const style = window.getComputedStyle(main);
+    const padL = parseFloat(style.paddingLeft) || 0;
+    const padR = parseFloat(style.paddingRight) || 0;
+    const padT = parseFloat(style.paddingTop) || 0;
+    const padB = parseFloat(style.paddingBottom) || 0;
 
-    const availableW = Math.max(160, w - padX);
-    const availableH = Math.max(160, h - padY);
+    // 8px breathing room prevents subpixel rounding jitter
+    const availableW = Math.max(160, w - padL - padR - 8);
+    const availableH = Math.max(160, h - padT - padB - 8);
 
     const [cardW, cardH] = getActiveCardDimensions();
     const scaleW = availableW / cardW;
     const scaleH = availableH / cardH;
 
-    const idealScale = isMobile ? scaleW : Math.min(scaleW, scaleH);
-    currentScale = Math.max(0.2, Math.min(1.0, Math.round(idealScale * 100) / 100));
+    const idealScale = Math.min(scaleW, scaleH);
+    currentScale = Math.max(0.18, Math.min(1.0, Math.floor(idealScale * 100) / 100));
     applyCurrentScale();
 }
 

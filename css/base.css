@@ -14,20 +14,25 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
+    height: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     background-color: var(--bg-dark);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
     color: #f3f4f6;
-    margin: 0;
-    padding: 0;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-text-size-adjust: 100%;
+    touch-action: manipulation;
 }
 
 /* Custom Scrollbars */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -97,6 +102,7 @@ input[type="range"] {
     overflow: auto;
     position: relative;
     min-height: 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 #scaler-outer-box {
@@ -105,6 +111,65 @@ input[type="range"] {
     overflow: visible;
     flex-shrink: 0;
     transition: width 0.08s ease-out, height 0.08s ease-out;
+}
+
+/* Mobile responsive rules (< 768px) */
+@media (max-width: 767px) {
+    body[data-mobile-mode="edit"] #editor-aside {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding-bottom: 96px !important; /* Space for floating bottom action bar */
+    }
+    body[data-mobile-mode="edit"] #canvas-area-wrapper {
+        display: none !important;
+    }
+
+    body[data-mobile-mode="preview"] #editor-aside {
+        display: none !important;
+    }
+    body[data-mobile-mode="preview"] #canvas-area-wrapper {
+        display: flex !important;
+        width: 100% !important;
+        height: 100% !important;
+        padding-bottom: 76px !important; /* Space for floating bottom action bar */
+    }
+
+    /* Prevent iOS auto-zoom on input focus */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+        font-size: 16px !important;
+        padding: 0.55rem 0.75rem !important;
+    }
+
+    /* Larger touch target for range sliders on mobile */
+    input[type="range"] {
+        height: 32px;
+    }
+
+    /* Compact horizontal scrolling for top tabs */
+    header nav {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    header nav::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    #editor-aside {
+        display: block !important;
+    }
+    #canvas-area-wrapper {
+        display: flex !important;
+    }
+    #mobile-bottom-bar {
+        display: none !important;
+    }
 }
 
 /* Print styles */

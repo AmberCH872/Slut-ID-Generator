@@ -34,10 +34,10 @@ function renderBbcEditorKinks() {
     const listEl = document.getElementById('bbc-kinks-list');
     if (!listEl) return;
     listEl.innerHTML = currentBbcKinks.map(k => `
-        <label class="flex items-center gap-1.5 p-1 rounded hover:bg-gray-800/60 cursor-pointer text-xs">
+        <label class="flex items-center gap-2 p-1.5 sm:p-2 rounded-lg bg-gray-950/40 border border-gray-800/60 hover:bg-gray-800/60 cursor-pointer text-xs transition">
             <input type="checkbox" ${k.checked ? 'checked' : ''} onchange="toggleBbcKink('${k.id}')"
-                class="rounded bg-gray-950 border-gray-700 text-purple-600 focus:ring-0">
-            <span class="text-gray-300">${k.text}</span>
+                class="w-4 h-4 rounded bg-gray-950 border-gray-700 text-purple-600 focus:ring-0">
+            <span class="text-gray-300 font-medium">${k.text}</span>
         </label>
     `).join('');
 }

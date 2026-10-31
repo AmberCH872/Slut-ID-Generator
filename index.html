@@ -22,41 +22,41 @@
     <link rel="stylesheet" href="css/tpl4_bimbo.css">
 </head>
 
-<body class="h-screen flex flex-col overflow-hidden select-none">
+<body class="h-screen flex flex-col overflow-hidden select-none" data-mobile-mode="edit">
 
     <!-- 顶部统一导航条 (支持手机横向滚动) -->
-    <header class="h-14 bg-gray-950/95 border-b border-gray-800/80 px-3 md:px-5 flex items-center justify-between shrink-0 z-40 no-print gap-2">
-        <div class="flex items-center gap-2.5 shrink-0">
-            <span class="text-2xl">🪪</span>
+    <header class="h-14 bg-gray-950/95 border-b border-gray-800/80 px-2.5 sm:px-5 flex items-center justify-between shrink-0 z-40 no-print gap-1.5">
+        <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-xl sm:text-2xl">🪪</span>
             <div class="flex flex-col">
-                <span class="font-black text-white text-sm md:text-base leading-tight tracking-wide">卡片与协议工坊</span>
-                <span class="text-[10px] text-gray-400 font-mono hidden sm:inline">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
+                <span class="font-black text-white text-xs sm:text-base leading-tight tracking-wide">卡片工坊</span>
+                <span class="text-[10px] text-gray-400 font-mono hidden md:inline">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
         </div>
 
         <!-- 4款模版快速切换 Tab -->
-        <nav class="flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 overflow-x-auto max-w-[65vw] sm:max-w-none custom-scrollbar">
+        <nav class="flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 overflow-x-auto max-w-[70vw] sm:max-w-none custom-scrollbar shrink-0">
             <button type="button" onclick="switchTemplate('slave')" id="tab-btn-slave"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap bg-red-600 text-white shadow-md">
-                <span>🏷️</span> <span class="hidden xs:inline">模版一: </span>奴隶身份卡
+                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap bg-red-600 text-white shadow-md">
+                <span>🏷️</span> <span class="hidden md:inline">模版一: </span>奴隶卡
             </button>
             <button type="button" onclick="switchTemplate('bbc')" id="tab-btn-bbc"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>♠️</span> <span class="hidden xs:inline">模版二: </span>媚黑身份证
+                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>♠️</span> <span class="hidden md:inline">模版二: </span>身份证
             </button>
             <button type="button" onclick="switchTemplate('cert')" id="tab-btn-cert"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>📜</span> <span class="hidden xs:inline">模版三: </span>登记证书
+                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>📜</span> <span class="hidden md:inline">模版三: </span>登记证书
             </button>
             <button type="button" onclick="switchTemplate('bimbo')" id="tab-btn-bimbo"
-                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>🎀</span> <span class="hidden xs:inline">模版四: </span>极清双面卡
+                class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1 whitespace-nowrap text-gray-300 hover:text-white">
+                <span>🎀</span> <span class="hidden md:inline">模版四: </span>双面卡
             </button>
         </nav>
     </header>
 
     <!-- 移动端专属模式分段控制器 (仅在小于 768px 手机屏幕可见) -->
-    <div class="md:hidden bg-gray-950/95 border-b border-gray-800/80 px-3 py-2 shrink-0 z-30 no-print">
+    <div class="md:hidden bg-gray-950/95 border-b border-gray-800/80 px-3 py-1.5 shrink-0 z-30 no-print">
         <div class="grid grid-cols-2 gap-2 max-w-sm mx-auto">
             <button type="button" onclick="setMobileMode('edit')" id="m-btn-edit"
                 class="py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow">
@@ -1119,24 +1119,23 @@
         <div id="canvas-area-wrapper" class="flex-1 flex flex-col h-full overflow-hidden relative">
 
             <!-- 画布顶部控制工具条 (独立置顶，永不遮挡卡片) -->
-            <div class="h-12 bg-gray-950/95 border-b border-gray-800/80 px-3 md:px-5 flex items-center justify-between shrink-0 z-30 no-print gap-2">
-                <div class="flex items-center gap-2">
+            <div class="h-12 bg-gray-950/95 border-b border-gray-800/80 px-2 sm:px-4 flex items-center justify-between shrink-0 z-30 no-print gap-1.5 overflow-x-auto custom-scrollbar">
+                <div class="flex items-center gap-1.5 shrink-0">
                     <div id="bimbo-side-selector" class="hidden flex items-center bg-gray-900 border border-pink-700/60 rounded-lg p-0.5 text-xs shadow-sm">
-                        <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2.5 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition">正面 (Front)</button>
-                        <button type="button" id="bimbo-side-btn-back" onclick="switchBimboSide('back')" class="px-2.5 py-1 rounded-md font-bold text-gray-300 hover:text-white transition">背面 (Back)</button>
+                        <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition">正面</button>
+                        <button type="button" id="bimbo-side-btn-back" onclick="switchBimboSide('back')" class="px-2 py-1 rounded-md font-bold text-gray-300 hover:text-white transition">背面</button>
                     </div>
-                    <span class="text-xs text-gray-400 font-medium hidden sm:inline">视口尺寸:</span>
-                    <span id="card-dimension-tip" class="text-xs text-gray-300 font-mono bg-gray-900 border border-gray-800 px-2 py-0.5 rounded">880 × 580 px</span>
+                    <span id="card-dimension-tip" class="text-[11px] sm:text-xs text-gray-400 font-mono bg-gray-900 border border-gray-800 px-2 py-0.5 rounded hidden sm:inline">1011 × 638 px</span>
                 </div>
-                <div class="flex items-center gap-1 bg-gray-900/90 border border-gray-800 rounded-lg px-2 py-1 text-xs shadow-sm">
+                <div class="flex items-center gap-1 bg-gray-900/90 border border-gray-800 rounded-lg px-1.5 sm:px-2 py-1 text-xs shadow-sm shrink-0">
                     <button type="button" onclick="adjustCurrentZoom(-0.05)" class="w-6 h-6 flex items-center justify-center hover:text-red-400 font-bold bg-gray-800 rounded">－</button>
-                    <span id="global-zoom-text" class="font-mono text-gray-200 w-12 text-center font-bold">100%</span>
+                    <span id="global-zoom-text" class="font-mono text-gray-200 w-11 sm:w-12 text-center font-bold text-[11px] sm:text-xs">100%</span>
                     <button type="button" onclick="adjustCurrentZoom(0.05)" class="w-6 h-6 flex items-center justify-center hover:text-red-400 font-bold bg-gray-800 rounded">＋</button>
-                    <span class="w-[1px] h-3 bg-gray-700 mx-1"></span>
-                    <button type="button" onclick="fitCurrentScreen()" class="px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium">适应屏幕</button>
-                    <button type="button" onclick="resetCurrentZoom(1.0)" class="px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium hidden sm:inline">100%</button>
+                    <span class="w-[1px] h-3 bg-gray-700 mx-0.5 sm:mx-1"></span>
+                    <button type="button" onclick="fitCurrentScreen()" class="px-1.5 sm:px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium text-[11px] sm:text-xs">适应屏幕</button>
+                    <button type="button" onclick="resetCurrentZoom(1.0)" class="px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium hidden md:inline">100%</button>
                 </div>
-                <div>
+                <div class="hidden sm:block shrink-0">
                     <button type="button" onclick="quickExportActive()" class="px-3.5 py-1 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs flex items-center gap-1.5 shadow">
                         <span>💾</span> 导出原图
                     </button>
@@ -1144,7 +1143,7 @@
             </div>
 
             <!-- 画布主体可滚动区域 -->
-            <main id="canvas-main" class="flex-1 bg-gray-950 overflow-auto p-4 md:p-8 flex custom-scrollbar relative">
+            <main id="canvas-main" class="flex-1 bg-gray-950 overflow-auto p-2.5 sm:p-4 md:p-8 flex custom-scrollbar relative">
                 <!-- 卡片外层精确缩放定位盒子 -->
                 <div id="scaler-outer-box">
 
@@ -1708,6 +1707,24 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 移动端专属悬浮快捷操作底栏 (吸底且自适应 iPhone Home 键安全区) -->
+    <div id="mobile-bottom-bar" class="md:hidden fixed bottom-0 left-0 right-0 z-40 px-3 py-2 pb-[max(0.65rem,env(safe-area-inset-bottom))] bg-gray-950/95 border-t border-gray-800/90 backdrop-blur-xl flex items-center justify-between gap-2 shadow-[0_-8px_30px_rgba(0,0,0,0.7)] no-print">
+        <div class="flex items-center gap-1.5 flex-1">
+            <button type="button" onclick="setMobileMode('edit')" id="m-float-btn-edit"
+                class="flex-1 py-2 px-2.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-red-600 text-white shadow">
+                <span>✏️</span> 表单填写
+            </button>
+            <button type="button" onclick="setMobileMode('preview')" id="m-float-btn-prev"
+                class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-gray-900 text-gray-300 border border-gray-800">
+                <span>👁️</span> 实时预览
+            </button>
+        </div>
+        <button type="button" onclick="quickExportActive()"
+            class="shrink-0 py-2 px-3.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-lg">
+            <span>💾</span> 导出原图
+        </button>
     </div>
 
     <!-- 渲染导出加载遮罩 -->
