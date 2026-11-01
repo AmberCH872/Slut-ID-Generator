@@ -18,6 +18,62 @@ const defaultBimboRules = [
     "11. 在任何指令面前，第一反应必须是绝对的服从。"
 ];
 
+const BIMBO_RULES_I18N = {
+    'zh-CN': defaultBimboRules,
+    'zh-TW': [
+        "1. 持卡人必須時刻佩戴此卡，以便隨時接受檢查。",
+        "2. 持卡人已接受物化改造，並服從所有合法指令。",
+        "3. 禁止持卡人表現出獨立思考、反抗或尊嚴行為。",
+        "4. 公共場合需保持受訓姿態，提供職業身份服務。",
+        "5. 若遺失此卡，需立即報告委員會並接受懲罰補辦。",
+        "6. 嚴禁塗改、轉讓或損毀此卡，違者加重改造強度。",
+        "7. 每日必須進行認知修正，確保大腦處於空靈狀態。",
+        "8. 任何時刻均不得拒絕來自上級的身體開發指令。",
+        "9. 持卡人禁止擁有個人隱私，需完全公開展示身體。",
+        "10. 定期接受激素檢測，維持發情期以確保工作效率。",
+        "11. 在任何指令面前，第一反應必須是絕對的服從。"
+    ],
+    'en': [
+        "1. Holder must wear this card at all times for immediate inspection.",
+        "2. Holder has undergone bimbo conditioning and obeys all lawful orders.",
+        "3. Independent thought, resistance, and dignity are strictly prohibited.",
+        "4. Must maintain trained posture and provide professional service in public.",
+        "5. If lost, report immediately for disciplinary renewal procedures.",
+        "6. Tampering, transfer, or damage is penalized with intensified conditioning.",
+        "7. Daily cognitive recalibration required to maintain mental emptiness.",
+        "8. Must never refuse any bodily modification or pleasure directives.",
+        "9. All personal privacy revoked; full physical disclosure required at all times.",
+        "10. Undergo hormone screenings regularly to sustain perpetual estrus.",
+        "11. The only acceptable response to any command is absolute submission."
+    ],
+    'ja': [
+        "1. 所持者は検査に応じるため、常に本証を着用しなければならない。",
+        "2. 所持者は肉体・精神改造を受け、全命令に従属するものとする。",
+        "3. 独自の思考、抵抗、自尊心を示す行為は一切禁じられている。",
+        "4. 公共の場では調教された姿勢を保ち、職務サービスを提供すること。",
+        "5. 紛失時は直ちに委員会へ報告し、懲罰の上で再発行を受けること。",
+        "6. 改竄・譲渡・損壊は厳禁とし、違反者は再改造の深度を加重する。",
+        "7. 脳内を完全な空霊状態に保つため、毎日の認知修正を必須とする。",
+        "8. 上位者からの肉体開発命令をいかなる時も拒絶してはならない。",
+        "9. 所持者のプライバシーは全否定され、常に肉体を公開展示すること。",
+        "10. 定期ホルモン検査を受け、業務効率化のため常時発情期を維持すること。",
+        "11. あらゆる命令に対し、第一の反応は絶対的服従でなければならない。"
+    ]
+};
+
+function updateBimboRulesLanguage(lang) {
+    const list = BIMBO_RULES_I18N[lang] || BIMBO_RULES_I18N['en'];
+    const el = document.getElementById('bimbo-in-rules');
+    if (el && list) {
+        const currentVal = el.value.trim();
+        const isDefault = Object.values(BIMBO_RULES_I18N).some(arr => arr.join('\n') === currentVal);
+        if (!currentVal || isDefault) {
+            el.value = list.join('\n');
+            updateBimboRules();
+        }
+    }
+}
+
 function initBimboRules() {
     const el = document.getElementById('bimbo-in-rules');
     if (el && !el.value.trim()) {
@@ -102,6 +158,14 @@ function updateBimboRules() {
     const container = document.getElementById('bimbo-out-rules-container');
     if (!container) return;
     const lines = text.split('\n').filter(l => l.trim().length > 0);
+    const totalChars = text.length;
+    const isLongOrEn = totalChars > 350 || /[a-zA-Z]{4,}/.test(text);
+
+    if (isLongOrEn) {
+        container.className = 'space-y-1 text-white font-bold text-[12px] leading-[1.3] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]';
+    } else {
+        container.className = 'space-y-2 text-white font-bold text-[16px] leading-[1.8] drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)]';
+    }
     container.innerHTML = lines.map(line => `
         <div class="tracking-wide">${escapeHtml(line)}</div>
     `).join('');

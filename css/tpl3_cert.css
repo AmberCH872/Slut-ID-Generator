@@ -37,7 +37,7 @@
     vertical-align: baseline;
     border-bottom: 1.8px solid #111827;
     color: #030712;
-    word-break: break-all;
+    word-break: normal; overflow-wrap: break-word;
 }
 
 .cert-paper-texture {

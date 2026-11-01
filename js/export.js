@@ -95,7 +95,11 @@ async function triggerExport(node, defaultFilename, scaleRatio, bgColor, origina
     const loadingText = document.getElementById('loading-text');
 
     if (overlay) overlay.classList.remove('hidden');
-    if (loadingText) loadingText.innerText = `正在极速渲染 ${Math.round(originalWidth * scaleRatio)}px 极清画质...`;
+    if (loadingText) {
+        loadingText.innerText = (typeof t === 'function')
+            ? t('loading_rendering', { size: Math.round(originalWidth * scaleRatio) })
+            : `正在极速渲染 ${Math.round(originalWidth * scaleRatio)}px 极清画质...`;
+    }
 
     try {
         if (typeof htmlToImage === 'undefined') {
@@ -190,7 +194,11 @@ async function copyCardToClipboard(tpl) {
     const loadingText = document.getElementById('loading-text');
 
     if (overlay) overlay.classList.remove('hidden');
-    if (loadingText) loadingText.innerText = '正在生成并复制到剪贴板...';
+    if (loadingText) {
+        loadingText.innerText = (typeof t === 'function')
+            ? t('loading_clipboard')
+            : '正在生成并复制到剪贴板...';
+    }
 
     try {
         if (!navigator.clipboard?.write || !window.ClipboardItem) {
@@ -260,16 +268,22 @@ function hideToast() {
 }
 
 function copyShareLink(source = 'general') {
-    const shareText = `📇 推荐一个超好用的证件与协议高保真生成系统！支持奴隶卡、双面身份卡、登记证书等多种款式，纯前端隐私安全，支持 300 PPI 极清导出：\nhttps://amberch872.github.io/Slut-ID-Generator/?utm_source=user_share&utm_medium=referral&utm_campaign=share_card`;
+    const shareText = (typeof t === 'function' && t('share_text') !== 'share_text')
+        ? t('share_text')
+        : `📇 推荐一个超好用的证件与协议高保真生成系统！支持奴隶卡、双面身份卡、登记证书等多种款式，纯前端隐私安全，支持 300 PPI 极清导出：\nhttps://amberch872.github.io/Slut-ID-Generator/?utm_source=user_share&utm_medium=referral&utm_campaign=share_card`;
 
     trackEvent('share_link_copy', {
         trigger_source: source,
         button_name: '复制工具分享链接'
     });
 
+    const successMsg = (typeof t === 'function')
+        ? t('toast_link_copied')
+        : '✅ 推荐文案与链接已复制到剪贴板！可直接粘贴至群聊或论坛。';
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(shareText).then(() => {
-            showToast('✅ 推荐文案与链接已复制到剪贴板！可直接粘贴至群聊或论坛。', 3500);
+            showToast(successMsg, 3500);
         }).catch(() => {
             prompt('请长按复制以下推荐文案与链接：', shareText);
         });

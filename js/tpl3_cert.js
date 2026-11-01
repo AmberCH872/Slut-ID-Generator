@@ -11,6 +11,47 @@ const defaultCertTerms = [
     "6. 本贱畜自愿终身永远服从，不得脱离，如有违背愿受最严厉惩罚。"
 ];
 
+const CERT_TERMS_I18N = {
+    'zh-CN': defaultCertTerms,
+    'zh-TW': [
+        "1. 賤畜承認自己為天生女奴/母狗身份，僅供被主人隨意使用、把玩、調教。",
+        "2. 身體一切孔洞（口、陰、肛）均作為主人財產，供主人發泄時使用。",
+        "3. 必須隨時接受主人的內射、無套、吃精、拳交等一切主人安排的玩法，無權拒絕。",
+        "4. 同意主人永久保留其任何影音資料，無需本人同意。",
+        "5. 如有背叛、反抗或惹怒主人，願無條件接受任何慘無人道懲罰。",
+        "6. 本賤畜自願終身永遠服從，不得脫離，如有違背願受最嚴厲懲罰。"
+    ],
+    'en': [
+        "1. Subject acknowledges her identity as born submissive/property, exclusively for Master's training and pleasure.",
+        "2. All bodily faculties and personal freedom are surrendered unconditionally to Master's private possession.",
+        "3. Must accept all training, discipline, physical intimacy, and commands as directed without refusal.",
+        "4. Consents to Master perpetually archiving all records, audio, and video documentation without further permission.",
+        "5. In case of disobedience or defiance, accepts unconditional disciplinary penalties.",
+        "6. Subject enters this indenture voluntarily for life, renouncing all rights of revocation."
+    ],
+    'ja': [
+        "1. 本奴隷は生まれながらの性奴隷であることを認め、主人の自由な愛玩調教対象となる。",
+        "2. 身体の全開口部および個人の自由は主人の私有財産として無条件で供される。",
+        "3. 中出し、生挿入、その他主人が命じるあらゆる調教指示を拒否する権利を持たない。",
+        "4. 記録された映像・音声・写真等の全資料を主人が永久に保存・管理することに同意する。",
+        "5. 反抗、命令違反、不敬行為があった場合、いかなる過酷な懲罰も無条件で受け入れる。",
+        "6. 永久に服従を誓約し、いかなる場合も本契約の破棄または離脱を求めないことを誓う。"
+    ]
+};
+
+function updateCertTermsLanguage(lang) {
+    const list = CERT_TERMS_I18N[lang] || CERT_TERMS_I18N['en'];
+    const termsInput = document.getElementById('cert-in-terms');
+    if (termsInput && list) {
+        const currentVal = termsInput.value.trim();
+        const isDefault = Object.values(CERT_TERMS_I18N).some(arr => arr.join('\n') === currentVal);
+        if (!currentVal || isDefault) {
+            termsInput.value = list.join('\n');
+            updateCertTerms();
+        }
+    }
+}
+
 const defaultCertData = {
     'title': '母狗登记证书',
     'subtitle': 'CERTIFICATE OF REGISTRATION & SUBMISSION',

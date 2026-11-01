@@ -15,7 +15,7 @@ for (const f of cssFiles) {
 console.log(`✓ All ${cssFiles.length} modular CSS files exist and are linked in index.html.`);
 
 // 2. Load all JS files
-const jsFiles = ['js/default_assets.js', 'js/export.js', 'js/personas.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/app.js'];
+const jsFiles = ['js/default_assets.js', 'js/i18n.js', 'js/export.js', 'js/personas.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/app.js'];
 let combinedJs = '';
 for (const f of jsFiles) {
     assert(fs.existsSync(f), `JS file "${f}" must exist`);
@@ -120,5 +120,70 @@ assert(appJs.includes("currentTemplate === 'bbc') return [1011, 638]"), 'app.js 
 assert(appJs.includes("currentTemplate === 'bimbo') return [1011, 638]"), 'app.js getActiveCardDimensions must return [1011, 638] for bimbo');
 
 console.log('✓ All 3 cards strictly standardized to 1011 × 638 px (85.6mm × 54.0mm @ 300 PPI) across HTML, CSS, and JS.');
+
+// 10. Verify i18n internationalization engine & language parity
+const vm = require('vm');
+const i18nJs = fs.readFileSync('js/i18n.js', 'utf8');
+const i18nCtx = {
+    localStorage: {
+        getItem: () => null,
+        setItem: () => null
+    },
+    navigator: {
+        languages: ['en'],
+        language: 'en'
+    },
+    document: {
+        documentElement: {},
+        title: '',
+        querySelectorAll: () => [],
+        getElementById: () => null
+    }
+};
+vm.createContext(i18nCtx);
+vm.runInContext(i18nJs + '\nthis.SUPPORTED_LANGS = SUPPORTED_LANGS; this.DEFAULT_FALLBACK_LANG = DEFAULT_FALLBACK_LANG; this.I18N_DICTIONARY = I18N_DICTIONARY; this.detectUserLanguage = detectUserLanguage;', i18nCtx);
+
+assert(Array.isArray(i18nCtx.SUPPORTED_LANGS) && i18nCtx.SUPPORTED_LANGS.length === 4, 'SUPPORTED_LANGS must contain 4 languages');
+assert(i18nCtx.DEFAULT_FALLBACK_LANG === 'en', 'DEFAULT_FALLBACK_LANG must default to "en"');
+['zh-CN', 'zh-TW', 'en', 'ja'].forEach(lang => {
+    assert(i18nCtx.SUPPORTED_LANGS.includes(lang), `SUPPORTED_LANGS must include "${lang}"`);
+    assert(i18nCtx.I18N_DICTIONARY[lang], `I18N_DICTIONARY must contain translations for "${lang}"`);
+});
+
+// Parity check across dictionaries
+const baseKeys = Object.keys(i18nCtx.I18N_DICTIONARY['zh-CN']);
+['zh-TW', 'en', 'ja'].forEach(lang => {
+    const lKeys = Object.keys(i18nCtx.I18N_DICTIONARY[lang]);
+    const missing = baseKeys.filter(k => !lKeys.includes(k));
+    assert.strictEqual(missing.length, 0, `Language "${lang}" is missing keys: ${missing.join(', ')}`);
+});
+
+// HTML data-i18n completeness
+const dataI18nMatches = [...html.matchAll(/data-i18n=["']([^"']+)["']/g)].map(m => m[1]);
+for (const k of dataI18nMatches) {
+    assert(baseKeys.includes(k), `data-i18n attribute "${k}" in index.html must exist in I18N_DICTIONARY`);
+}
+
+// Device detection & fallback tests
+const detectionCases = [
+    { langs: ['zh-CN', 'zh'], lang: 'zh-CN', expected: 'zh-CN' },
+    { langs: ['zh-TW', 'zh-HK'], lang: 'zh-TW', expected: 'zh-TW' },
+    { langs: ['zh-HK'], lang: 'zh-HK', expected: 'zh-TW' },
+    { langs: ['zh-Hant-TW'], lang: 'zh-Hant-TW', expected: 'zh-TW' },
+    { langs: ['ja-JP', 'ja'], lang: 'ja-JP', expected: 'ja' },
+    { langs: ['en-US', 'en'], lang: 'en-US', expected: 'en' },
+    { langs: ['fr-FR', 'fr'], lang: 'fr-FR', expected: 'en' },
+    { langs: ['de-DE'], lang: 'de-DE', expected: 'en' },
+    { langs: ['ko-KR'], lang: 'ko-KR', expected: 'en' },
+    { langs: [], lang: '', expected: 'en' }
+];
+
+for (const tc of detectionCases) {
+    i18nCtx.navigator.languages = tc.langs;
+    i18nCtx.navigator.language = tc.lang;
+    const detected = i18nCtx.detectUserLanguage();
+    assert.strictEqual(detected, tc.expected, `detectUserLanguage for ${JSON.stringify(tc.langs)} must be "${tc.expected}", got "${detected}"`);
+}
+console.log(`✓ i18n system fully verified: 4 languages (${i18nCtx.SUPPORTED_LANGS.join(', ')}), 100% dictionary parity (${baseKeys.length} keys), and accurate auto-detection/fallback.`);
 
 console.log('--- All Modular Web App verification checks passed successfully! ---');

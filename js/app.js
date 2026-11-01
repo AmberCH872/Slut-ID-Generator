@@ -15,6 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
     updateBimboQR();
     initTouchZoom();
     setMobileMode('edit');
+    if (typeof initI18n === 'function') {
+        initI18n();
+    }
     if (typeof initAutosaveListeners === 'function') {
         initAutosaveListeners();
     }
@@ -116,14 +119,24 @@ function switchTemplate(tpl) {
         sideSelector.classList.toggle('hidden', tpl !== 'bimbo');
     }
 
-    const dims = {
-        slave: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
-        bbc: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
-        cert: '尺寸: 850 × 1200 px (A4 协议标准)',
-        bimbo: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)'
-    };
+    if (typeof loadDefaultPersonaForLanguage === 'function' && typeof currentLang !== 'undefined') {
+        loadDefaultPersonaForLanguage(tpl, currentLang);
+    }
+
     const tipEl = document.getElementById('card-dimension-tip');
-    if (tipEl) tipEl.innerText = dims[tpl];
+    if (tipEl) {
+        if (typeof t === 'function') {
+            tipEl.innerText = t('dim_' + tpl);
+        } else {
+            const dims = {
+                slave: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
+                bbc: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
+                cert: '尺寸: 850 × 1200 px (A4 协议标准)',
+                bimbo: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)'
+            };
+            tipEl.innerText = dims[tpl];
+        }
+    }
 
     fitCurrentScreen();
 }

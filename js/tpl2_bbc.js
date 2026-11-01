@@ -23,11 +23,33 @@ const defaultBbcKinks = [
     { id: 'k18', text: '放尿', checked: true, col: 2 }
 ];
 
+const BBC_KINKS_I18N = {
+    'zh-CN': [ '肛交', '捆绑', '狗奴', '勒颈', '拳交', '口交', '贞操锁', '羞辱', '服从', '肛交后插嘴', '家务奴', '囚禁', '兽交', '轮奸', '足交', '乳交', '寸止', '放尿' ],
+    'zh-TW': [ '肛交', '捆綁', '狗奴', '勒頸', '拳交', '口交', '貞操鎖', '羞辱', '服從', '肛交後插嘴', '家務奴', '囚禁', '獸交', '輪姦', '足交', '乳交', '寸止', '放尿' ],
+    'en': [ 'Anal', 'Bondage', 'Dog Slave', 'Choking', 'Fisting', 'Oral', 'Chastity Lock', 'Humiliation', 'Submission', 'A to M', 'Maid Slave', 'Confinement', 'Pet Play', 'Gangbang', 'Footjob', 'Titjob', 'Edging', 'Watersports' ],
+    'ja': [ 'アナル', '緊縛', '犬奴隷', '首絞め', 'フィスト', 'フェラ', '貞操帯', '羞恥侮辱', '完全服従', 'A to M', '家事奴隷', '監禁', 'ペットプレイ', '輪姦', '足コキ', 'パイズリ', '寸止め', '放尿' ]
+};
+
 let currentBbcKinks = JSON.parse(JSON.stringify(defaultBbcKinks));
 
+function updateBbcKinksLanguage(lang) {
+    const list = BBC_KINKS_I18N[lang] || BBC_KINKS_I18N['en'];
+    if (list && list.length === currentBbcKinks.length) {
+        currentBbcKinks.forEach((k, idx) => {
+            k.text = list[idx];
+        });
+        renderBbcEditorKinks();
+        renderBbcCardKinks();
+    }
+}
+
 function initBbcKinks() {
-    renderBbcEditorKinks();
-    renderBbcCardKinks();
+    if (typeof currentLang !== 'undefined' && currentLang !== 'zh-CN') {
+        updateBbcKinksLanguage(currentLang);
+    } else {
+        renderBbcEditorKinks();
+        renderBbcCardKinks();
+    }
 }
 
 function renderBbcEditorKinks() {

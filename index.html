@@ -38,8 +38,8 @@
         <div class="flex items-center gap-2 shrink-0">
             <span class="text-xl sm:text-2xl">🪪</span>
             <div class="flex flex-col">
-                <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide">卡片工坊</span>
-                <span class="text-[10px] text-gray-400 font-mono hidden md:inline">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
+                <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide" data-i18n="header_title">卡片工坊</span>
+                <span class="text-[10px] text-gray-400 font-mono hidden md:inline" data-i18n="header_subtitle">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
         </div>
 
@@ -48,10 +48,10 @@
             <div class="relative w-full">
                 <select id="mobile-template-select" onchange="switchTemplate(this.value)"
                     class="w-full bg-gray-900 text-white font-bold text-xs py-2 pl-3 pr-8 rounded-xl border border-red-600 focus:outline-none appearance-none shadow-sm cursor-pointer truncate">
-                    <option value="slave">🏷️ 奴隶身份卡</option>
-                    <option value="bbc">♠️ 身份证</option>
-                    <option value="cert">📜 登记证书</option>
-                    <option value="bimbo">🎀 双面身份卡</option>
+                    <option value="slave" data-i18n="opt_slave">🏷️ 奴隶身份卡</option>
+                    <option value="bbc" data-i18n="opt_bbc">♠️ 身份证</option>
+                    <option value="cert" data-i18n="opt_cert">📜 登记证书</option>
+                    <option value="bimbo" data-i18n="opt_bimbo">🎀 双面身份卡</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,25 +61,43 @@
             </div>
         </div>
 
-        <!-- 桌面端 4 款模版快速切换 Tab (在 md 及以上屏幕显示) -->
-        <nav class="hidden md:flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 shrink-0">
-            <button type="button" onclick="switchTemplate('slave')" id="tab-btn-slave"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap bg-red-600 text-white shadow-md">
-                <span>🏷️</span> <span>模版一: 奴隶卡</span>
-            </button>
-            <button type="button" onclick="switchTemplate('bbc')" id="tab-btn-bbc"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>♠️</span> <span>模版二: 身份证</span>
-            </button>
-            <button type="button" onclick="switchTemplate('cert')" id="tab-btn-cert"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>📜</span> <span>模版三: 登记证书</span>
-            </button>
-            <button type="button" onclick="switchTemplate('bimbo')" id="tab-btn-bimbo"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
-                <span>🎀</span> <span>模版四: 双面卡</span>
-            </button>
-        </nav>
+        <!-- 桌面端 4 款模版快速切换 Tab + 多语言切换 -->
+        <div class="flex items-center gap-2 shrink-0">
+            <nav class="hidden md:flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 shrink-0">
+                <button type="button" onclick="switchTemplate('slave')" id="tab-btn-slave"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap bg-red-600 text-white shadow-md">
+                    <span>🏷️</span> <span data-i18n="tab_slave">模版一: 奴隶卡</span>
+                </button>
+                <button type="button" onclick="switchTemplate('bbc')" id="tab-btn-bbc"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                    <span>♠️</span> <span data-i18n="tab_bbc">模版二: 身份证</span>
+                </button>
+                <button type="button" onclick="switchTemplate('cert')" id="tab-btn-cert"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                    <span>📜</span> <span data-i18n="tab_cert">模版三: 登记证书</span>
+                </button>
+                <button type="button" onclick="switchTemplate('bimbo')" id="tab-btn-bimbo"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                    <span>🎀</span> <span data-i18n="tab_bimbo">模版四: 双面卡</span>
+                </button>
+            </nav>
+
+            <!-- 语言切换选择器 -->
+            <div class="relative shrink-0">
+                <select id="lang-selector" onchange="changeLanguage(this.value)"
+                    class="bg-gray-900 hover:bg-gray-800 text-gray-200 hover:text-white font-bold text-xs py-1.5 pl-2.5 pr-7 rounded-xl border border-gray-700 hover:border-gray-500 focus:outline-none appearance-none shadow-sm cursor-pointer transition">
+                    <option value="zh-CN">简体中文</option>
+                    <option value="zh-TW">繁體中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- 移动端专属模式分段控制器 (仅在小于 768px 手机屏幕可见) -->
@@ -87,11 +105,11 @@
         <div class="grid grid-cols-2 gap-2 max-w-sm mx-auto">
             <button type="button" onclick="setMobileMode('edit')" id="m-btn-edit"
                 class="py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow">
-                <span>✏️</span> 表单填写
+                <span>✏️</span> <span data-i18n="m_btn_edit">表单填写</span>
             </button>
             <button type="button" onclick="setMobileMode('preview')" id="m-btn-preview"
                 class="py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-800">
-                <span>👁️</span> 实时预览与导出
+                <span>👁️</span> <span data-i18n="m_btn_preview">实时预览与导出</span>
             </button>
         </div>
     </div>
@@ -108,48 +126,48 @@
                 <div class="space-y-2">
                     <button type="button" onclick="rollRandomPersona('slave')"
                         class="w-full bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 hover:from-amber-500 hover:to-orange-500 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-amber-500/40 shadow-md shadow-amber-950/30 transition flex items-center justify-between gap-1">
-                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机灵感人设 (一键填入精彩文案)</span></span>
-                        <span id="sc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-amber-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span data-i18n="btn_random_persona">随机灵感人设 (一键填入精彩文案)</span></span>
+                        <span id="sc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-amber-200 transition-opacity duration-300 opacity-0" data-i18n="sc_autosaved">已自动存草稿</span>
                     </button>
                     <div class="grid grid-cols-3 gap-2">
                         <button type="button" onclick="resetScDefaults()"
                             class="bg-red-950/60 hover:bg-red-900/70 text-red-200 text-xs font-semibold py-2 px-1 rounded-lg border border-red-800/50 transition flex items-center justify-center gap-1">
-                            <span>🔄</span> 恢复原图
+                            <span>🔄</span> <span data-i18n="btn_reset_default_img">恢复原图</span>
                         </button>
                         <button type="button" onclick="randomizeScCode()"
                             class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
-                            <span>🎲</span> 随机编号
+                            <span>🎲</span> <span data-i18n="btn_random_code">随机编号</span>
                         </button>
                         <button type="button" onclick="clearScFields()"
                             class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
-                            <span>🧹</span> 清空文字
+                            <span>🧹</span> <span data-i18n="btn_clear_text">清空文字</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- 字体风格选择 -->
                 <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3">
-                    <label class="block text-xs font-bold text-gray-300 mb-2">卡片字体风格</label>
+                    <label class="block text-xs font-bold text-gray-300 mb-2" data-i18n="lbl_font_style">卡片字体风格</label>
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectScFont('sans')" id="sc-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-red-950/60 border-red-500 ring-red-500/40 text-white shadow-sm ring-1">
-                            <span>黑体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">标准现代</span>
+                            <span data-i18n="font_sans">黑体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_sans_sub">标准现代</span>
                         </button>
                         <button type="button" onclick="selectScFont('serif')" id="sc-font-btn-serif"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>宋体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">严肃权威</span>
+                            <span data-i18n="font_serif">宋体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_serif_sub">严肃权威</span>
                         </button>
                         <button type="button" onclick="selectScFont('handwriting')" id="sc-font-btn-handwriting"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>书法</span>
-                            <span class="text-[10px] text-gray-400 font-normal">手写毛笔</span>
+                            <span data-i18n="font_handwriting">书法</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_handwriting_sub">手写毛笔</span>
                         </button>
                         <button type="button" onclick="selectScFont('cute')" id="sc-font-btn-cute"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>可爱</span>
-                            <span class="text-[10px] text-gray-400 font-normal">圆体趣味</span>
+                            <span data-i18n="font_cute">可爱</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_cute_sub">圆体趣味</span>
                         </button>
                     </div>
                 </div>
@@ -158,27 +176,27 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-red-500"></span> 标题与系统编码
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span> <span data-i18n="sec_title_and_code">标题与系统编码</span>
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">主卡标题</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_title">主卡标题</label>
                         <input type="text" id="sc-in-title" value="奴 隶 身 份 卡" oninput="updateScField('title')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">副标题</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_subtitle">副标题</label>
                         <input type="text" id="sc-in-subtitle" value="CONFIDENTIAL  /  REGISTRY" oninput="updateScField('subtitle')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">顶部授权编号</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_header_id">顶部授权编号</label>
                             <input type="text" id="sc-in-header-id" value="ID:  MAKIMA-DEVIL-SYS-AUTH-001" oninput="updateScField('header-id')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">右下角识别编码</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_badge_code">右下角识别编码</label>
                             <input type="text" id="sc-in-badge-code" value="恶魔服从识别码 DOG-NO.001" oninput="updateScField('badge-code')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
@@ -189,38 +207,38 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-red-500"></span> 奴隶身份属性信息
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span> <span data-i18n="sec_slave_attributes">奴隶身份属性信息</span>
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">奴隶姓名</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_name">奴隶姓名</label>
                         <input type="text" id="sc-in-name" value="玛奇玛" oninput="updateScField('name')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-bold">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">性别</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_gender">性别</label>
                             <input type="text" id="sc-in-gender" value="女" oninput="updateScField('gender')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">归属状态</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_status">归属状态</label>
                             <input type="text" id="sc-in-status" value="专属私有" oninput="updateScField('status')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-bold">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">奴隶身份称号</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_role">奴隶身份称号</label>
                         <input type="text" id="sc-in-role" value="支配恶魔专属忠犬便器" oninput="updateScField('role')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">性癖说明</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_kinks">性癖说明</label>
                         <input type="text" id="sc-in-kinks" value="支配反转，项圈拘束，完全服从，深喉口交，强制高潮" oninput="updateScField('kinks')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">左下角服从誓言 / 批注</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_quote">左下角服从誓言 / 批注</label>
                         <textarea id="sc-in-quote" rows="2" oninput="updateScField('quote')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200">我自愿放弃支配恶魔的全部权能，甘愿戴上项圈成为主人的专属忠犬……汪汪！</textarea>
                     </div>
@@ -230,9 +248,9 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-red-500"></span> 证件照与贴纸设置
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span> <span data-i18n="sec_photo_and_stickers">证件照与贴纸设置</span>
                         </h2>
-                        <button type="button" onclick="resetScPhoto()" class="text-[11px] text-red-400 hover:text-red-300">重置头像</button>
+                        <button type="button" onclick="resetScPhoto()" class="text-[11px] text-red-400 hover:text-red-300" data-i18n="btn_reset_photo">重置头像</button>
                     </div>
                     <div>
                         <input type="file" id="sc-in-photo-file" accept="image/*" onchange="handleScPhotoUpload(event)"
@@ -243,7 +261,7 @@
                     <div class="grid grid-cols-2 gap-3 pt-1">
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>缩放比例</span>
+                                <span data-i18n="lbl_scale">缩放比例</span>
                                 <span id="sc-val-zoom">1.0x</span>
                             </div>
                             <input type="range" id="sc-in-zoom" min="0.5" max="2.5" step="0.05" value="1.0" oninput="updateScPhotoTransform()"
@@ -251,7 +269,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>水平位移 (X)</span>
+                                <span data-i18n="lbl_offset_x">水平位移 (X)</span>
                                 <span id="sc-val-pan-x">0px</span>
                             </div>
                             <input type="range" id="sc-in-pan-x" min="-100" max="100" step="1" value="0" oninput="updateScPhotoTransform()"
@@ -259,7 +277,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>垂直位移 (Y)</span>
+                                <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
                                 <span id="sc-val-pan-y">0px</span>
                             </div>
                             <input type="range" id="sc-in-pan-y" min="-100" max="100" step="1" value="0" oninput="updateScPhotoTransform()"
@@ -267,7 +285,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>旋转角度</span>
+                                <span data-i18n="lbl_rotation">旋转角度</span>
                                 <span id="sc-val-rot">0°</span>
                             </div>
                             <input type="range" id="sc-in-rot" min="-180" max="180" step="1" value="0" oninput="updateScPhotoTransform()"
@@ -280,17 +298,17 @@
                         <label class="text-xs font-medium text-gray-300 flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="sc-in-sticker-enable" checked onchange="toggleScSticker()"
                                 class="rounded bg-gray-950 border-gray-700 text-red-600 focus:ring-0">
-                            <span>启用眼睛处遮罩黑条贴纸</span>
+                            <span data-i18n="lbl_sticker_censor_bar">启用眼睛处遮罩黑条贴纸</span>
                         </label>
                         <div id="sc-sticker-controls" class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-[11px] text-gray-400">贴纸文字</label>
+                                <label class="block text-[11px] text-gray-400" data-i18n="lbl_sticker_text">贴纸文字</label>
                                 <input type="text" id="sc-in-sticker-text" value="雌  犬" oninput="updateScStickerText()"
                                     class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
                             </div>
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>垂直高度位置</span>
+                                    <span data-i18n="lbl_sticker_pos_y">垂直高度位置</span>
                                     <span id="sc-val-sticker-y">45%</span>
                                 </div>
                                 <input type="range" id="sc-in-sticker-y" min="15" max="85" step="1" value="45" oninput="updateScStickerPos()"
@@ -304,33 +322,33 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-red-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-red-500"></span> 卡片底色、背景立绘与二维码
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span> <span data-i18n="sec_bg_and_qr">卡片底色、背景立绘与二维码</span>
                         </h2>
                     </div>
                     
                     <!-- 卡片底色按钮 -->
                     <div>
-                        <label class="block text-[11px] text-gray-400 mb-1.5">底纸色彩</label>
+                        <label class="block text-[11px] text-gray-400 mb-1.5" data-i18n="lbl_card_bg_color">底纸色彩</label>
                         <div class="grid grid-cols-4 gap-2">
                             <button type="button" onclick="selectScBg('#ede4f8', '淡紫色')"
                                 class="bg-gray-800 border border-gray-700 text-gray-300 text-xs py-1.5 px-1 rounded font-medium text-center transition flex flex-col items-center gap-0.5">
                                 <span class="w-3.5 h-3.5 rounded-full border border-purple-300" style="background-color: #ede4f8;"></span>
-                                <span class="text-[10px]">淡紫色</span>
+                                <span class="text-[10px]" data-i18n="btn_color_lavender">淡紫色</span>
                             </button>
                             <button type="button" onclick="selectScBg('#fcfbfa', '象牙白')"
                                 class="bg-gray-800 border border-gray-700 text-gray-300 text-xs py-1.5 px-1 rounded font-medium text-center transition flex flex-col items-center gap-0.5">
                                 <span class="w-3.5 h-3.5 rounded-full border border-gray-400" style="background-color: #fcfbfa;"></span>
-                                <span class="text-[10px]">象牙白</span>
+                                <span class="text-[10px]" data-i18n="btn_color_ivory">象牙白</span>
                             </button>
                             <button type="button" onclick="selectScBg('#fbf1f1', '浅粉色')"
                                 class="bg-gray-800 border border-gray-700 text-gray-300 text-xs py-1.5 px-1 rounded font-medium text-center transition flex flex-col items-center gap-0.5">
                                 <span class="w-3.5 h-3.5 rounded-full border border-red-300" style="background-color: #fbf1f1;"></span>
-                                <span class="text-[10px]">浅粉色</span>
+                                <span class="text-[10px]" data-i18n="btn_color_pink">浅粉色</span>
                             </button>
                             <button type="button" onclick="selectScBg('#edf4fb', '冰蓝色')"
                                 class="bg-gray-800 border border-gray-700 text-gray-300 text-xs py-1.5 px-1 rounded font-medium text-center transition flex flex-col items-center gap-0.5">
                                 <span class="w-3.5 h-3.5 rounded-full border border-blue-300" style="background-color: #edf4fb;"></span>
-                                <span class="text-[10px]">冰蓝色</span>
+                                <span class="text-[10px]" data-i18n="btn_color_iceblue">冰蓝色</span>
                             </button>
                         </div>
                     </div>
@@ -341,15 +359,15 @@
                             <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="sc-in-bg-enable" checked onchange="toggleScBgImage()"
                                     class="rounded bg-gray-950 border-gray-700 text-red-600 focus:ring-0">
-                                <span>启用背景图片 (立绘底图)</span>
+                                <span data-i18n="lbl_enable_bg_img">启用背景图片 (立绘底图)</span>
                             </label>
-                            <button type="button" onclick="resetScBgImage()" class="text-[11px] text-red-400 hover:text-red-300">恢复预设立绘</button>
+                            <button type="button" onclick="resetScBgImage()" class="text-[11px] text-red-400 hover:text-red-300" data-i18n="btn_reset_bg_img">恢复预设立绘</button>
                         </div>
 
                         <!-- 背景透明度调节滑块 -->
                         <div id="sc-bg-opacity-controls">
                             <div class="flex justify-between text-[11px] text-gray-400 mb-1">
-                                <span>背景透明度</span>
+                                <span data-i18n="lbl_bg_opacity">背景透明度</span>
                                 <span id="sc-val-bg-opacity" class="font-mono text-red-400 font-bold">40%</span>
                             </div>
                             <input type="range" id="sc-in-bg-opacity" min="0" max="100" step="1" value="40" oninput="updateScBgOpacity()"
@@ -357,7 +375,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-[11px] text-gray-400 mb-1">更换自定义立绘</label>
+                            <label class="block text-[11px] text-gray-400 mb-1" data-i18n="lbl_custom_bg_img">更换自定义立绘</label>
                             <input type="file" id="sc-in-bg-file" accept="image/*" onchange="handleScBgUpload(event)"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 cursor-pointer">
                         </div>
@@ -367,12 +385,12 @@
                         <label class="flex items-center gap-1.5 cursor-pointer">
                             <input type="checkbox" id="sc-in-qr-enable" checked onchange="toggleScQR()"
                                 class="rounded bg-gray-950 border-gray-700 text-red-600 focus:ring-0">
-                            <span>显示专属二维码 (识别码自动生成)</span>
+                            <span data-i18n="lbl_enable_qr">显示专属二维码 (识别码自动生成)</span>
                         </label>
                         <div class="flex items-center gap-2">
                             <input type="color" id="sc-in-custom-bg" value="#ede4f8" oninput="selectScBg(this.value, '自定义色')"
                                 class="w-6 h-6 rounded border border-gray-700 bg-gray-950 cursor-pointer p-0.5">
-                            <span class="text-[11px]">自定义色</span>
+                            <span class="text-[11px]" data-i18n="lbl_custom_color">自定义色</span>
                         </div>
                     </div>
                 </section>
@@ -381,16 +399,16 @@
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
                     <button type="button" onclick="exportSc(1)"
                         class="w-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                        <span>💾</span> 导出标准卡片 (1011 × 638 @ 300 PPI)
+                        <span>💾</span> <span data-i18n="btn_export_card_1x">导出标准卡片 (1011 × 638 @ 300 PPI)</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="exportSc(2)"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>💎</span> 超清印刷版 (2X)
+                            <span>💎</span> <span data-i18n="btn_export_card_2x">超清印刷版 (2X)</span>
                         </button>
                         <button type="button" onclick="copyCardToClipboard('slave')"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>📋</span> 复制到剪贴板
+                            <span>📋</span> <span data-i18n="btn_copy_clipboard">复制到剪贴板</span>
                         </button>
                     </div>
                 </div>
@@ -402,17 +420,17 @@
                 <div class="space-y-2">
                     <button type="button" onclick="rollRandomPersona('bbc')"
                         class="w-full bg-gradient-to-r from-purple-700 via-indigo-700 to-purple-800 hover:from-purple-600 hover:to-indigo-600 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-purple-500/40 shadow-md shadow-purple-950/30 transition flex items-center justify-between gap-1">
-                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机灵感人设 (一键切换人设)</span></span>
-                        <span id="bbc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-purple-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span data-i18n="btn_random_persona">随机灵感人设 (一键填入精彩文案)</span></span>
+                        <span id="bbc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-purple-200 transition-opacity duration-300 opacity-0" data-i18n="sc_autosaved">已自动存草稿</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="resetBbcDefaults()"
                             class="bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 text-xs font-semibold py-2 px-1 rounded-lg border border-purple-800/50 transition flex items-center justify-center gap-1">
-                            <span>🔄</span> 恢复默认
+                            <span>🔄</span> <span data-i18n="btn_reset_default_img">恢复默认</span>
                         </button>
                         <button type="button" onclick="randomizeBbcDate()"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                            <span>📅</span> 今日签发日期
+                            <span>📅</span> <span data-i18n="btn_bbc_today_date">今日签发日期</span>
                         </button>
                     </div>
                 </div>
@@ -423,23 +441,23 @@
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectBbcFont('sans')" id="bbc-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-purple-950/60 border-purple-500 ring-purple-500/40 text-white shadow-sm ring-1">
-                            <span>黑体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">标准现代</span>
+                            <span data-i18n="font_sans">黑体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_sans_sub">标准现代</span>
                         </button>
                         <button type="button" onclick="selectBbcFont('serif')" id="bbc-font-btn-serif"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>宋体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">严肃权威</span>
+                            <span data-i18n="font_serif">宋体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_serif_sub">严肃权威</span>
                         </button>
                         <button type="button" onclick="selectBbcFont('handwriting')" id="bbc-font-btn-handwriting"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>书法</span>
-                            <span class="text-[10px] text-gray-400 font-normal">手写毛笔</span>
+                            <span data-i18n="font_handwriting">书法</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_handwriting_sub">手写毛笔</span>
                         </button>
                         <button type="button" onclick="selectBbcFont('cute')" id="bbc-font-btn-cute"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>可爱</span>
-                            <span class="text-[10px] text-gray-400 font-normal">圆体趣味</span>
+                            <span data-i18n="font_cute">可爱</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_cute_sub">圆体趣味</span>
                         </button>
                     </div>
                 </div>
@@ -448,22 +466,22 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> 标题与身份信息
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> <span data-i18n="sec_bbc_title_info">标题与身份信息</span>
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">主卡标题</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_title">主卡标题</label>
                         <input type="text" id="bbc-in-title" value="媚黑爹大屌婊子身份证" oninput="updateBbcField('title')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-bold">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">婊子姓名</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_name">婊子姓名</label>
                             <input type="text" id="bbc-in-name" value="玛奇玛" oninput="updateBbcField('name')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-bold">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">中间文本标语</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_banner">中间文本标语</label>
                             <input type="text" id="bbc-in-banner-text" value="YES MASTER" oninput="updateBbcField('banner-text')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
@@ -474,9 +492,9 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> 右侧大幅证件照微调
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> <span data-i18n="sec_bbc_photo_adjust">右侧大幅证件照微调</span>
                         </h2>
-                        <button type="button" onclick="resetBbcPhoto()" class="text-[11px] text-purple-400 hover:text-purple-300">重置照片</button>
+                        <button type="button" onclick="resetBbcPhoto()" class="text-[11px] text-purple-400 hover:text-purple-300" data-i18n="btn_reset_photo">重置照片</button>
                     </div>
                     <div>
                         <input type="file" id="bbc-in-photo-file" accept="image/*" onchange="handleBbcPhotoUpload(event)"
@@ -485,7 +503,7 @@
                     <div class="grid grid-cols-2 gap-3 pt-1">
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>缩放比例</span>
+                                <span data-i18n="lbl_scale">缩放比例</span>
                                 <span id="bbc-val-zoom">1.0x</span>
                             </div>
                             <input type="range" id="bbc-in-zoom" min="0.5" max="2.5" step="0.05" value="1.0" oninput="updateBbcPhotoTransform()"
@@ -493,7 +511,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>水平位移 (X)</span>
+                                <span data-i18n="lbl_offset_x">水平位移 (X)</span>
                                 <span id="bbc-val-pan-x">0px</span>
                             </div>
                             <input type="range" id="bbc-in-pan-x" min="-150" max="150" step="1" value="0" oninput="updateBbcPhotoTransform()"
@@ -501,7 +519,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>垂直位移 (Y)</span>
+                                <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
                                 <span id="bbc-val-pan-y">0px</span>
                             </div>
                             <input type="range" id="bbc-in-pan-y" min="-150" max="150" step="1" value="0" oninput="updateBbcPhotoTransform()"
@@ -509,7 +527,7 @@
                         </div>
                         <div>
                             <div class="flex justify-between text-[11px] text-gray-400">
-                                <span>旋转角度</span>
+                                <span data-i18n="lbl_rotation">旋转角度</span>
                                 <span id="bbc-val-rot">0°</span>
                             </div>
                             <input type="range" id="bbc-in-rot" min="-180" max="180" step="1" value="0" oninput="updateBbcPhotoTransform()"
@@ -522,12 +540,12 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="flex items-center justify-between border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> 18项玩法服从勾选列表
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> <span data-i18n="sec_bbc_kinks">18项玩法服从勾选列表</span>
                         </h2>
                         <div class="flex gap-2">
-                            <button type="button" onclick="setAllBbcKinks(true)" class="text-[11px] text-purple-400 hover:text-purple-300">全选</button>
+                            <button type="button" onclick="setAllBbcKinks(true)" class="text-[11px] text-purple-400 hover:text-purple-300" data-i18n="btn_select_all">全选</button>
                             <span class="text-gray-600">|</span>
-                            <button type="button" onclick="setAllBbcKinks(false)" class="text-[11px] text-gray-400 hover:text-gray-300">清空</button>
+                            <button type="button" onclick="setAllBbcKinks(false)" class="text-[11px] text-gray-400 hover:text-gray-300" data-i18n="btn_clear_all">清空</button>
                         </div>
                     </div>
                     <div id="bbc-kinks-list" class="grid grid-cols-2 gap-1 max-h-48 overflow-y-auto custom-scrollbar p-1">
@@ -539,23 +557,23 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-purple-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> 签发机构与强制声明
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span> <span data-i18n="sec_bbc_authority">签发机构与强制声明</span>
                         </h2>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">签发日期</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_issue_date">签发日期</label>
                             <input type="text" id="bbc-in-issue-date" value="2026/10/17" oninput="updateBbcField('issue-date')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">签发机构</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_authority">签发机构</label>
                             <input type="text" id="bbc-in-authority" value="东京公安对魔特异课" oninput="updateBbcField('authority')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">底部强制横幅标语</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_footer_banner">底部强制横幅标语</label>
                         <input type="text" id="bbc-in-footer-slogan" value="持此身份证明者系黑爹财产 应主动拒绝被黑爹以外者触摸及使用" oninput="updateBbcField('footer-slogan')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white">
                     </div>
@@ -565,16 +583,16 @@
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
                     <button type="button" onclick="exportBbc(1)"
                         class="w-full bg-gradient-to-r from-purple-700 to-indigo-800 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                        <span>💾</span> 导出标准卡片 (1011 × 638 @ 300 PPI)
+                        <span>💾</span> <span data-i18n="btn_export_card_1x">导出标准卡片 (1011 × 638 @ 300 PPI)</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="exportBbc(2)"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>💎</span> 超清印刷版 (2X)
+                            <span>💎</span> <span data-i18n="btn_export_card_2x">超清印刷版 (2X)</span>
                         </button>
                         <button type="button" onclick="copyCardToClipboard('bbc')"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>📋</span> 复制到剪贴板
+                            <span>📋</span> <span data-i18n="btn_copy_clipboard">复制到剪贴板</span>
                         </button>
                     </div>
                 </div>
@@ -586,44 +604,44 @@
                 <div class="space-y-2">
                     <button type="button" onclick="rollRandomPersona('cert')"
                         class="w-full bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-800 hover:from-blue-600 hover:to-sky-600 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-blue-500/40 shadow-md shadow-blue-950/30 transition flex items-center justify-between gap-1">
-                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机契约灵感 (换一套协议与评语)</span></span>
-                        <span id="cert-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-blue-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span data-i18n="btn_random_persona">随机灵感人设 (一键填入精彩文案)</span></span>
+                        <span id="cert-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-blue-200 transition-opacity duration-300 opacity-0" data-i18n="sc_autosaved">已自动存草稿</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="fillCertTodayDate()"
                             class="bg-blue-950/60 hover:bg-blue-900/70 text-blue-200 text-xs font-semibold py-2 px-3 rounded-lg border border-blue-800/50 transition flex items-center justify-center gap-1.5">
-                            <span>📅</span> 今日发证日期
+                            <span>📅</span> <span data-i18n="btn_cert_today_date">今日发证日期</span>
                         </button>
                         <button type="button" onclick="resetCertDefaults()"
                             class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1.5">
-                            <span>🔄</span> 恢复默认预设
+                            <span>🔄</span> <span data-i18n="btn_reset_default_img">恢复默认预设</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- 字体风格 -->
                 <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3">
-                    <label class="block text-xs font-bold text-gray-300 mb-2">证书字体风格</label>
+                    <label class="block text-xs font-bold text-gray-300 mb-2" data-i18n="lbl_font_style">证书字体风格</label>
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectCertFont('serif')" id="cert-font-btn-serif"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-blue-950/60 border-blue-500 ring-blue-500/40 text-white shadow-sm ring-1">
-                            <span>宋体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">严肃权威</span>
+                            <span data-i18n="font_serif">宋体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_serif_sub">严肃权威</span>
                         </button>
                         <button type="button" onclick="selectCertFont('sans')" id="cert-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>黑体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">标准现代</span>
+                            <span data-i18n="font_sans">黑体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_sans_sub">标准现代</span>
                         </button>
                         <button type="button" onclick="selectCertFont('handwriting')" id="cert-font-btn-handwriting"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>书法</span>
-                            <span class="text-[10px] text-gray-400 font-normal">手写毛笔</span>
+                            <span data-i18n="font_handwriting">书法</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_handwriting_sub">手写毛笔</span>
                         </button>
                         <button type="button" onclick="selectCertFont('cute')" id="cert-font-btn-cute"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>可爱</span>
-                            <span class="text-[10px] text-gray-400 font-normal">圆体趣味</span>
+                            <span data-i18n="font_cute">可爱</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_cute_sub">圆体趣味</span>
                         </button>
                     </div>
                 </div>
@@ -632,33 +650,33 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> 证书标题与编号
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="sec_cert_title_code">证书标题与编号</span>
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">证书主标题</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_title">证书主标题</label>
                         <input type="text" id="cert-in-title" value="母狗登记证书" oninput="updateCertField('title')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-bold">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">副标题 / 英文标识</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_subtitle">副标题 / 英文标识</label>
                         <input type="text" id="cert-in-subtitle" value="CERTIFICATE OF REGISTRATION & SUBMISSION" oninput="updateCertField('subtitle')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-gray-300 font-mono">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">证书编号</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_code">证书编号</label>
                             <input type="text" id="cert-in-code" value="MAKIMA-DEVIL-2026" oninput="updateCertField('code')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">发证日期</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_date">发证日期</label>
                             <input type="text" id="cert-in-date" value="2026/10/17" oninput="updateCertField('date')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">有效期</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_validity">有效期</label>
                         <input type="text" id="cert-in-validity" value="终身（不可撤销）" oninput="updateCertField('validity')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-red-400 font-bold">
                     </div>
@@ -668,46 +686,46 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> 登记对象个人信息
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="sec_cert_personal_info">登记对象个人信息</span>
                         </h2>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">贱名 / 艺名</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_name">贱名 / 艺名</label>
                             <input type="text" id="cert-in-name" value="玛奇玛" oninput="updateCertField('name')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-bold">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">真实姓名</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_realname">真实姓名</label>
                             <input type="text" id="cert-in-realname" value="マキマ (Makima)" oninput="updateCertField('realname')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white">
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">出生日期</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_birth">出生日期</label>
                             <input type="text" id="cert-in-birth" value="1997/01/07" oninput="updateCertField('birth')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">身高 (cm)</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_height">身高 (cm)</label>
                             <input type="text" id="cert-in-height" value="170" oninput="updateCertField('height')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">体重 (kg)</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_weight">体重 (kg)</label>
                             <input type="text" id="cert-in-weight" value="50" oninput="updateCertField('weight')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">胸围罩杯</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_cup">胸围罩杯</label>
                             <input type="text" id="cert-in-cup" value="E 罩杯" oninput="updateCertField('cup')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">乳头颜色</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_color">乳头颜色</label>
                             <input type="text" id="cert-in-color" value="敏感粉嫩色" oninput="updateCertField('color')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white">
                         </div>
@@ -718,18 +736,18 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> 评估定性与义务条款
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="sec_cert_terms">评估定性与义务条款</span>
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">评估定性结论</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_assessment">评估定性结论</label>
                         <textarea id="cert-in-assessment" rows="2" oninput="updateCertField('assessment')"
                             class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-xs text-white leading-relaxed">已彻底剥夺支配恶魔之权能，判定为极度渴望被管教、完全顺从主人的专属雌犬肉便器。</textarea>
                     </div>
                     <div>
                         <div class="flex items-center justify-between mb-1">
-                            <label class="text-xs font-medium text-gray-400">身份与义务条款 (每行一条)</label>
-                            <button type="button" onclick="resetCertTerms()" class="text-[11px] text-blue-400 hover:text-blue-300">重置条款</button>
+                            <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_terms_list">身份与义务条款 (每行一条)</label>
+                            <button type="button" onclick="resetCertTerms()" class="text-[11px] text-blue-400 hover:text-blue-300" data-i18n="btn_cert_reset_terms">重置条款</button>
                         </div>
                         <textarea id="cert-in-terms" rows="6" oninput="updateCertTerms()"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200 custom-scrollbar font-mono leading-relaxed">1. 贱畜承认自己为天生女奴/母狗身份，仅供被主人随意使用、把玩、调教。
@@ -740,12 +758,12 @@
 6. 本贱畜自愿终身永远服从，不得脱离，如有违背愿受最严厉惩罚。</textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">本贱畜声明</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_declaration">本贱畜声明</label>
                         <textarea id="cert-in-declaration" rows="3" oninput="updateCertField('declaration')"
                             class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-xs text-white leading-relaxed">我自愿放弃支配恶魔的一切神性与自尊，从今往后只是一头必须戴着项圈摇尾乞怜的下贱母狗，感谢主人赐予我这份契约，让我成为您的专属发泄玩具。</textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">主人签发头衔 / 签名</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_master">主人签发头衔 / 签名</label>
                         <input type="text" id="cert-in-master" value="至高无上的主人" oninput="updateCertField('master')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2.5 py-1.5 text-xs text-white font-bold">
                     </div>
@@ -755,16 +773,16 @@
                 <section class="space-y-3 bg-gray-900/60 border border-gray-800/80 p-3.5 rounded-xl">
                     <div class="border-b border-gray-800 pb-2">
                         <h2 class="text-xs font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> 证件照、二维码与印章
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="sec_cert_photo_qr_seal">证件照、二维码与印章</span>
                         </h2>
                     </div>
                     <div>
                         <div class="flex items-center justify-between mb-1">
-                            <label class="text-xs font-medium text-gray-400">证件免冠照片</label>
+                            <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_photo_head">证件免冠照片</label>
                             <label class="text-xs text-gray-400 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="cert-toggle-photo" checked onchange="toggleCertPhoto()"
                                     class="rounded bg-gray-950 border-gray-700 text-blue-600 focus:ring-0">
-                                <span>显示照片</span>
+                                <span data-i18n="lbl_cert_show_photo">显示照片</span>
                             </label>
                         </div>
                         <input type="file" id="cert-in-photo-file" accept="image/*" onchange="handleCertPhotoUpload(event)"
@@ -772,11 +790,11 @@
                     </div>
                     <div>
                         <div class="flex items-center justify-between mb-1">
-                            <label class="text-xs font-medium text-gray-400">核验二维码 (根据证书编号自动生成)</label>
+                            <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_qr_code">核验二维码 (根据证书编号自动生成)</label>
                             <label class="text-xs text-gray-400 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="cert-toggle-qr" checked onchange="toggleCertQr()"
                                     class="rounded bg-gray-950 border-gray-700 text-blue-600 focus:ring-0">
-                                <span>显示二维码</span>
+                                <span data-i18n="lbl_cert_show_qr">显示二维码</span>
                             </label>
                         </div>
                         <div class="flex gap-2">
@@ -787,30 +805,30 @@
                                 重新生成
                             </button>
                         </div>
-                        <p class="text-[11px] text-gray-500 mt-1">默认由证书编号自动生成矢量二维码，也支持上传替换</p>
+                        <p class="text-[11px] text-gray-500 mt-1" data-i18n="note_cert_qr_desc">默认由证书编号自动生成矢量二维码，也支持上传替换</p>
                     </div>
                     <div class="pt-2 border-t border-gray-800 space-y-2">
                         <div class="flex items-center justify-between">
                             <label class="text-xs font-bold text-red-400 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="cert-toggle-stamp" checked onchange="toggleCertStamp()"
                                     class="rounded bg-gray-950 border-gray-700 text-red-600 focus:ring-0">
-                                <span>盖上官方专用公章</span>
+                                <span data-i18n="lbl_cert_apply_seal">盖上官方专用公章</span>
                             </label>
                         </div>
                         <div>
-                            <label class="block text-[11px] text-gray-400 mb-1">印章环形机构名</label>
+                            <label class="block text-[11px] text-gray-400 mb-1" data-i18n="lbl_cert_seal_org">印章环形机构名</label>
                             <input type="text" id="cert-in-stamp-top" value="公安对魔特异课肉便器管理协会" oninput="updateCertStamp()"
                                 class="w-full rounded bg-gray-950 border border-gray-700 text-gray-100 px-2 py-1 text-xs">
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-[11px] text-gray-400 mb-1">底部文字</label>
+                                <label class="block text-[11px] text-gray-400 mb-1" data-i18n="lbl_cert_seal_footer">底部文字</label>
                                 <input type="text" id="cert-in-stamp-bottom" value="专用章" oninput="updateCertStamp()"
                                     class="w-full rounded bg-gray-950 border border-gray-700 text-gray-100 px-2 py-1 text-xs">
                             </div>
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>倾斜角度</span>
+                                    <span data-i18n="lbl_cert_seal_tilt">倾斜角度</span>
                                     <span id="cert-stamp-rot-val">-14°</span>
                                 </div>
                                 <input type="range" id="cert-in-stamp-rot" min="-45" max="45" value="-14" oninput="updateCertStampTransform()"
@@ -824,16 +842,16 @@
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
                     <button type="button" onclick="exportCert(2)"
                         class="w-full bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
-                        <span>💾</span> 导出高清证书 (A4标准 2X)
+                        <span>💾</span> <span data-i18n="btn_export_cert_2x">导出高清证书 (A4标准 2X)</span>
                     </button>
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="printCert()"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>🖨️</span> PDF / 打印
+                            <span>🖨️</span> <span data-i18n="btn_print_cert">PDF / 打印</span>
                         </button>
                         <button type="button" onclick="copyCardToClipboard('cert')"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1.5">
-                            <span>📋</span> 复制到剪贴板
+                            <span>📋</span> <span data-i18n="btn_copy_clipboard">复制到剪贴板</span>
                         </button>
                     </div>
                 </div>
@@ -845,21 +863,21 @@
                 <div class="space-y-2">
                     <button type="button" onclick="rollRandomPersona('bimbo')"
                         class="w-full bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 hover:from-pink-500 hover:to-rose-500 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-pink-500/40 shadow-md shadow-pink-950/30 transition flex items-center justify-between gap-1">
-                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机双面灵感 (一键填入正反面人设)</span></span>
-                        <span id="bimbo-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-pink-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span data-i18n="btn_random_persona">随机灵感人设 (一键填入精彩文案)</span></span>
+                        <span id="bimbo-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-pink-200 transition-opacity duration-300 opacity-0" data-i18n="sc_autosaved">已自动存草稿</span>
                     </button>
                     <div class="grid grid-cols-3 gap-2">
                         <button type="button" onclick="resetBimboDefaults()"
                             class="bg-pink-950/60 hover:bg-pink-900/70 text-pink-200 text-xs font-semibold py-2 px-1 rounded-lg border border-pink-800/50 transition flex items-center justify-center gap-1">
-                            <span>🔄</span> 恢复默认
+                            <span>🔄</span> <span data-i18n="btn_reset_default">恢复默认</span>
                         </button>
                         <button type="button" onclick="randomizeBimboCode()"
                             class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                            <span>🎲</span> 随机编码
+                            <span>🎲</span> <span data-i18n="btn_random_code">随机编号</span>
                         </button>
                         <button type="button" onclick="switchBimboSide(bimboCurrentSide === 'front' ? 'back' : 'front')"
                             class="bg-gray-900 hover:bg-gray-850 text-pink-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                            <span>🔄</span> 翻转卡片
+                            <span>🔄</span> <span data-i18n="btn_bimbo_flip_card">翻转卡片</span>
                         </button>
                     </div>
                 </div>
@@ -868,11 +886,11 @@
                 <div class="grid grid-cols-2 gap-2 bg-gray-900/80 p-1 rounded-lg border border-gray-800">
                     <button type="button" onclick="switchBimboEditTab('front')" id="bimbo-edit-tab-btn-front"
                         class="py-1.5 px-3 rounded-md text-xs font-bold transition flex items-center justify-center gap-1.5 bg-pink-600 text-white shadow">
-                        <span>🎀</span> 正面编辑 (Front)
+                        <span>🎀</span> <span data-i18n="btn_bimbo_tab_front">正面编辑 (Front)</span>
                     </button>
                     <button type="button" onclick="switchBimboEditTab('back')" id="bimbo-edit-tab-btn-back"
                         class="py-1.5 px-3 rounded-md text-xs font-bold transition flex items-center justify-center gap-1.5 text-gray-300 hover:text-white">
-                        <span>📜</span> 背面编辑 (Back)
+                        <span>📜</span> <span data-i18n="btn_bimbo_tab_back">背面编辑 (Back)</span>
                     </button>
                 </div>
 
@@ -882,23 +900,23 @@
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectBimboFont('sans')" id="bimbo-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-pink-950/60 border-pink-500 ring-pink-500/40 text-white shadow-sm ring-1">
-                            <span>黑体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">标准现代</span>
+                            <span data-i18n="font_sans">黑体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_sans_sub">标准现代</span>
                         </button>
                         <button type="button" onclick="selectBimboFont('serif')" id="bimbo-font-btn-serif"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>宋体</span>
-                            <span class="text-[10px] text-gray-400 font-normal">严肃权威</span>
+                            <span data-i18n="font_serif">宋体</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_serif_sub">严肃权威</span>
                         </button>
                         <button type="button" onclick="selectBimboFont('handwriting')" id="bimbo-font-btn-handwriting"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>书法</span>
-                            <span class="text-[10px] text-gray-400 font-normal">手写毛笔</span>
+                            <span data-i18n="font_handwriting">书法</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_handwriting_sub">手写毛笔</span>
                         </button>
                         <button type="button" onclick="selectBimboFont('cute')" id="bimbo-font-btn-cute"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-gray-950 border-gray-700 text-gray-300 hover:border-gray-500">
-                            <span>可爱</span>
-                            <span class="text-[10px] text-gray-400 font-normal">圆体趣味</span>
+                            <span data-i18n="font_cute">可爱</span>
+                            <span class="text-[10px] text-gray-400 font-normal" data-i18n="font_cute_sub">圆体趣味</span>
                         </button>
                     </div>
                 </div>
@@ -908,7 +926,7 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 正面标题与认证编号
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_title">正面标题与认证编号</span>
                             </h2>
                         </div>
                         <div>
@@ -917,7 +935,7 @@
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:border-pink-500 focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">档案认证编码</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_code">档案认证编码</label>
                             <input type="text" id="bimbo-in-code" value="MAKIMA-DEVIL-001" oninput="updateBimboField('code')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-pink-300 focus:border-pink-500 focus:outline-none">
                         </div>
@@ -929,20 +947,20 @@
                             <label class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="bimbo-in-bg-enable" onchange="toggleBimboBgImage()"
                                     class="rounded bg-gray-950 border-gray-700 text-pink-600 focus:ring-0">
-                                <span>启用卡面背景图片</span>
+                                <span data-i18n="lbl_enable_bimbo_bg_img">启用卡面背景图片</span>
                             </label>
-                            <button type="button" onclick="resetBimboBgImage()" class="text-[11px] text-pink-400 hover:text-pink-300">恢复预设</button>
+                            <button type="button" onclick="resetBimboBgImage()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_reset_default_short">恢复预设</button>
                         </div>
                         <div id="bimbo-bg-opacity-controls" class="opacity-40 pointer-events-none transition-opacity">
                             <div class="flex justify-between text-[11px] text-gray-400 mb-1">
-                                <span>背景透明度</span>
+                                <span data-i18n="lbl_bg_opacity">背景透明度</span>
                                 <span id="bimbo-val-bg-opacity" class="font-mono text-pink-400 font-bold">35%</span>
                             </div>
                             <input type="range" id="bimbo-in-bg-opacity" min="0" max="100" step="1" value="35" oninput="updateBimboBgOpacity()"
                                 class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-pink-500">
                         </div>
                         <div>
-                            <label class="block text-[11px] text-gray-400 mb-1">更换自定义背景图片</label>
+                            <label class="block text-[11px] text-gray-400 mb-1" data-i18n="lbl_custom_bg_img">更换自定义背景图片</label>
                             <input type="file" id="bimbo-in-bg-file" accept="image/*" onchange="handleBimboBgUpload(event)"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 cursor-pointer">
                         </div>
@@ -952,9 +970,9 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2 flex items-center justify-between">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 左侧证件照微调
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_photo">左侧证件照微调</span>
                             </h2>
-                            <button type="button" onclick="resetBimboPhoto()" class="text-[11px] text-pink-400 hover:text-pink-300">重置照片</button>
+                            <button type="button" onclick="resetBimboPhoto()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_reset_photo">重置照片</button>
                         </div>
                         <div>
                             <input type="file" id="bimbo-in-photo-file" accept="image/*" onchange="handleBimboPhotoUpload(event)"
@@ -963,7 +981,7 @@
                         <div class="grid grid-cols-2 gap-3 pt-1">
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>缩放比例</span>
+                                    <span data-i18n="lbl_scale">缩放比例</span>
                                     <span id="bimbo-val-zoom">1.0x</span>
                                 </div>
                                 <input type="range" id="bimbo-in-zoom" min="0.5" max="2.5" step="0.05" value="1.0" oninput="updateBimboPhotoTransform()"
@@ -971,7 +989,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>水平位移 (X)</span>
+                                    <span data-i18n="lbl_offset_x">水平位移 (X)</span>
                                     <span id="bimbo-val-pan-x">0px</span>
                                 </div>
                                 <input type="range" id="bimbo-in-pan-x" min="-150" max="150" step="1" value="0" oninput="updateBimboPhotoTransform()"
@@ -979,7 +997,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>垂直位移 (Y)</span>
+                                    <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
                                     <span id="bimbo-val-pan-y">0px</span>
                                 </div>
                                 <input type="range" id="bimbo-in-pan-y" min="-150" max="150" step="1" value="0" oninput="updateBimboPhotoTransform()"
@@ -987,7 +1005,7 @@
                             </div>
                             <div>
                                 <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span>旋转角度</span>
+                                    <span data-i18n="lbl_rotation">旋转角度</span>
                                     <span id="bimbo-val-rot">0°</span>
                                 </div>
                                 <input type="range" id="bimbo-in-rot" min="-180" max="180" step="1" value="0" oninput="updateBimboPhotoTransform()"
@@ -1000,35 +1018,35 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 登记属性
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_attrs">登记属性</span>
                             </h2>
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">姓名</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_name">姓名</label>
                                 <input type="text" id="bimbo-in-name" value="玛奇玛" oninput="updateBimboField('name')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">出生日期</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_dob">出生日期</label>
                                 <input type="text" id="bimbo-in-birth" value="1997/01/07" oninput="updateBimboField('birth')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">性别</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_gender">性别</label>
                                 <input type="text" id="bimbo-in-gender" value="女" oninput="updateBimboField('gender')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">职业 / 职上</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_role">职业 / 职上</label>
                                 <input type="text" id="bimbo-in-role" value="支配恶魔专属犬" oninput="updateBimboField('role')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">体态三围 (胸-腰-臀)</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_measurements">体态三围 (胸-腰-臀)</label>
                             <input type="text" id="bimbo-in-measurements" value="92-60-90" oninput="updateBimboField('measurements')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono">
                         </div>
@@ -1038,7 +1056,7 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-2">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 特长／属性标签 (4项)
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_traits">特长／属性标签 (4项)</span>
                             </h2>
                         </div>
                         <input type="text" id="bimbo-in-trait-1" value="绝对服从 · 圈圈眼魅惑" oninput="updateBimboField('trait-1')"
@@ -1055,21 +1073,21 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 底部认证状态与签名
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_status_sig">底部认证状态与签名</span>
                             </h2>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">印章旁红字声明</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_stamp_text">印章旁红字声明</label>
                             <input type="text" id="bimbo-in-stamp-text" value="支配恶魔，自愿为犬，永久锁死，禁止反抗" oninput="updateBimboField('stamp-text')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-red-400">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">底部有效状态条文本</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_status_bar">底部有效状态条文本</label>
                             <input type="text" id="bimbo-in-status-text" value="VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT" oninput="updateBimboField('status-text')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">右下角签名</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_signature">右下角签名</label>
                             <input type="text" id="bimbo-in-signature" value="玛奇玛" oninput="updateBimboField('signature')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                         </div>
@@ -1082,18 +1100,18 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 左侧证物附图 (EXH. A & B)
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_back_exhibits">左侧证物附图 (EXH. A & B)</span>
                             </h2>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">EXH. A 证物图片与标签</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_exh_a">EXH. A 证物图片与标签</label>
                             <input type="file" accept="image/*" onchange="handleBimboExhUpload(event, 'a')"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 mb-1">
                             <input type="text" id="bimbo-in-exh-a-title" value="胸部特征" oninput="updateBimboField('exh-a-title')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">EXH. B 证物图片与标签</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_exh_b">EXH. B 证物图片与标签</label>
                             <input type="file" accept="image/*" onchange="handleBimboExhUpload(event, 'b')"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-xs file:bg-gray-800 file:text-gray-200 mb-1">
                             <input type="text" id="bimbo-in-exh-b-title" value="腰腹大腿" oninput="updateBimboField('exh-b-title')"
@@ -1105,9 +1123,9 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2 flex items-center justify-between">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 11条使用规范 (换行分隔)
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_back_rules">11条使用规范 (换行分隔)</span>
                             </h2>
-                            <button type="button" onclick="resetBimboRules()" class="text-[11px] text-pink-400 hover:text-pink-300">重置11条</button>
+                            <button type="button" onclick="resetBimboRules()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_bimbo_reset_11_rules">重置11条</button>
                         </div>
                         <textarea id="bimbo-in-rules" rows="8" oninput="updateBimboRules()"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200 font-mono leading-relaxed custom-scrollbar"></textarea>
@@ -1117,26 +1135,26 @@
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
                         <div class="border-b border-gray-800 pb-2">
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
-                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> 右侧核验二维码与条形码
+                                <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_back_qr_barcode">右侧核验二维码与条形码</span>
                             </h2>
                         </div>
                         <div class="p-2.5 rounded-xl bg-pink-950/20 border border-pink-900/40 text-[11px] text-pink-300 flex items-center gap-1.5">
-                            <span>ℹ️</span> 二维码由下方核验编号实时自动矢量生成（保留粉色主题），无需手动上传。
+                            <span>ℹ️</span> <span data-i18n="note_bimbo_qr_desc">二维码由下方核验编号实时自动矢量生成（保留粉色主题），无需手动上传。</span>
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">二维码上方提示</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_qr_label">二维码上方提示</label>
                                 <input type="text" id="bimbo-in-qr-label" value="SCAN FILE" oninput="updateBimboField('qr-label')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white font-mono">
                             </div>
                             <div>
-                                <label class="block text-xs font-medium text-gray-400 mb-1">核验短ID / 编号</label>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_qr_id">核验短ID / 编号</label>
                                 <input type="text" id="bimbo-in-qr-id" value="MAKIMA" oninput="updateBimboField('qr-id')"
                                     class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-pink-300 font-mono font-bold">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">背面底部安全追踪串码</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_footer_code">背面底部安全追踪串码</label>
                             <input type="text" id="bimbo-in-footer-code" value="OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001" oninput="updateBimboField('footer-code')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-gray-300 font-mono">
                         </div>
@@ -1148,24 +1166,24 @@
                     <div class="grid grid-cols-2 gap-2">
                         <button type="button" onclick="exportBimbo('front', 1)"
                             class="py-2.5 px-2 rounded-lg bg-pink-700 hover:bg-pink-600 text-white font-bold text-xs flex items-center justify-center gap-1 shadow transition">
-                            <span>🎀</span> 导出正面 (300 PPI)
+                            <span>🎀</span> <span data-i18n="btn_export_front_1x">导出正面 (300 PPI)</span>
                         </button>
                         <button type="button" onclick="exportBimbo('back', 1)"
                             class="py-2.5 px-2 rounded-lg bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs flex items-center justify-center gap-1 shadow transition">
-                            <span>📜</span> 导出背面 (300 PPI)
+                            <span>📜</span> <span data-i18n="btn_export_back_1x">导出背面 (1X)</span>
                         </button>
                     </div>
                     <button type="button" onclick="exportBimboBoth(1)"
                         class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition">
-                        <span>📦</span> 一键导出正反两面 (1011 × 638 @ 300 PPI)
+                        <span>📦</span> <span data-i18n="btn_export_both">一键导出正反两面 (打包下载)</span>
                     </button>
                     <button type="button" onclick="exportBimboCollage(1)"
                         class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-purple-700 via-pink-700 to-rose-700 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition">
-                        <span>🖼️</span> 导出正反拼接展示长图 (适合发推/群聊)
+                        <span>🖼️</span> <span data-i18n="btn_export_merge">合并长图导出 (正反全览)</span>
                     </button>
                     <button type="button" onclick="copyCardToClipboard('bimbo')"
                         class="w-full py-2 px-4 rounded-lg bg-gray-900 hover:bg-gray-855 text-gray-300 border border-gray-800 font-medium text-xs flex items-center justify-center gap-1.5 transition">
-                        <span>📋</span> 复制当前面到剪贴板
+                        <span>📋</span> <span data-i18n="btn_copy_clipboard">复制到剪贴板</span>
                     </button>
                 </div>
             </div>
@@ -1179,8 +1197,8 @@
             <div class="h-12 bg-gray-950/95 border-b border-gray-800/80 px-2 sm:px-4 flex items-center justify-between shrink-0 z-30 no-print gap-1.5 overflow-x-auto custom-scrollbar">
                 <div class="flex items-center gap-1.5 shrink-0">
                     <div id="bimbo-side-selector" class="hidden flex items-center bg-gray-900 border border-pink-700/60 rounded-lg p-0.5 text-xs shadow-sm">
-                        <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition">正面</button>
-                        <button type="button" id="bimbo-side-btn-back" onclick="switchBimboSide('back')" class="px-2 py-1 rounded-md font-bold text-gray-300 hover:text-white transition">背面</button>
+                        <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition" data-i18n="side_front">正面</button>
+                        <button type="button" id="bimbo-side-btn-back" onclick="switchBimboSide('back')" class="px-2 py-1 rounded-md font-bold text-gray-300 hover:text-white transition" data-i18n="side_back">背面</button>
                     </div>
                     <span id="card-dimension-tip" class="text-[11px] sm:text-xs text-gray-400 font-mono bg-gray-900 border border-gray-800 px-2 py-0.5 rounded hidden sm:inline">1011 × 638 px</span>
                 </div>
@@ -1189,12 +1207,12 @@
                     <span id="global-zoom-text" class="font-mono text-gray-200 w-11 sm:w-12 text-center font-bold text-[11px] sm:text-xs">100%</span>
                     <button type="button" onclick="adjustCurrentZoom(0.05)" class="w-6 h-6 flex items-center justify-center hover:text-red-400 font-bold bg-gray-800 rounded">＋</button>
                     <span class="w-[1px] h-3 bg-gray-700 mx-0.5 sm:mx-1"></span>
-                    <button type="button" onclick="fitCurrentScreen()" class="px-1.5 sm:px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium text-[11px] sm:text-xs">适应屏幕</button>
+                    <button type="button" onclick="fitCurrentScreen()" class="px-1.5 sm:px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium text-[11px] sm:text-xs" data-i18n="zoom_fit">适应屏幕</button>
                     <button type="button" onclick="resetCurrentZoom(1.0)" class="px-2 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium hidden md:inline">100%</button>
                 </div>
                 <div class="hidden sm:block shrink-0">
                     <button type="button" onclick="quickExportActive()" class="px-3.5 py-1 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold text-xs flex items-center gap-1.5 shadow">
-                        <span>💾</span> 导出原图
+                        <span>💾</span> <span data-i18n="btn_export_original">导出原图</span>
                     </button>
                 </div>
             </div>
@@ -1245,31 +1263,31 @@
                                 <div class="w-[640px] space-y-4 pt-1 text-[22px]" style="font-family: inherit;">
                                     <!-- 姓名行 -->
                                     <div class="sc-dotted-row flex items-baseline">
-                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]">奴隶姓名:</span>
+                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]" data-i18n="sc_card_label_name">奴隶姓名:</span>
                                         <span id="sc-out-name" class="text-[#000000] font-black text-[25px] tracking-wide pl-2">玛奇玛</span>
                                     </div>
 
                                     <!-- 性别与状态行 -->
                                     <div class="sc-dotted-row flex items-baseline">
                                         <div class="flex items-baseline w-[260px]">
-                                            <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[105px]">性&nbsp;&nbsp;&nbsp;&nbsp;别:</span>
+                                            <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[105px]" data-i18n="sc_card_label_gender">性    别:</span>
                                             <span id="sc-out-gender" class="text-[#000000] font-black text-[25px] pl-2">女</span>
                                         </div>
                                         <div class="flex items-baseline">
-                                            <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[105px]">状&nbsp;&nbsp;&nbsp;&nbsp;态:</span>
+                                            <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[105px]" data-i18n="sc_card_label_status">状    态:</span>
                                             <span id="sc-out-status" class="text-[#000000] font-black text-[25px] pl-2">专属私有</span>
                                         </div>
                                     </div>
 
                                     <!-- 奴隶身份称号行 -->
                                     <div class="sc-dotted-row flex items-baseline">
-                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]">奴隶身份:</span>
+                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]" data-i18n="sc_card_label_role">奴隶身份:</span>
                                         <span id="sc-out-role" class="text-[#000000] font-black text-[25px] tracking-wide pl-2">支配恶魔专属忠犬便器</span>
                                     </div>
 
                                     <!-- 性癖行 -->
                                     <div class="sc-dotted-row flex items-baseline">
-                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]">性&nbsp;&nbsp;&nbsp;&nbsp;癖:</span>
+                                        <span class="text-[#374151] font-bold tracking-wider shrink-0 w-[120px]" data-i18n-html="sc_card_label_kinks">性&nbsp;&nbsp;&nbsp;&nbsp;癖:</span>
                                         <span id="sc-out-kinks" class="text-[#000000] font-black text-[25px] tracking-wide pl-2">支配反转，项圈拘束，完全服从，深喉口交，强制高潮</span>
                                     </div>
                                 </div>
@@ -1342,8 +1360,8 @@
                             </svg>
 
                             <!-- 顶部大标题 -->
-                            <div class="absolute top-[26px] left-[90px] select-none">
-                                <h1 id="bbc-out-title" class="text-[48px] font-black text-white tracking-[2px] drop-shadow-md leading-none"
+                            <div class="absolute top-[24px] left-[90px] max-w-[620px] select-none">
+                                <h1 id="bbc-out-title" class="text-[34px] sm:text-[38px] font-black text-white tracking-[1.5px] drop-shadow-md leading-tight"
                                     style="font-family: inherit;">
                                     媚黑爹大屌婊子身份证
                                 </h1>
@@ -1359,7 +1377,7 @@
                         <!-- 左侧：姓名行 + 18项勾选清单 -->
                         <div class="absolute top-[175px] left-[30px] w-[310px] select-none" style="z-index: 10;">
                             <div class="flex items-baseline mb-2">
-                                <span class="text-[30px] font-black text-black tracking-wider shrink-0">姓名:</span>
+                                <span class="text-[30px] font-black text-black tracking-wider shrink-0" data-i18n="bbc_card_label_name">姓名:</span>
                                 <span id="bbc-out-name" class="text-[28px] font-black text-black pl-3 tracking-wide">玛奇玛</span>
                             </div>
 
@@ -1407,15 +1425,15 @@
                         <div class="absolute top-[530px] left-[30px] right-[30px] h-[24px] flex items-center justify-between text-[15.5px] font-bold text-black select-none"
                             style="z-index: 15;">
                             <div class="flex items-center">
-                                <span>签发日期:&nbsp;</span>
+                                <span data-i18n="bbc_card_label_issue_date">签发日期:</span>&nbsp;
                                 <span id="bbc-out-issue-date" class="font-mono">2026/10/17</span>
                             </div>
                             <div class="flex items-center">
-                                <span>签发机构:&nbsp;</span>
+                                <span data-i18n="bbc_card_label_authority">签发机构:</span>&nbsp;
                                 <span id="bbc-out-authority">东京公安对魔特异课</span>
                             </div>
                             <div class="flex items-center">
-                                <span>有效期:&nbsp;</span>
+                                <span data-i18n="bbc_card_label_validity">有效期:</span>&nbsp;
                                 <span id="bbc-out-validity" class="text-black">永久&nbsp;<strong class="text-[#dc2626]">（强制）</strong></span>
                             </div>
                         </div>
@@ -1423,7 +1441,7 @@
                         <!-- 4. 底部深紫色横幅标语 -->
                         <div class="absolute bottom-0 left-0 w-full h-[76px] bg-[#61183f] flex items-center justify-center px-4 select-none"
                             style="z-index: 20;">
-                            <span id="bbc-out-footer-slogan" class="text-[#fed77a] text-[22px] font-black tracking-[1.8px] text-center drop-shadow-sm"
+                            <span id="bbc-out-footer-slogan" class="text-[#fed77a] text-[18px] sm:text-[20px] font-black tracking-[1.2px] text-center drop-shadow-sm max-w-[960px] truncate block leading-snug"
                                 style="font-family: inherit;">
                                 持此身份证明者系黑爹财产 应主动拒绝被黑爹以外者触摸及使用
                             </span>
@@ -1458,7 +1476,7 @@
                         <!-- 顶部编号与图像区域 -->
                         <div class="flex justify-between items-start mb-6 relative z-10">
                             <div class="text-sm font-bold tracking-widest mt-2">
-                                编号: <span id="cert-out-code" class="cert-input-line text-base font-mono min-w-[140px]">MAKIMA-DEVIL-2026</span>
+                                <span data-i18n="cert_card_label_code">编号:</span> <span id="cert-out-code" class="cert-input-line text-base font-mono min-w-[140px]">MAKIMA-DEVIL-2026</span>
                             </div>
 
                             <div class="flex gap-6 items-start">
@@ -1479,23 +1497,23 @@
 
                         <!-- 个人信息填写区 -->
                         <div class="text-lg leading-relaxed mb-5 relative z-10">
-                            <p class="font-black text-2xl mb-2.5">兹证明：</p>
+                            <p class="font-black text-2xl mb-2.5" data-i18n="cert_card_label_certify">兹证明：</p>
                             <div class="pl-6 space-y-2.5 font-bold">
                                 <p>
-                                    贱名/艺名：<span id="cert-out-name" class="cert-input-line text-2xl w-48">玛奇玛</span>
-                                    <span class="ml-4">（真实姓名）：</span><span id="cert-out-realname" class="cert-input-line text-lg w-36">マキマ (Makima)</span>
+                                    <span data-i18n="cert_card_label_name">贱名/艺名：</span><span id="cert-out-name" class="cert-input-line text-2xl w-48">玛奇玛</span>
+                                    <span class="ml-4" data-i18n="cert_card_label_realname">（真实姓名）：</span><span id="cert-out-realname" class="cert-input-line text-lg w-36">マキマ (Makima)</span>
                                 </p>
                                 <p>
-                                    出生日期：<span id="cert-out-birth" class="cert-input-line text-lg w-44">1997/01/07</span>
+                                    <span data-i18n="cert_card_label_birth">出生日期：</span><span id="cert-out-birth" class="cert-input-line text-lg w-44">1997/01/07</span>
                                 </p>
                                 <p class="flex items-center whitespace-nowrap">
-                                    身高/体重：
+                                    <span data-i18n="cert_card_label_hw">身高/体重：</span>
                                     <span id="cert-out-height" class="cert-input-line w-20">170</span> cm /
                                     <span id="cert-out-weight" class="cert-input-line w-20">50</span> kg
                                 </p>
                                 <p>
-                                    罩杯：<span id="cert-out-cup" class="cert-input-line w-20">E 罩杯</span>
-                                    <span class="ml-6">乳头颜色：</span><span id="cert-out-color" class="cert-input-line w-24">敏感粉嫩色</span>
+                                    <span data-i18n="cert_card_label_cup">罩杯：</span><span id="cert-out-cup" class="cert-input-line w-20">E 罩杯</span>
+                                    <span class="ml-6" data-i18n="cert_card_label_color">乳头颜色：</span><span id="cert-out-color" class="cert-input-line w-24">敏感粉嫩色</span>
                                 </p>
                             </div>
                         </div>
@@ -1503,10 +1521,10 @@
                         <!-- 发证日期与定性说明 -->
                         <div class="text-center mb-5 relative z-10 border-t border-b border-gray-200 py-3 bg-gray-50/50">
                             <p class="text-base font-bold mb-1.5">
-                                发证日期：<span id="cert-out-date" class="cert-input-line min-w-[120px]">2026/10/17</span>
-                                <span class="ml-4">有效期：<span id="cert-out-validity" class="cert-input-line min-w-[120px]">终身（不可撤销）</span></span>
+                                <span data-i18n="cert_card_label_date">发证日期：</span><span id="cert-out-date" class="cert-input-line min-w-[120px]">2026/10/17</span>
+                                <span class="ml-4"><span data-i18n="cert_card_label_validity">有效期：</span><span id="cert-out-validity" class="cert-input-line min-w-[120px]">终身（不可撤销）</span></span>
                             </p>
-                            <p class="text-base font-bold text-gray-800">已通过主人严格评估与测试</p>
+                            <p class="text-base font-bold text-gray-800" data-i18n="cert_card_label_tested">已通过主人严格评估与测试</p>
                             <p id="cert-out-assessment" class="text-base font-bold text-gray-900 mt-1">
                                 已彻底剥夺支配恶魔之权能，判定为极度渴望被管教、完全顺从主人的专属雌犬肉便器。
                             </p>
@@ -1514,7 +1532,7 @@
 
                         <!-- 条款列表 -->
                         <div class="mb-5 relative z-10">
-                            <p class="font-bold text-base mb-2">自登记之日起，本贱畜正式获得以下身份与义务：</p>
+                            <p class="font-bold text-base mb-2" data-i18n="cert_card_label_terms_head">自登记之日起，本贱畜正式获得以下身份与义务：</p>
                             <div id="cert-out-terms-container" class="text-sm leading-relaxed pl-4 space-y-1.5 font-medium text-gray-900">
                                 <!-- 由 JS 渲染 6 条义务条款 -->
                             </div>
@@ -1522,7 +1540,7 @@
 
                         <!-- 声明 -->
                         <div class="mb-6 relative z-10">
-                            <p class="font-bold text-base mb-1">本贱畜声明：</p>
+                            <p class="font-bold text-base mb-1" data-i18n="cert_card_label_declaration_head">本贱畜声明：</p>
                             <p id="cert-out-declaration" class="indent-8 text-sm font-bold leading-relaxed text-gray-900">
                                 我自愿放弃支配恶魔的一切神性与自尊，从今往后只是一头必须戴着项圈摇尾乞怜的下贱母狗，感谢主人赐予我这份契约，让我成为您的专属发泄玩具。
                             </p>
@@ -1532,11 +1550,11 @@
                         <div class="relative mt-6 z-10">
                             <div class="flex flex-col gap-4 font-bold text-base">
                                 <div class="flex items-end">
-                                    <span class="w-36 shrink-0">贱畜亲笔签字：</span>
+                                    <span class="min-w-[130px] shrink-0" data-i18n="cert_card_label_signature">贱畜亲笔签字：</span>
                                     <span class="cert-input-line flex-1 h-8"></span>
                                 </div>
                                 <div class="flex items-end mt-1">
-                                    <span class="w-28 shrink-0">主人签发：</span>
+                                    <span class="min-w-[120px] shrink-0" data-i18n="cert_card_label_master">主人签发：</span>
                                     <span id="cert-out-master"
                                         class="cert-input-line flex-1 text-3xl font-black font-serif tracking-widest text-center">至高无上的主人</span>
                                 </div>
@@ -1544,7 +1562,7 @@
 
                             <!-- 右下角附注 -->
                             <div class="text-[11px] text-gray-500 text-right leading-tight mt-5">
-                                <p>附注：复印无效，涂改无效 · 最终裁决权归属主人</p>
+                                <p data-i18n="cert_card_label_footer">附注：复印无效，涂改无效 · 最终裁决权归属主人</p>
                             </div>
 
                             <!-- 官方专用印章 (绝对定位，可旋转角度) -->
@@ -1589,7 +1607,7 @@
                             <div class="bimbo-front-ribbon absolute top-0 left-0 right-0 flex items-center justify-between px-8" style="z-index: 10;">
                                 <div class="flex items-center gap-3">
                                     <span class="text-3xl">🎀</span>
-                                    <span id="bimbo-out-title" class="text-white text-[42px] font-black tracking-[0.22em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)]">妓女身份识别卡</span>
+                                    <span id="bimbo-out-title" class="text-white text-[38px] sm:text-[42px] font-black tracking-[0.2em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.35)] max-w-[680px] truncate block">妓女身份识别卡</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-white/90 font-mono text-[11px] tracking-widest uppercase bg-black/25 px-3.5 py-1 rounded-full border border-white/30">OFFICIAL REGISTRATION</span>
@@ -1604,7 +1622,7 @@
                                         style="object-position: center 20%;">
                                 </div>
                                 <div class="mt-3 w-full bg-pink-950/95 border-2 border-pink-400/80 rounded-xl py-1.5 px-3 text-center shadow-md">
-                                    <span class="text-pink-100 font-mono text-[13.5px] font-black tracking-wider">编码：<span id="bimbo-out-code">MAKIMA-DEVIL-001</span></span>
+                                    <span class="text-pink-100 font-mono text-[13.5px] font-black tracking-wider"><span data-i18n="bimbo_card_label_code">编码：</span><span id="bimbo-out-code">MAKIMA-DEVIL-001</span></span>
                                 </div>
                             </div>
 
@@ -1613,30 +1631,30 @@
                                 <!-- 档案字段网格 -->
                                 <div class="grid grid-cols-2 gap-x-6 gap-y-3 bg-white/95 backdrop-blur-md rounded-2xl p-4 border-2 border-white/90 shadow-lg">
                                     <div class="flex items-baseline border-b border-pink-200/90 pb-1.5">
-                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider w-24 shrink-0">姓　　名</span>
+                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider min-w-[80px] max-w-[130px] pr-2 shrink-0" data-i18n="bimbo_card_label_name">姓　　名</span>
                                         <span id="bimbo-out-name" class="text-[#3b0764] font-black text-[30px] tracking-wide leading-none">玛奇玛</span>
                                     </div>
                                     <div class="flex items-baseline border-b border-pink-200/90 pb-1.5">
-                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider w-24 shrink-0">出生日期</span>
+                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider min-w-[80px] max-w-[130px] pr-2 shrink-0" data-i18n="bimbo_card_label_birth">出生日期</span>
                                         <span id="bimbo-out-birth" class="text-[#3b0764] font-black text-[20px] font-mono tracking-wide leading-none">1997/01/07</span>
                                     </div>
                                     <div class="flex items-baseline border-b border-pink-200/90 pb-1.5">
-                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider w-24 shrink-0">性　　别</span>
+                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider min-w-[80px] max-w-[130px] pr-2 shrink-0" data-i18n="bimbo_card_label_gender">性　　别</span>
                                         <span id="bimbo-out-gender" class="text-[#3b0764] font-black text-[20px] tracking-wide leading-none">女</span>
                                     </div>
                                     <div class="flex items-baseline border-b border-pink-200/90 pb-1.5">
-                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider w-24 shrink-0">职　　上</span>
+                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider min-w-[80px] max-w-[130px] pr-2 shrink-0" data-i18n="bimbo_card_label_role">职　　位</span>
                                         <span id="bimbo-out-role" class="text-[#3b0764] font-black text-[20px] tracking-wide leading-none">支配恶魔专属犬</span>
                                     </div>
                                     <div class="col-span-2 flex items-baseline border-b border-pink-200/90 pb-1">
-                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider w-24 shrink-0">体态三围</span>
+                                        <span class="text-[#701a75] font-black text-[15px] tracking-wider min-w-[80px] max-w-[130px] pr-2 shrink-0" data-i18n="bimbo_card_label_measurements">体态三围</span>
                                         <span id="bimbo-out-measurements" class="text-[#3b0764] font-black text-[22px] font-mono tracking-[0.16em] leading-none">92-60-90</span>
                                     </div>
                                 </div>
 
                                 <!-- 特长／属性标签组 -->
                                 <div class="bg-white/95 backdrop-blur-md rounded-2xl p-4 border-2 border-white/90 shadow-lg flex flex-col gap-2.5">
-                                    <span class="text-[#701a75] font-black text-[15px] tracking-wider">特长／属性：</span>
+                                    <span class="text-[#701a75] font-black text-[15px] tracking-wider" data-i18n="bimbo_card_label_traits">特长／属性：</span>
                                     <div class="flex flex-wrap gap-2 pt-0.5">
                                         <span id="bimbo-out-trait-1" class="bimbo-trait-tag">绝对服从 · 圈圈眼魅惑</span>
                                         <span id="bimbo-out-trait-2" class="bimbo-trait-tag">敏感体质 · 爆乳细腰</span>
@@ -1699,7 +1717,7 @@
 
                             <!-- 中间使用规范 11 条 (文字放大充满中心显示区) -->
                             <div class="absolute left-[280px] top-[66px] w-[440px] flex flex-col select-none">
-                                <h2 id="bimbo-out-rules-title" class="text-white text-[28px] font-black tracking-[0.18em] text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-tight">
+                                <h2 id="bimbo-out-rules-title" class="text-white text-[28px] font-black tracking-[0.18em] text-center drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-tight" data-i18n="bimbo_card_label_rules_title">
                                     USAGE RULES / 使用规范
                                 </h2>
                                 <div class="w-full h-[1.5px] bg-white/50 my-2.5 shadow-sm"></div>
@@ -1714,7 +1732,7 @@
                                     <div id="bimbo-out-qr-box" class="w-full h-full flex items-center justify-center overflow-hidden"></div>
                                 </div>
                                 <span id="bimbo-out-qr-label" class="mt-4 text-white font-black text-[15px] tracking-[0.25em] drop-shadow-md text-center">SCAN FILE</span>
-                                <span class="mt-1 text-white/90 font-mono text-[13px] font-bold tracking-wider drop-shadow-sm text-center">
+                                <span class="mt-1 text-white/90 font-mono text-[13px] font-bold tracking-wider drop-shadow-sm text-center block whitespace-nowrap leading-normal">
                                     ID: <span id="bimbo-out-qr-id">MAKIMA</span>
                                 </span>
                                 <span id="bimbo-out-qr-id-top" class="hidden">MAKIMA</span>
@@ -1741,7 +1759,7 @@
             <div class="p-3.5 border-b border-gray-800 flex items-center justify-between bg-gray-950">
                 <div class="flex items-center gap-2">
                     <span class="text-emerald-400 text-lg">🎉</span>
-                    <span class="font-bold text-white text-sm">卡片已成功生成！</span>
+                    <span class="font-bold text-white text-sm" data-i18n="modal_export_title">卡片已成功生成！</span>
                 </div>
                 <button type="button" onclick="closeExportModal()" class="text-gray-400 hover:text-white text-lg px-2">✕</button>
             </div>
@@ -1750,34 +1768,34 @@
                     <img id="modal-preview-img" src="" alt="Generated Card" class="max-w-full max-h-[45vh] object-contain rounded shadow-lg">
                 </div>
                 <p class="text-xs text-gray-300 text-center leading-relaxed">
-                    📱 <strong>保存提示</strong>：长按上方图片选择【保存图片】或【发送给朋友】；电脑用户可直接点击下方按钮。
+                    <span data-i18n-html="modal_save_tip">📱 <strong>保存提示</strong>：长按上方图片选择【保存图片】或【发送给朋友】；电脑用户可直接点击下方按钮。</span>
                 </p>
 
                 <!-- 双面卡正面导出后专属微小提示 -->
                 <div id="modal-bimbo-tip" class="hidden w-full bg-pink-950/70 border border-pink-700/60 rounded-xl p-3 text-xs text-pink-200 flex items-center justify-between gap-2 shadow">
                     <span class="flex items-center gap-1.5 font-medium">
                         <span>💡</span>
-                        <span>您还可以切换至背面继续导出</span>
+                        <span data-i18n="modal_bimbo_tip">您还可以切换至背面继续导出</span>
                     </span>
                     <button type="button" onclick="closeExportModal(); switchBimboSide('back');"
                         class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 transition shadow flex items-center gap-1">
-                        <span>去背面导出</span>
+                        <span data-i18n="modal_goto_back">去背面导出</span>
                         <span>➔</span>
                     </button>
                 </div>
                 <div class="w-full grid grid-cols-2 gap-2 pt-1">
                     <a id="modal-download-btn" href="#" download="card.png"
                         class="bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs text-center shadow transition flex items-center justify-center gap-1.5">
-                        <span>💾</span> 立即下载原图
+                        <span>💾</span> <span data-i18n="modal_download_btn">立即下载原图</span>
                     </a>
                     <button type="button" onclick="closeExportModal()"
                         class="bg-gray-800 hover:bg-gray-700 text-gray-200 font-medium py-2.5 px-4 rounded-xl text-xs transition">
-                        返回继续修改
+                        <span data-i18n="modal_back_to_edit">返回继续修改</span>
                     </button>
                 </div>
                 <button type="button" id="modal-share-btn" onclick="copyShareLink('modal')"
                     class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
-                    <span>🔗</span> 复制工具分享链接 (带专属推荐语)
+                    <span>🔗</span> <span data-i18n="modal_share_btn">复制工具分享链接 (带专属推荐语)</span>
                 </button>
             </div>
         </div>
@@ -1791,7 +1809,7 @@
 
     <!-- 双面卡正面导出后轻量浮动提示 -->
     <div id="bimbo-back-hint-toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-pink-950/95 border border-pink-500/80 text-pink-100 text-xs px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden transition-all duration-300 no-print">
-        <span>💡 您还可以切换至背面继续导出</span>
+        <span data-i18n="toast_bimbo_back">💡 您还可以切换至背面继续导出</span>
         <button type="button" onclick="switchBimboSide('back'); hideBimboHint();" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full text-[11px] shadow">
             去背面 ➔
         </button>
@@ -1803,16 +1821,16 @@
         <div class="flex items-center gap-1.5 flex-1">
             <button type="button" onclick="setMobileMode('edit')" id="m-float-btn-edit"
                 class="flex-1 py-2 px-2.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-red-600 text-white shadow">
-                <span>✏️</span> 表单填写
+                <span>✏️</span> <span data-i18n="m_float_edit">表单填写</span>
             </button>
             <button type="button" onclick="setMobileMode('preview')" id="m-float-btn-prev"
                 class="flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-gray-900 text-gray-300 border border-gray-800">
-                <span>👁️</span> 实时预览
+                <span>👁️</span> <span data-i18n="m_float_prev">实时预览</span>
             </button>
         </div>
         <button type="button" onclick="quickExportActive()"
             class="shrink-0 py-2 px-3.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-lg">
-            <span>💾</span> 导出原图
+            <span>💾</span> <span data-i18n="m_float_export">导出原图</span>
         </button>
     </div>
 
@@ -1825,6 +1843,7 @@
     <!-- Modular Script Imports -->
     <script src="js/qrcode.min.js"></script>
     <script src="js/default_assets.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/export.js"></script>
     <script src="js/personas.js"></script>
     <script src="js/tpl1_slave.js"></script>
