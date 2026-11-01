@@ -97,7 +97,7 @@ function handleBbcPhotoUpload(e) {
 
 function resetBbcPhoto() {
     const photo = document.getElementById('bbc-out-photo');
-    if (photo) photo.src = 'assets/tpl2/photo_default.png';
+    if (photo) photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/tpl2/photo_default.png') : 'assets/tpl2/photo_default.png';
     const zoom = document.getElementById('bbc-in-zoom');
     const panX = document.getElementById('bbc-in-pan-x');
     const panY = document.getElementById('bbc-in-pan-y');
@@ -163,6 +163,7 @@ function resetBbcDefaults() {
     initBbcKinks();
     resetBbcPhoto();
     selectBbcFont('sans');
+    if (typeof clearDraft === 'function') clearDraft('bbc');
 }
 
 function exportBbc(scaleRatio = 1) {
@@ -171,5 +172,5 @@ function exportBbc(scaleRatio = 1) {
     const filename = `媚黑身份证_${name}_${scaleRatio}X.png`;
     const btnName = scaleRatio === 1 ? '标准卡片 (1X)' : '超清印刷版 (2X)';
     trackDownload('bbc', '身份证', btnName, filename, scaleRatio);
-    triggerExport(node, filename, scaleRatio, '#ffffff', 1011, 638);
+    return triggerExport(node, filename, scaleRatio, '#ffffff', 1011, 638);
 }

@@ -105,19 +105,26 @@
             <!-- ===================== 模版 1 编辑器 (奴隶身份卡) ===================== -->
             <div id="tpl1-editor" class="tpl-editor-panel space-y-4">
                 <!-- 顶部快捷操作 -->
-                <div class="grid grid-cols-3 gap-2">
-                    <button type="button" onclick="resetScDefaults()"
-                        class="bg-red-950/60 hover:bg-red-900/70 text-red-200 text-xs font-semibold py-2 px-1 rounded-lg border border-red-800/50 transition flex items-center justify-center gap-1">
-                        <span>🔄</span> 恢复原图
+                <div class="space-y-2">
+                    <button type="button" onclick="rollRandomPersona('slave')"
+                        class="w-full bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 hover:from-amber-500 hover:to-orange-500 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-amber-500/40 shadow-md shadow-amber-950/30 transition flex items-center justify-between gap-1">
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机灵感人设 (一键填入精彩文案)</span></span>
+                        <span id="sc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-amber-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
                     </button>
-                    <button type="button" onclick="randomizeScCode()"
-                        class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
-                        <span>🎲</span> 随机编号
-                    </button>
-                    <button type="button" onclick="clearScFields()"
-                        class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
-                        <span>🧹</span> 清空文字
-                    </button>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="resetScDefaults()"
+                            class="bg-red-950/60 hover:bg-red-900/70 text-red-200 text-xs font-semibold py-2 px-1 rounded-lg border border-red-800/50 transition flex items-center justify-center gap-1">
+                            <span>🔄</span> 恢复原图
+                        </button>
+                        <button type="button" onclick="randomizeScCode()"
+                            class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
+                            <span>🎲</span> 随机编号
+                        </button>
+                        <button type="button" onclick="clearScFields()"
+                            class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1">
+                            <span>🧹</span> 清空文字
+                        </button>
+                    </div>
                 </div>
 
                 <!-- 字体风格选择 -->
@@ -392,15 +399,22 @@
             <!-- ===================== 模版 2 编辑器 (媚黑身份证) ===================== -->
             <div id="tpl2-editor" class="tpl-editor-panel space-y-4 hidden">
                 <!-- 顶部快捷操作 -->
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" onclick="resetBbcDefaults()"
-                        class="bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 text-xs font-semibold py-2 px-1 rounded-lg border border-purple-800/50 transition flex items-center justify-center gap-1">
-                        <span>🔄</span> 恢复默认
+                <div class="space-y-2">
+                    <button type="button" onclick="rollRandomPersona('bbc')"
+                        class="w-full bg-gradient-to-r from-purple-700 via-indigo-700 to-purple-800 hover:from-purple-600 hover:to-indigo-600 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-purple-500/40 shadow-md shadow-purple-950/30 transition flex items-center justify-between gap-1">
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机灵感人设 (一键切换人设)</span></span>
+                        <span id="bbc-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-purple-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
                     </button>
-                    <button type="button" onclick="randomizeBbcDate()"
-                        class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                        <span>📅</span> 今日签发日期
-                    </button>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="resetBbcDefaults()"
+                            class="bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 text-xs font-semibold py-2 px-1 rounded-lg border border-purple-800/50 transition flex items-center justify-center gap-1">
+                            <span>🔄</span> 恢复默认
+                        </button>
+                        <button type="button" onclick="randomizeBbcDate()"
+                            class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
+                            <span>📅</span> 今日签发日期
+                        </button>
+                    </div>
                 </div>
 
                 <!-- 字体风格 -->
@@ -569,15 +583,22 @@
             <!-- ===================== 模版 3 编辑器 (登记证书协议) ===================== -->
             <div id="tpl3-editor" class="tpl-editor-panel space-y-4 hidden">
                 <!-- 顶部快捷操作 -->
-                <div class="grid grid-cols-2 gap-2">
-                    <button type="button" onclick="fillCertTodayDate()"
-                        class="bg-blue-950/60 hover:bg-blue-900/70 text-blue-200 text-xs font-semibold py-2 px-3 rounded-lg border border-blue-800/50 transition flex items-center justify-center gap-1.5">
-                        <span>📅</span> 今日发证日期
+                <div class="space-y-2">
+                    <button type="button" onclick="rollRandomPersona('cert')"
+                        class="w-full bg-gradient-to-r from-blue-700 via-sky-700 to-indigo-800 hover:from-blue-600 hover:to-sky-600 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-blue-500/40 shadow-md shadow-blue-950/30 transition flex items-center justify-between gap-1">
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机契约灵感 (换一套协议与评语)</span></span>
+                        <span id="cert-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-blue-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
                     </button>
-                    <button type="button" onclick="resetCertDefaults()"
-                        class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1.5">
-                        <span>🔄</span> 恢复默认预设
-                    </button>
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="fillCertTodayDate()"
+                            class="bg-blue-950/60 hover:bg-blue-900/70 text-blue-200 text-xs font-semibold py-2 px-3 rounded-lg border border-blue-800/50 transition flex items-center justify-center gap-1.5">
+                            <span>📅</span> 今日发证日期
+                        </button>
+                        <button type="button" onclick="resetCertDefaults()"
+                            class="bg-gray-800/80 hover:bg-gray-700 text-gray-200 text-xs font-semibold py-2 px-3 rounded-lg border border-gray-700 transition flex items-center justify-center gap-1.5">
+                            <span>🔄</span> 恢复默认预设
+                        </button>
+                    </div>
                 </div>
 
                 <!-- 字体风格 -->
@@ -821,19 +842,26 @@
             <!-- ===================== 模版 4 编辑器 (极清双面识别卡) ===================== -->
             <div id="tpl4-editor" class="tpl-editor-panel space-y-4 hidden">
                 <!-- 顶部快捷操作 -->
-                <div class="grid grid-cols-3 gap-2">
-                    <button type="button" onclick="resetBimboDefaults()"
-                        class="bg-pink-950/60 hover:bg-pink-900/70 text-pink-200 text-xs font-semibold py-2 px-1 rounded-lg border border-pink-800/50 transition flex items-center justify-center gap-1">
-                        <span>🔄</span> 恢复默认
+                <div class="space-y-2">
+                    <button type="button" onclick="rollRandomPersona('bimbo')"
+                        class="w-full bg-gradient-to-r from-pink-600 via-rose-600 to-purple-700 hover:from-pink-500 hover:to-rose-500 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-pink-500/40 shadow-md shadow-pink-950/30 transition flex items-center justify-between gap-1">
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span>随机双面灵感 (一键填入正反面人设)</span></span>
+                        <span id="bimbo-autosave-badge" class="text-[10px] bg-black/50 px-1.5 py-0.5 rounded text-pink-200 transition-opacity duration-300 opacity-0">已自动存草稿</span>
                     </button>
-                    <button type="button" onclick="randomizeBimboCode()"
-                        class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                        <span>🎲</span> 随机编码
-                    </button>
-                    <button type="button" onclick="switchBimboSide(bimboCurrentSide === 'front' ? 'back' : 'front')"
-                        class="bg-gray-900 hover:bg-gray-850 text-pink-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
-                        <span>🔄</span> 翻转卡片
-                    </button>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="resetBimboDefaults()"
+                            class="bg-pink-950/60 hover:bg-pink-900/70 text-pink-200 text-xs font-semibold py-2 px-1 rounded-lg border border-pink-800/50 transition flex items-center justify-center gap-1">
+                            <span>🔄</span> 恢复默认
+                        </button>
+                        <button type="button" onclick="randomizeBimboCode()"
+                            class="bg-gray-900 hover:bg-gray-850 text-gray-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
+                            <span>🎲</span> 随机编码
+                        </button>
+                        <button type="button" onclick="switchBimboSide(bimboCurrentSide === 'front' ? 'back' : 'front')"
+                            class="bg-gray-900 hover:bg-gray-850 text-pink-300 text-xs font-semibold py-2 px-1 rounded-lg border border-gray-800 transition flex items-center justify-center gap-1">
+                            <span>🔄</span> 翻转卡片
+                        </button>
+                    </div>
                 </div>
 
                 <!-- 正反面编辑器分段控制器 -->
@@ -1130,6 +1158,10 @@
                     <button type="button" onclick="exportBimboBoth(1)"
                         class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition">
                         <span>📦</span> 一键导出正反两面 (1011 × 638 @ 300 PPI)
+                    </button>
+                    <button type="button" onclick="exportBimboCollage(1)"
+                        class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-purple-700 via-pink-700 to-rose-700 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition">
+                        <span>🖼️</span> 导出正反拼接展示长图 (适合发推/群聊)
                     </button>
                     <button type="button" onclick="copyCardToClipboard('bimbo')"
                         class="w-full py-2 px-4 rounded-lg bg-gray-900 hover:bg-gray-855 text-gray-300 border border-gray-800 font-medium text-xs flex items-center justify-center gap-1.5 transition">
@@ -1567,7 +1599,7 @@
                             <!-- 左侧证件照片区 -->
                             <div class="absolute left-[46px] top-[110px] w-[278px] flex flex-col items-center" style="z-index: 10;">
                                 <div class="w-[278px] h-[395px] rounded-[18px] border-[3.5px] border-white/95 bg-black overflow-hidden relative shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
-                                    <img id="bimbo-out-photo" src="assets/tpl4/photo_default.webp" alt="Photo"
+                                    <img id="bimbo-out-photo" src="assets/tpl4/photo_default.png" alt="Photo"
                                         class="w-full h-full object-cover transition-transform origin-center"
                                         style="object-position: center 20%;">
                                 </div>
@@ -1618,7 +1650,7 @@
                                     <!-- 印章旁红字声明 -->
                                     <div class="flex items-center gap-3">
                                         <div class="w-[76px] h-[76px] shrink-0">
-                                            <img src="assets/tpl4/stamp.webp" alt="Stamp" class="w-full h-full object-contain">
+                                            <img src="assets/tpl4/stamp.png" alt="Stamp" class="w-full h-full object-contain">
                                         </div>
                                         <span id="bimbo-out-stamp-text" class="text-red-600 font-black text-[16px] tracking-wider drop-shadow-sm font-serif max-w-[300px] leading-snug">
                                             支配恶魔，自愿为犬，永久锁死，禁止反抗
@@ -1654,12 +1686,12 @@
                             <!-- 左侧展示图 (EXH. A & EXH. B) -->
                             <div class="absolute left-[45px] top-[80px] w-[215px] flex flex-col gap-3.5 select-none">
                                 <div class="w-[215px] h-[195px] rounded-[22px] border-[3px] border-white/90 overflow-hidden relative shadow-lg bg-black">
-                                    <img id="bimbo-out-exh-a" src="assets/tpl4/exh_a.webp" alt="EXH A" class="w-full h-full object-cover">
+                                    <img id="bimbo-out-exh-a" src="assets/tpl4/exh_a.png" alt="EXH A" class="w-full h-full object-cover">
                                     <span class="absolute top-2.5 right-2.5 bg-black/50 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black border border-white/30">EXH. A</span>
                                     <span id="bimbo-out-exh-a-title" class="hidden">胸部特征</span>
                                 </div>
                                 <div class="w-[215px] h-[195px] rounded-[22px] border-[3px] border-white/90 overflow-hidden relative shadow-lg bg-black">
-                                    <img id="bimbo-out-exh-b" src="assets/tpl4/exh_b.webp" alt="EXH B" class="w-full h-full object-cover">
+                                    <img id="bimbo-out-exh-b" src="assets/tpl4/exh_b.png" alt="EXH B" class="w-full h-full object-cover">
                                     <span class="absolute top-2.5 right-2.5 bg-black/50 backdrop-blur-md text-white px-2.5 py-0.5 rounded-full text-[10px] font-mono font-black border border-white/30">EXH. B</span>
                                     <span id="bimbo-out-exh-b-title" class="hidden">腰腹大腿</span>
                                 </div>
@@ -1743,12 +1775,22 @@
                         返回继续修改
                     </button>
                 </div>
+                <button type="button" id="modal-share-btn" onclick="copyShareLink('modal')"
+                    class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5">
+                    <span>🔗</span> 复制工具分享链接 (带专属推荐语)
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- 全局轻量浮动 Toast 提示 -->
+    <div id="global-toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-gray-950/95 border border-amber-500/80 text-amber-100 text-xs px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden opacity-0 -translate-y-2 transition-all duration-300 no-print">
+        <span id="global-toast-msg" class="font-medium"></span>
+        <button type="button" onclick="hideToast()" class="text-amber-300 hover:text-white text-xs px-1">✕</button>
+    </div>
+
     <!-- 双面卡正面导出后轻量浮动提示 -->
-    <div id="bimbo-back-hint-toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-40 bg-pink-950/95 border border-pink-500/80 text-pink-100 text-xs px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden transition-all duration-300 no-print">
+    <div id="bimbo-back-hint-toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-pink-950/95 border border-pink-500/80 text-pink-100 text-xs px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden transition-all duration-300 no-print">
         <span>💡 您还可以切换至背面继续导出</span>
         <button type="button" onclick="switchBimboSide('back'); hideBimboHint();" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full text-[11px] shadow">
             去背面 ➔
@@ -1782,7 +1824,9 @@
 
     <!-- Modular Script Imports -->
     <script src="js/qrcode.min.js"></script>
+    <script src="js/default_assets.js"></script>
     <script src="js/export.js"></script>
+    <script src="js/personas.js"></script>
     <script src="js/tpl1_slave.js"></script>
     <script src="js/tpl2_bbc.js"></script>
     <script src="js/tpl3_cert.js"></script>

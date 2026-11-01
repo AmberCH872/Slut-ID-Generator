@@ -15,6 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
     updateBimboQR();
     initTouchZoom();
     setMobileMode('edit');
+    if (typeof initAutosaveListeners === 'function') {
+        initAutosaveListeners();
+    }
 
     const hash = location.hash.replace('#', '');
     if (hash === 'bimbo-back') {

@@ -204,7 +204,7 @@ function resetCertDefaults() {
     selectCertFont('serif');
 
     const photoEl = document.getElementById('cert-out-photo');
-    if (photoEl) photoEl.src = 'assets/tpl3/photo_default.png';
+    if (photoEl) photoEl.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/tpl3/photo_default.png') : 'assets/tpl3/photo_default.png';
     updateCertQR();
 
     const toggleP = document.getElementById('cert-toggle-photo');
@@ -213,6 +213,7 @@ function resetCertDefaults() {
     if (toggleQ) { toggleQ.checked = true; toggleCertQr(); }
     const toggleS = document.getElementById('cert-toggle-stamp');
     if (toggleS) { toggleS.checked = true; toggleCertStamp(); }
+    if (typeof clearDraft === 'function') clearDraft('cert');
 }
 
 function exportCert(scaleRatio = 2) {
@@ -223,7 +224,7 @@ function exportCert(scaleRatio = 2) {
     const filename = `登记证书_${name}_${code}_${scaleRatio}X.png`;
     const btnName = `高清证书 (${scaleRatio}X)`;
     trackDownload('cert', '登记证书', btnName, filename, scaleRatio);
-    triggerExport(node, filename, scaleRatio, '#ffffff', 850, h);
+    return triggerExport(node, filename, scaleRatio, '#ffffff', 850, h);
 }
 
 function printCert() {

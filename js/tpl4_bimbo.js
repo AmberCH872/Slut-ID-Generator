@@ -52,7 +52,7 @@ function handleBimboPhotoUpload(e) {
 
 function resetBimboPhoto() {
     const photo = document.getElementById('bimbo-out-photo');
-    if (photo) photo.src = 'assets/tpl4/photo_default.webp';
+    if (photo) photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/tpl4/photo_default.png') : 'assets/tpl4/photo_default.png';
     const zoom = document.getElementById('bimbo-in-zoom');
     const panX = document.getElementById('bimbo-in-pan-x');
     const panY = document.getElementById('bimbo-in-pan-y');
@@ -214,7 +214,7 @@ function handleBimboBgUpload(e) {
 
 function resetBimboBgImage() {
     const bgImg = document.getElementById('bimbo-card-bg-img');
-    if (bgImg) bgImg.src = 'assets/IMG_20261031_200600_743.jpg';
+    if (bgImg) bgImg.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/IMG_20261031_200600_743.jpg') : 'assets/IMG_20261031_200600_743.jpg';
     const slider = document.getElementById('bimbo-in-bg-opacity');
     if (slider) slider.value = '35';
     const file = document.getElementById('bimbo-in-bg-file');
@@ -304,6 +304,7 @@ function resetBimboDefaults() {
     updateBimboQR();
     selectBimboFont('sans');
     switchBimboSide('front');
+    if (typeof clearDraft === 'function') clearDraft('bimbo');
 }
 
 function exportBimbo(side, scaleRatio = 1, isBatch = false) {
@@ -322,7 +323,7 @@ function exportBimbo(side, scaleRatio = 1, isBatch = false) {
     const wasHidden = node.classList.contains('hidden');
     if (wasHidden) node.classList.remove('hidden');
 
-    triggerExport(node, filename, scaleRatio, '#1f132b', 1011, 638, { template: 'bimbo', side: side }).finally(() => {
+    return triggerExport(node, filename, scaleRatio, '#1f132b', 1011, 638, { template: 'bimbo', side: side }).finally(() => {
         if (wasHidden) node.classList.add('hidden');
         if (side === 'front' && !isBatch) {
             showBimboHint();
@@ -336,4 +337,198 @@ async function exportBimboBoth(scaleRatio = 1) {
     setTimeout(() => {
         exportBimbo('back', scaleRatio, true);
     }, 800);
+}
+
+async function exportBimboCollage(scaleRatio = 1) {
+    const overlay = document.getElementById('loading-overlay');
+    const loadingText = document.getElementById('loading-text');
+
+    if (overlay) overlay.classList.remove('hidden');
+    if (loadingText) loadingText.innerText = '正在极速渲染正反两面并合成展示长图...';
+
+    const frontNode = document.getElementById('bimbo-front-node');
+    const backNode = document.getElementById('bimbo-back-node');
+    const name = document.getElementById('bimbo-in-name')?.value.trim() || '档案';
+    const code = document.getElementById('bimbo-in-qr-id')?.value.trim() || 'ID';
+    const filename = `双面身份卡_${name}_正反双面合集长图_${scaleRatio}X.png`;
+
+    const frontWasHidden = frontNode?.classList.contains('hidden');
+    const backWasHidden = backNode?.classList.contains('hidden');
+
+    try {
+        if (typeof htmlToImage === 'undefined') {
+            throw new Error('渲染引擎未就绪');
+        }
+        if (typeof ensureImagesAreDataUrls === 'function') {
+            if (frontNode) ensureImagesAreDataUrls(frontNode);
+            if (backNode) ensureImagesAreDataUrls(backNode);
+        }
+        if (document.fonts && document.fonts.ready) {
+            await document.fonts.ready;
+        }
+
+        if (frontWasHidden) frontNode?.classList.remove('hidden');
+        if (backWasHidden) backNode?.classList.remove('hidden');
+
+        // Render front & back
+        const frontDataUrl = await htmlToImage.toPng(frontNode, {
+            pixelRatio: scaleRatio,
+            backgroundColor: '#1f132b',
+            skipFonts: true,
+            cacheBust: false,
+            width: 1011,
+            height: 638,
+            style: { transform: 'none', position: 'static', margin: '0', left: '0', top: '0' }
+        });
+
+        const backDataUrl = await htmlToImage.toPng(backNode, {
+            pixelRatio: scaleRatio,
+            backgroundColor: '#1f132b',
+            skipFonts: true,
+            cacheBust: false,
+            width: 1011,
+            height: 638,
+            style: { transform: 'none', position: 'static', margin: '0', left: '0', top: '0' }
+        });
+
+        // Load into HTML Image objects
+        const [imgFront, imgBack] = await Promise.all([
+            new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = frontDataUrl;
+            }),
+            new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = backDataUrl;
+            })
+        ]);
+
+        // Setup Canvas
+        const cardW = 1011 * scaleRatio;
+        const cardH = 638 * scaleRatio;
+        const padX = Math.round(50 * scaleRatio);
+        const headerH = Math.round(110 * scaleRatio);
+        const gapH = Math.round(50 * scaleRatio);
+        const footerH = Math.round(90 * scaleRatio);
+
+        const canvasW = cardW + padX * 2;
+        const canvasH = headerH + cardH + gapH + cardH + footerH;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = canvasW;
+        canvas.height = canvasH;
+        const ctx = canvas.getContext('2d');
+
+        // Background Gradient
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, canvasH);
+        bgGrad.addColorStop(0, '#0e0614');
+        bgGrad.addColorStop(0.3, '#1c0c29');
+        bgGrad.addColorStop(0.7, '#160922');
+        bgGrad.addColorStop(1, '#09030e');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, canvasW, canvasH);
+
+        // Ambient cyber grid pattern
+        ctx.strokeStyle = 'rgba(255, 7, 130, 0.05)';
+        ctx.lineWidth = 1 * scaleRatio;
+        const gridStep = Math.round(40 * scaleRatio);
+        for (let x = 0; x < canvasW; x += gridStep) {
+            ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvasH); ctx.stroke();
+        }
+        for (let y = 0; y < canvasH; y += gridStep) {
+            ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvasW, y); ctx.stroke();
+        }
+
+        // Top Accent Neon Line
+        const neonGrad = ctx.createLinearGradient(0, 0, canvasW, 0);
+        neonGrad.addColorStop(0, 'rgba(255, 7, 130, 0)');
+        neonGrad.addColorStop(0.5, '#ff0782');
+        neonGrad.addColorStop(1, 'rgba(255, 7, 130, 0)');
+        ctx.fillStyle = neonGrad;
+        ctx.fillRect(0, 0, canvasW, Math.round(4 * scaleRatio));
+
+        // Header Text
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = `900 ${Math.round(28 * scaleRatio)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif`;
+        ctx.fillText('BIMBO IDENTITY CARD • 极清双面识别卡', canvasW / 2, Math.round(54 * scaleRatio));
+
+        ctx.fillStyle = 'rgba(255, 180, 220, 0.75)';
+        ctx.font = `700 ${Math.round(13 * scaleRatio)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif`;
+        ctx.fillText('OFFICIAL ARCHIVE & VERIFICATION SYSTEM • 正反全览对比存档', canvasW / 2, Math.round(82 * scaleRatio));
+
+        // Helper to draw pill label
+        const drawPill = (text, x, y, bgColor) => {
+            ctx.save();
+            ctx.fillStyle = bgColor;
+            const pillH = Math.round(24 * scaleRatio);
+            const pillW = Math.round(130 * scaleRatio);
+            const r = Math.round(12 * scaleRatio);
+            ctx.beginPath();
+            ctx.roundRect(x, y - pillH, pillW, pillH, r);
+            ctx.fill();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `800 ${Math.round(11 * scaleRatio)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillText(text, x + pillW / 2, y - pillH + Math.round(16 * scaleRatio));
+            ctx.restore();
+        };
+
+        // Draw Front Card
+        const frontY = headerH;
+        drawPill('🎀 正面 · FRONT', padX, frontY - Math.round(8 * scaleRatio), '#e11d48');
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+        ctx.shadowBlur = Math.round(30 * scaleRatio);
+        ctx.shadowOffsetY = Math.round(10 * scaleRatio);
+        ctx.drawImage(imgFront, padX, frontY, cardW, cardH);
+        ctx.restore();
+
+        // Draw Back Card
+        const backY = frontY + cardH + gapH;
+        drawPill('📜 背面 · BACK', padX, backY - Math.round(8 * scaleRatio), '#9333ea');
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.65)';
+        ctx.shadowBlur = Math.round(30 * scaleRatio);
+        ctx.shadowOffsetY = Math.round(10 * scaleRatio);
+        ctx.drawImage(imgBack, padX, backY, cardW, cardH);
+        ctx.restore();
+
+        // Footer
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = `600 ${Math.round(12 * scaleRatio)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif`;
+        const nowStr = new Date().toISOString().slice(0, 10);
+        ctx.fillText(`持卡人: ${name}  |  档案编号: ${code}  |  存档日期: ${nowStr}`, canvasW / 2, canvasH - Math.round(48 * scaleRatio));
+
+        ctx.fillStyle = 'rgba(255, 7, 130, 0.7)';
+        ctx.font = `700 ${Math.round(11 * scaleRatio)}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif`;
+        ctx.fillText('HIGH FIDELITY OUTPUT • 证件与协议工坊 (https://amberch872.github.io/Slut-ID-Generator/)', canvasW / 2, canvasH - Math.round(26 * scaleRatio));
+
+        const collageDataUrl = canvas.toDataURL('image/png');
+
+        // Trigger browser download
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = collageDataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Open modal
+        openExportModal(collageDataUrl, filename, { template: 'bimbo', side: 'collage' });
+
+        trackDownload('bimbo', '双面身份卡', '导出正反拼接展示长图', filename, scaleRatio, 'collage');
+    } catch (err) {
+        console.error('合成长图失败:', err);
+        alert('合成长图提示: ' + (err.message || '渲染失败'));
+    } finally {
+        if (frontWasHidden) frontNode?.classList.add('hidden');
+        if (backWasHidden) backNode?.classList.add('hidden');
+        if (overlay) overlay.classList.add('hidden');
+    }
 }

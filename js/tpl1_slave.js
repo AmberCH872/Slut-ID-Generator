@@ -49,7 +49,7 @@ function handleScPhotoUpload(e) {
 
 function resetScPhoto() {
     const photo = document.getElementById('sc-out-photo');
-    if (photo) photo.src = 'assets/tpl1/avatar_default.png';
+    if (photo) photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/tpl1/avatar_default.png') : 'assets/tpl1/avatar_default.png';
     const zoom = document.getElementById('sc-in-zoom');
     const panX = document.getElementById('sc-in-pan-x');
     const panY = document.getElementById('sc-in-pan-y');
@@ -139,7 +139,7 @@ function handleScBgUpload(e) {
 
 function resetScBgImage() {
     const bgImg = document.getElementById('sc-card-bg-img');
-    if (bgImg) bgImg.src = 'assets/IMG_20261031_200600_743.jpg';
+    if (bgImg) bgImg.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri('assets/IMG_20261031_200600_743.jpg') : 'assets/IMG_20261031_200600_743.jpg';
     const slider = document.getElementById('sc-in-bg-opacity');
     if (slider) slider.value = '40';
     const file = document.getElementById('sc-in-bg-file');
@@ -227,6 +227,7 @@ function resetScDefaults() {
     selectScFont('sans');
     selectScBg('#ede4f8', '淡紫色');
     updateScQR();
+    if (typeof clearDraft === 'function') clearDraft('slave');
 }
 
 function exportSc(scaleRatio = 1) {
@@ -236,5 +237,5 @@ function exportSc(scaleRatio = 1) {
     const filename = `奴隶身份卡_${name}_NO.${code}_${scaleRatio}X.png`;
     const btnName = scaleRatio === 1 ? '标准卡片 (1X)' : '超清印刷版 (2X)';
     trackDownload('slave', '奴隶身份卡', btnName, filename, scaleRatio);
-    triggerExport(node, filename, scaleRatio, scCurrentBgColor, 1011, 638);
+    return triggerExport(node, filename, scaleRatio, scCurrentBgColor, 1011, 638);
 }

@@ -15,7 +15,7 @@ for (const f of cssFiles) {
 console.log(`✓ All ${cssFiles.length} modular CSS files exist and are linked in index.html.`);
 
 // 2. Load all JS files
-const jsFiles = ['js/export.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/app.js'];
+const jsFiles = ['js/default_assets.js', 'js/export.js', 'js/personas.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/app.js'];
 let combinedJs = '';
 for (const f of jsFiles) {
     assert(fs.existsSync(f), `JS file "${f}" must exist`);
