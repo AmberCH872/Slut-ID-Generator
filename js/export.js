@@ -90,7 +90,7 @@ function updatePhotoTransform(pfx) {
     }
 }
 
-async function triggerExport(node, defaultFilename, scaleRatio, bgColor, originalWidth, originalHeight) {
+async function triggerExport(node, defaultFilename, scaleRatio, bgColor, originalWidth, originalHeight, templateContext = {}) {
     const overlay = document.getElementById('loading-overlay');
     const loadingText = document.getElementById('loading-text');
 
@@ -124,7 +124,7 @@ async function triggerExport(node, defaultFilename, scaleRatio, bgColor, origina
         document.body.removeChild(link);
 
         // 2. 弹出移动端友好的保存浮层
-        openExportModal(dataUrl, defaultFilename);
+        openExportModal(dataUrl, defaultFilename, templateContext);
     } catch (err) {
         console.error('导出失败:', err);
         alert('导出卡片提示: ' + (err.message || '渲染失败，建议尝试截图保存'));
@@ -133,10 +133,12 @@ async function triggerExport(node, defaultFilename, scaleRatio, bgColor, origina
     }
 }
 
-function openExportModal(dataUrl, filename) {
+function openExportModal(dataUrl, filename, templateContext = {}) {
     const modal = document.getElementById('export-modal');
     const previewImg = document.getElementById('modal-preview-img');
     const downloadBtn = document.getElementById('modal-download-btn');
+    const bimboTip = document.getElementById('modal-bimbo-tip');
+
     if (previewImg) previewImg.src = dataUrl;
     if (downloadBtn) {
         downloadBtn.href = dataUrl;
@@ -148,6 +150,12 @@ function openExportModal(dataUrl, filename) {
             });
         };
     }
+
+    if (bimboTip) {
+        const isBimboFront = (templateContext.template === 'bimbo' && templateContext.side === 'front');
+        bimboTip.classList.toggle('hidden', !isBimboFront);
+    }
+
     if (modal) modal.classList.remove('hidden');
 }
 

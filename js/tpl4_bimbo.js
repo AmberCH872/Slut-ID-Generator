@@ -113,8 +113,25 @@ function resetBimboRules() {
     updateBimboRules();
 }
 
+function hideBimboHint() {
+    const toast = document.getElementById('bimbo-back-hint-toast');
+    if (toast) toast.classList.add('hidden');
+}
+
+function showBimboHint() {
+    const toast = document.getElementById('bimbo-back-hint-toast');
+    if (toast) {
+        toast.classList.remove('hidden');
+        clearTimeout(window._bimboHintTimer);
+        window._bimboHintTimer = setTimeout(hideBimboHint, 7000);
+    }
+}
+
 function switchBimboSide(side) {
     bimboCurrentSide = side;
+    if (side === 'back') {
+        hideBimboHint();
+    }
     trackPageView(`/#bimbo-${side}`, `双面身份卡 (${side === 'front' ? '正面' : '背面'}) - 证件与协议工坊`);
     trackEvent('bimbo_side_switch', {
         template_id: 'bimbo',
@@ -305,8 +322,11 @@ function exportBimbo(side, scaleRatio = 1, isBatch = false) {
     const wasHidden = node.classList.contains('hidden');
     if (wasHidden) node.classList.remove('hidden');
 
-    triggerExport(node, filename, scaleRatio, '#1f132b', 1011, 638).finally(() => {
+    triggerExport(node, filename, scaleRatio, '#1f132b', 1011, 638, { template: 'bimbo', side: side }).finally(() => {
         if (wasHidden) node.classList.add('hidden');
+        if (side === 'front' && !isBatch) {
+            showBimboHint();
+        }
     });
 }
 

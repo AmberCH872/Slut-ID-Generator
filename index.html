@@ -1720,6 +1720,19 @@
                 <p class="text-xs text-gray-300 text-center leading-relaxed">
                     📱 <strong>保存提示</strong>：长按上方图片选择【保存图片】或【发送给朋友】；电脑用户可直接点击下方按钮。
                 </p>
+
+                <!-- 双面卡正面导出后专属微小提示 -->
+                <div id="modal-bimbo-tip" class="hidden w-full bg-pink-950/70 border border-pink-700/60 rounded-xl p-3 text-xs text-pink-200 flex items-center justify-between gap-2 shadow">
+                    <span class="flex items-center gap-1.5 font-medium">
+                        <span>💡</span>
+                        <span>您还可以切换至背面继续导出</span>
+                    </span>
+                    <button type="button" onclick="closeExportModal(); switchBimboSide('back');"
+                        class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 transition shadow flex items-center gap-1">
+                        <span>去背面导出</span>
+                        <span>➔</span>
+                    </button>
+                </div>
                 <div class="w-full grid grid-cols-2 gap-2 pt-1">
                     <a id="modal-download-btn" href="#" download="card.png"
                         class="bg-red-600 hover:bg-red-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs text-center shadow transition flex items-center justify-center gap-1.5">
@@ -1732,6 +1745,15 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- 双面卡正面导出后轻量浮动提示 -->
+    <div id="bimbo-back-hint-toast" class="fixed top-16 left-1/2 -translate-x-1/2 z-40 bg-pink-950/95 border border-pink-500/80 text-pink-100 text-xs px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden transition-all duration-300 no-print">
+        <span>💡 您还可以切换至背面继续导出</span>
+        <button type="button" onclick="switchBimboSide('back'); hideBimboHint();" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full text-[11px] shadow">
+            去背面 ➔
+        </button>
+        <button type="button" onclick="hideBimboHint()" class="text-pink-300 hover:text-white text-xs px-1">✕</button>
     </div>
 
     <!-- 移动端专属悬浮快捷操作底栏 (吸底且自适应 iPhone Home 键安全区) -->
