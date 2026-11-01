@@ -437,7 +437,7 @@
 
                 <!-- 字体风格 -->
                 <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3">
-                    <label class="block text-xs font-bold text-gray-300 mb-2">卡片字体风格</label>
+                    <label class="block text-xs font-bold text-gray-300 mb-2" data-i18n="lbl_font_style">卡片字体风格</label>
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectBbcFont('sans')" id="bbc-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-purple-950/60 border-purple-500 ring-purple-500/40 text-white shadow-sm ring-1">
@@ -801,7 +801,7 @@
                             <input type="file" id="cert-in-qr-file" accept="image/*" onchange="handleCertQrUpload(event)"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
                             <button type="button" onclick="updateCertQR()" title="根据编号重新生成"
-                                class="shrink-0 px-2.5 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold rounded-md border border-gray-700 transition">
+                                class="shrink-0 px-2.5 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold rounded-md border border-gray-700 transition" data-i18n="btn_cert_regen_qr">
                                 重新生成
                             </button>
                         </div>
@@ -896,7 +896,7 @@
 
                 <!-- 字体风格 -->
                 <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3">
-                    <label class="block text-xs font-bold text-gray-300 mb-2">卡片字体风格</label>
+                    <label class="block text-xs font-bold text-gray-300 mb-2" data-i18n="lbl_font_style">卡片字体风格</label>
                     <div class="grid grid-cols-4 gap-1.5">
                         <button type="button" onclick="selectBimboFont('sans')" id="bimbo-font-btn-sans"
                             class="font-opt-btn py-2 px-2 rounded-lg border text-xs font-bold transition text-left flex flex-col gap-0.5 bg-pink-950/60 border-pink-500 ring-pink-500/40 text-white shadow-sm ring-1">
@@ -930,7 +930,7 @@
                             </h2>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1">主卡标题</label>
+                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_title">主卡标题</label>
                             <input type="text" id="bimbo-in-title" value="妓女身份识别卡" oninput="updateBimboField('title')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:border-pink-500 focus:outline-none">
                         </div>
@@ -1591,10 +1591,11 @@
 
 
                     <!-- ================= 核心实体卡片 4: 极清双面识别卡 (1011 × 638 @ 300 PPI) ================= -->
-                    <div id="bimbo-card-node" class="absolute top-0 left-0 hidden shrink-0 select-none" style="width: 1011px; height: 638px;">
+                    <div id="bimbo-card-node" class="absolute top-0 left-0 hidden shrink-0 select-none bimbo-card-3d-scene" style="width: 1011px; height: 638px;">
+                        <div id="bimbo-card-flipper" class="bimbo-card-flipper">
                         
                         <!-- 正面 (Front) -->
-                        <div id="bimbo-front-node" class="bimbo-card-face">
+                        <div id="bimbo-front-node" class="bimbo-card-face bimbo-card-face-front">
                             
                             <!-- 0. 背景立绘底图层 (支持透明度调节) -->
                             <div id="bimbo-card-bg-layer" class="absolute inset-0 pointer-events-none overflow-hidden select-none" style="z-index: 2; display: none;">
@@ -1694,7 +1695,7 @@
                         </div>
 
                         <!-- 背面 (Back) -->
-                        <div id="bimbo-back-node" class="bimbo-card-face hidden relative overflow-hidden">
+                        <div id="bimbo-back-node" class="bimbo-card-face bimbo-card-face-back relative overflow-hidden">
                             
                             <!-- 顶部条形码暗纹背景 -->
                             <div class="absolute top-2 left-6 right-6 h-[50px] opacity-25 overflow-hidden flex items-start pointer-events-none select-none">
@@ -1744,6 +1745,7 @@
                                     OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001
                                 </span>
                             </div>
+                        </div>
                         </div>
 
                     </div>
@@ -1810,7 +1812,7 @@
     <!-- 双面卡正面导出后轻量浮动提示 -->
     <div id="bimbo-back-hint-toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-40 bg-pink-950/95 border border-pink-500/80 text-pink-100 text-xs px-4 py-2 rounded-full shadow-2xl flex items-center gap-2.5 backdrop-blur-md hidden transition-all duration-300 no-print">
         <span data-i18n="toast_bimbo_back">💡 您还可以切换至背面继续导出</span>
-        <button type="button" onclick="switchBimboSide('back'); hideBimboHint();" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full text-[11px] shadow">
+        <button type="button" onclick="switchBimboSide('back'); hideBimboHint();" class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full text-[11px] shadow" data-i18n="btn_goto_back">
             去背面 ➔
         </button>
         <button type="button" onclick="hideBimboHint()" class="text-pink-300 hover:text-white text-xs px-1">✕</button>

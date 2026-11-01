@@ -203,10 +203,17 @@ function switchBimboSide(side) {
         side_name: side === 'front' ? '正面' : '背面'
     });
 
+    const flipper = document.getElementById('bimbo-card-flipper');
     const frontNode = document.getElementById('bimbo-front-node');
     const backNode = document.getElementById('bimbo-back-node');
-    if (frontNode) frontNode.classList.toggle('hidden', side !== 'front');
-    if (backNode) backNode.classList.toggle('hidden', side !== 'back');
+    if (flipper) {
+        if (frontNode) frontNode.classList.remove('hidden');
+        if (backNode) backNode.classList.remove('hidden');
+        flipper.classList.toggle('is-flipped', side === 'back');
+    } else {
+        if (frontNode) frontNode.classList.toggle('hidden', side !== 'front');
+        if (backNode) backNode.classList.toggle('hidden', side !== 'back');
+    }
 
     const btnF = document.getElementById('bimbo-side-btn-front');
     const btnB = document.getElementById('bimbo-side-btn-back');

@@ -6,6 +6,28 @@
     width: 1011px;
     height: 638px;
     transform-origin: top left;
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+}
+
+/* 3D Scene Perspective */
+.bimbo-card-3d-scene {
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+}
+
+/* 3D Flipper that rotates in space */
+.bimbo-card-flipper {
+    width: 1011px;
+    height: 638px;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.bimbo-card-flipper.is-flipped {
+    transform: rotateY(180deg);
 }
 
 .bimbo-card-face {
@@ -18,6 +40,19 @@
     overflow: hidden;
     position: absolute;
     inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.bimbo-card-face-front {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.bimbo-card-face-back {
+    transform: rotateY(180deg);
+    z-index: 1;
 }
 
 /* Front Header Ribbon */

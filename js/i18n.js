@@ -14,6 +14,7 @@ let currentLang = 'en';
 
 const I18N_DICTIONARY = {
     "zh-CN": {
+        'btn_goto_back': '去背面 ➔',
         'sec_title_and_code': '标题与系统编码',
         'sec_slave_attributes': '奴隶身份属性信息',
         'sec_photo_and_stickers': '证件照与贴纸设置',
@@ -283,6 +284,7 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用规范"
     },
     "zh-TW": {
+        'btn_goto_back': '去背面 ➔',
         'sec_title_and_code': '標題與系統編碼',
         'sec_slave_attributes': '奴隸身份屬性資訊',
         'sec_photo_and_stickers': '證件照與貼紙設置',
@@ -552,6 +554,7 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用規範"
     },
     "en": {
+        'btn_goto_back': 'Flip to Back ➔',
         'sec_title_and_code': 'Title & System Code',
         'sec_slave_attributes': 'Slave Attributes & Info',
         'sec_photo_and_stickers': 'Photo & Sticker Settings',
@@ -821,6 +824,7 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES & CONDUCT"
     },
     "ja": {
+        'btn_goto_back': '裏面へ ➔',
         'sec_title_and_code': 'タイトルとシステムコード',
         'sec_slave_attributes': '奴隷属性情報',
         'sec_photo_and_stickers': '証明写真・ステッカー設定',

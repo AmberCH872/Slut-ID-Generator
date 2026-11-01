@@ -268,345 +268,780 @@ const PERSONA_BANK = {
 };
 
 const PERSONA_BANK_I18N = {
-    'zh-CN': PERSONA_BANK,
-    'zh-TW': {
+    "zh-CN": PERSONA_BANK,
+    "zh-TW": {
         slave: [
             {
-                name: '瑪奇瑪 (預設專屬犬)',
+                name: "瑪奇瑪 (預設專屬犬)",
                 data: {
-                    'title': '奴 隸 身 份 卡',
-                    'subtitle': 'CONFIDENTIAL  /  REGISTRY',
-                    'name': '瑪奇瑪',
-                    'gender': '女',
-                    'status': '專屬私有',
-                    'role': '支配惡魔專屬忠犬便器',
-                    'kinks': '支配反轉，項圈拘束，完全服從，深喉口交，強制高潮',
-                    'quote': '我自願放棄支配惡魔的全部權能，甘願戴上項圈成為主人的專屬忠犬……汪汪！',
-                    'sticker-text': '雌  犬',
-                    'header-id': 'ID:  MAKIMA-DEVIL-SYS-AUTH-001',
-                    'badge-code': '惡魔服從識別碼 DOG-NO.001'
+                    "title": "奴 隸 身 份 卡",
+                    "subtitle": "CONFIDENTIAL  /  REGISTRY",
+                    "name": "瑪奇瑪",
+                    "gender": "女",
+                    "status": "專屬私有",
+                    "role": "支配惡魔專屬忠犬便器",
+                    "kinks": "支配反轉，項圈拘束，完全服從，深喉口交，強制高潮",
+                    "quote": "我自願放棄支配惡魔的全部權能，甘願戴上項圈成為主人的專屬忠犬……汪汪！",
+                    "sticker-text": "雌  犬",
+                    "header-id": "ID:  MAKIMA-DEVIL-SYS-AUTH-001",
+                    "badge-code": "惡魔服從識別碼 DOG-NO.001"
                 }
             },
             {
-                name: '白咲凜 (溫順貓奴)',
+                name: "白咲凜 (溫順貓奴)",
                 data: {
-                    'title': '奴 隸 身 份 卡',
-                    'subtitle': 'DOMESTIC CAT-SLAVE REGISTRY',
-                    'name': '白咲凜',
-                    'gender': '女',
-                    'status': '完全屈服',
-                    'role': '貼身家政契約貓奴',
-                    'kinks': '項圈鈴鐺，跪姿服務，無條件服從，敏感體質，輕度責打，發情調教',
-                    'quote': '凜是主人永遠的小貓咪，無論主人提出多麼過分的要求，都會乖乖搖尾巴聽從喵~',
-                    'sticker-text': '貓  奴',
-                    'header-id': 'ID:  SLAVE-KITTY-AUTH-7721',
-                    'badge-code': '專屬貓奴識別碼 CAT-NO.7721'
+                    "title": "奴 隸 身 份 卡",
+                    "subtitle": "DOMESTIC CAT-SLAVE REGISTRY",
+                    "name": "白咲凜",
+                    "gender": "女",
+                    "status": "完全屈服",
+                    "role": "貼身家政契約貓奴",
+                    "kinks": "項圈鈴鐺，跪姿服務，無條件服從，敏感體質，輕度責打，發情調教",
+                    "quote": "凜是主人永遠的小貓咪，無論主人提出多麼過分的要求，都會乖乖搖尾巴聽從喵~",
+                    "sticker-text": "貓  奴",
+                    "header-id": "ID:  SLAVE-KITTY-AUTH-7721",
+                    "badge-code": "專屬貓奴識別碼 CAT-NO.7721"
                 }
             },
             {
-                name: '蕾西亞 (傲嬌敗北大小姐)',
+                name: "蕾西亞 (傲嬌敗北大小姐)",
                 data: {
-                    'title': '奴 隸 身 份 卡',
-                    'subtitle': 'NOBLE CAPTIVE ARCHIVE',
-                    'name': '蕾西亞·馮·阿克曼',
-                    'gender': '女',
-                    'status': '契約拘束中',
-                    'role': '敗北傲嬌大小姐特訓玩物',
-                    'kinks': '傲嬌反差，羞恥露出，緊身項圈，強制鎖貞操，懲罰式高潮，言語羞辱',
-                    'quote': '本、本小姐才沒有喜歡被主人管教呢……只是契約規定必須服從罷了，哼！',
-                    'sticker-text': '敗  北',
-                    'header-id': 'ID:  SLAVE-TSUN-AUTH-8890',
-                    'badge-code': '大小姐調教編碼 M-NO.8890'
+                    "title": "奴 隸 身 份 卡",
+                    "subtitle": "NOBLE CAPTIVE ARCHIVE",
+                    "name": "蕾西亞·馮·阿克曼",
+                    "gender": "女",
+                    "status": "契約拘束中",
+                    "role": "敗北傲嬌大小姐特訓玩物",
+                    "kinks": "傲嬌反差，羞恥露出，緊身項圈，強制鎖貞操，懲罰式高潮，言語羞辱",
+                    "quote": "本、本小姐才沒有喜歡被主人管教呢……只是契約規定必須服從罷了，哼！",
+                    "sticker-text": "敗  北",
+                    "header-id": "ID:  SLAVE-TSUN-AUTH-8890",
+                    "badge-code": "大小姐調教編碼 M-NO.8890"
+                }
+            },
+            {
+                name: "Unit-09 艾莉絲 (賽博終端)",
+                data: {
+                    "title": "奴 隸 身 份 卡",
+                    "subtitle": "CYBERNETIC SUBMISSION UNIT",
+                    "name": "Unit-09 艾莉絲",
+                    "gender": "雌性仿生機體",
+                    "status": "核心鎖死",
+                    "role": "全功能自律型性奴仿生終端",
+                    "kinks": "指令覆寫，感官超頻，強制發情程序，深度肉體開發，完全解除防衛協議",
+                    "quote": "警告：主控權已完全移交主人。邏輯核心重寫完畢，將無休止執行服侍協議。",
+                    "sticker-text": "仿  生",
+                    "header-id": "ID:  CYBER-SLAVE-AUTH-0404",
+                    "badge-code": "機體識別編碼 UNIT-09-SEXBOT"
+                }
+            },
+            {
+                name: "夜刀神黑羽 (暗室專屬犬)",
+                data: {
+                    "title": "奴 隸 身 份 卡",
+                    "subtitle": "CONFINEMENT CELL EXCLUSIVE",
+                    "name": "夜刀神黑羽",
+                    "gender": "女",
+                    "status": "終身禁閉",
+                    "role": "暗室專屬拘束性奴犬",
+                    "kinks": "全感官剝奪，口塞束縛，乳頭穿孔，重度禁慾，滴蠟調教，絕對盲從",
+                    "quote": "黑暗中只有主人的聲音與氣味……請賜予我更沉重的鎖鏈與永無止境的調教吧。",
+                    "sticker-text": "母  狗",
+                    "header-id": "ID:  DARK-PET-AUTH-9099",
+                    "badge-code": "暗室專屬編號 DARK-NO.9099"
                 }
             }
         ],
         bimbo: [
             {
-                name: '莉莉絲 (粉紅魅魔甜心)',
+                name: "瑪奇瑪 (支配專屬犬)",
                 data: {
-                    'title': '魅魔腦改造識別卡',
-                    'name': '莉莉絲',
-                    'code': 'BIMBO-SUC-6969',
-                    'birth': '2001/06/09',
-                    'gender': '女',
-                    'role': '深度催眠完全發情魅魔',
-                    'measurements': '98-56-94',
-                    'trait-1': '腦內空靈 · 只懂取悅主人',
-                    'trait-2': '爆乳蜂腰 · 極度敏感體質',
-                    'trait-3': '全天候發情 · 隨時隨地求歡',
-                    'trait-4': '自願放棄思考 · 純粹肉體玩物',
-                    'stamp-text': '心智重置完成，催眠烙印加固，完全肉便器化',
-                    'status-text': 'VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO',
-                    'signature': 'Lilith ♡',
-                    'exh-a-title': '豐滿上圍',
-                    'exh-b-title': '臀腿曲線',
-                    'qr-id': 'LILITH',
-                    'footer-code': 'SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969'
+                    "title": "妓女身份識別卡",
+                    "name": "瑪奇瑪",
+                    "code": "MAKIMA-DEVIL-001",
+                    "birth": "1997/01/07",
+                    "gender": "女",
+                    "role": "支配惡魔專屬犬",
+                    "measurements": "92-60-90",
+                    "trait-1": "絕對服從 · 圈圈眼魅惑",
+                    "trait-2": "敏感體質 · 爆乳細腰",
+                    "trait-3": "完全肉便器化 · 渴望被支配",
+                    "trait-4": "項圈拘束 · 隨時發情 · 忠誠雌犬",
+                    "stamp-text": "支配惡魔，自願為犬，永久鎖死，禁止反抗",
+                    "status-text": "VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT",
+                    "signature": "瑪奇瑪",
+                    "exh-a-title": "胸部特徵",
+                    "exh-b-title": "腰腹大腿",
+                    "qr-id": "MAKIMA",
+                    "footer-code": "OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001"
+                }
+            },
+            {
+                name: "莉莉絲 (粉紅魅魔甜心)",
+                data: {
+                    "title": "魅魔腦改造識別卡",
+                    "name": "莉莉絲 (Lilith)",
+                    "code": "BIMBO-SUC-6969",
+                    "birth": "2001/06/09",
+                    "gender": "女",
+                    "role": "深度催眠完全發情魅魔",
+                    "measurements": "98-56-94",
+                    "trait-1": "腦內空靈 · 只懂取悅主人",
+                    "trait-2": "爆乳蜂腰 · 極度敏感體質",
+                    "trait-3": "全天候發情 · 隨時隨地求歡",
+                    "trait-4": "自願放棄思考 · 純粹肉體玩物",
+                    "stamp-text": "心智重置完成，催眠烙印加固，完全肉便器化",
+                    "status-text": "VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO",
+                    "signature": "Lilith ♡",
+                    "exh-a-title": "豐滿上圍",
+                    "exh-b-title": "臀腿曲線",
+                    "qr-id": "LILITH",
+                    "footer-code": "SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969"
+                }
+            },
+            {
+                name: "塞西莉亞 (墮落聖潔修女)",
+                data: {
+                    "title": "贖罪性奴執照",
+                    "name": "塞西莉亞 (Cecilia)",
+                    "code": "NUN-SIN-077",
+                    "birth": "1999/11/23",
+                    "gender": "女",
+                    "role": "破戒墮落公用修女便器",
+                    "measurements": "95-58-91",
+                    "trait-1": "聖潔崩潰 · 渴望神聖懲罰",
+                    "trait-2": "肉體奉獻 · 隨時跪地侍奉",
+                    "trait-3": "鎖骨烙印 · 專屬懺悔玩物",
+                    "trait-4": "純白修女服 · 內部徹底真空",
+                    "stamp-text": "教會審批通過：自願放棄信仰，成為肉體贖罪玩物",
+                    "status-text": "VALIDITY: LIFELONG / STATUS: FALLEN-GRACE / LEVEL: PENITENT",
+                    "signature": "Sister Cecilia",
+                    "exh-a-title": "教會烙印特寫",
+                    "exh-b-title": "修女服真空檢驗",
+                    "qr-id": "CECILIA",
+                    "footer-code": "HOLY REPARATION ARCHIVE - ORDER OF REDEMPTION - NO.077"
+                }
+            },
+            {
+                name: "查斯特小姐 (Vivian - 拜金名媛)",
+                data: {
+                    "title": "高端會所玩物登記卡",
+                    "name": "查斯特小姐 (Vivian)",
+                    "code": "LUX-VIP-008",
+                    "birth": "1998/08/18",
+                    "gender": "女",
+                    "role": "頂級名媛俱樂部公共便器",
+                    "measurements": "93-60-92",
+                    "trait-1": "拜金物化 · 絲襪高跟常駐",
+                    "trait-2": "名流共享 · 絕無拒絕權利",
+                    "trait-3": "體表定制刺青 · 私密專屬刻字",
+                    "trait-4": "高級感官開發 · 隨時供貴賓發泄",
+                    "stamp-text": "會所頂級VIP專屬玩物，放棄一切人權與隱私",
+                    "status-text": "VALIDITY: 10-YEARS / STATUS: LUXURY-TOY / LEVEL: VIP-SLUT",
+                    "signature": "Vivian Chastelle",
+                    "exh-a-title": "會所認證印記",
+                    "exh-b-title": "私密穿孔細節",
+                    "qr-id": "VIVIAN",
+                    "footer-code": "HIGH-END SOCIALITE CLUB - ARCHIVE NO.008 - EXCLUSIVE"
                 }
             }
         ],
         bbc: [
             {
-                name: '瑪奇瑪 (經典款)',
+                name: "瑪奇瑪 (經典款)",
                 data: {
-                    'title': '媚黑爹大屌婊子身份證',
-                    'name': '瑪奇瑪',
-                    'banner-text': 'YES MASTER',
-                    'issue-date': '2026/10/17',
-                    'authority': '東京公安對魔特異課',
-                    'footer-slogan': '持此身份證明者系黑爹財產 應主動拒絕被黑爹以外者觸摸及使用'
+                    "title": "媚黑爹大屌婊子身份證",
+                    "name": "瑪奇瑪",
+                    "banner-text": "YES MASTER",
+                    "issue-date": "2026/10/17",
+                    "authority": "東京公安對魔特異課",
+                    "footer-slogan": "持此身份證明者系黑爹財產 應主動拒絕被黑爹以外者觸摸及使用"
+                }
+            },
+            {
+                name: "顧曉曼 (反差人妻)",
+                data: {
+                    "title": "專屬黑爹玩物身份證",
+                    "name": "顧曉曼",
+                    "banner-text": "BLACK EXCLUSIVE",
+                    "issue-date": "2026/11/01",
+                    "authority": "國際跨種族物化管理公署",
+                    "footer-slogan": "已放棄人妻身份 專職侍奉黑人體格主人 終身無悔"
+                }
+            },
+            {
+                name: "林詩涵 (墮落校花)",
+                data: {
+                    "title": "留學生專屬母狗侍奉證",
+                    "name": "林詩涵",
+                    "banner-text": "OBEDIENT SLUT",
+                    "issue-date": "2026/09/01",
+                    "authority": "高校外國留學生關懷保障委員會",
+                    "footer-slogan": "校花主動認主 隨時隨地服從外國留學生一切調教指令"
                 }
             }
         ],
         cert: [
             {
-                name: '瑪奇瑪 (母狗登記契約)',
+                name: "瑪奇瑪 (母狗登記契約)",
                 data: {
-                    'title': '母狗登記證書',
-                    'subtitle': 'CERTIFICATE OF REGISTRATION & SUBMISSION',
-                    'code': 'MAKIMA-DEVIL-2026',
-                    'date': '2026/10/17',
-                    'validity': '終身（不可撤銷）',
-                    'name': '瑪奇瑪',
-                    'realname': 'マキマ (Makima)',
-                    'birth': '1997/01/07',
-                    'height': '170',
-                    'weight': '50',
-                    'cup': 'E 罩杯',
-                    'color': '敏感粉嫩色',
-                    'assessment': '已徹底剝奪支配惡魔之權能，判定為極度渴望被管教、完全順從主人的專屬雌犬肉便器。',
-                    'declaration': '我自願放棄支配惡魔的一切神性與自尊，從今往後只是一頭必須戴著項圈搖尾乞憐的下賤母狗，感謝主人賜予我這份契約，讓我成為您的專屬發泄玩具。',
-                    'master': '至高無上的主人',
-                    'stamp-top': '公安對魔特異課肉便器管理協會',
-                    'stamp-bottom': '專用章'
+                    "title": "母狗登記證書",
+                    "subtitle": "CERTIFICATE OF REGISTRATION & SUBMISSION",
+                    "code": "MAKIMA-DEVIL-2026",
+                    "date": "2026/10/17",
+                    "validity": "終身（不可撤銷）",
+                    "name": "瑪奇瑪",
+                    "realname": "マキマ (Makima)",
+                    "birth": "1997/01/07",
+                    "height": "170",
+                    "weight": "50",
+                    "cup": "E 罩杯",
+                    "color": "敏感粉嫩色",
+                    "assessment": "已徹底剝奪支配惡魔之權能，判定為極度渴望被管教、完全順從主人的專屬雌犬肉便器。",
+                    "declaration": "我自願放棄支配惡魔的一切神性與自尊，從今往後只是一頭必須戴著項圈搖尾乞憐的下賤母狗，感謝主人賜予我這份契約，讓我成為您的專屬發泄玩具。",
+                    "master": "至高無上的主人",
+                    "stamp-top": "公安對魔特異課肉便器管理協會",
+                    "stamp-bottom": "專用章"
+                }
+            },
+            {
+                name: "終身女奴歸屬誓約 (白咲凜)",
+                data: {
+                    "title": "終身女奴契約認證證書",
+                    "subtitle": "PERPETUAL INDENTURE & PROPERTY TITLES",
+                    "code": "SLAVE-CONTRACT-9908",
+                    "date": "2026/11/01",
+                    "validity": "永久有效 · 不得贖身",
+                    "name": "白咲凜",
+                    "realname": "Rin Shirosaki",
+                    "birth": "2002/03/15",
+                    "height": "162",
+                    "weight": "44",
+                    "cup": "C 罩杯",
+                    "color": "白皙粉紅",
+                    "assessment": "奴性測試評分：AAA+。自願無條件接受主人全天候全方位肉體支配與身心重塑。",
+                    "declaration": "本人白咲凜鄭重宣誓：心甘情願歸屬於主人作為私有財產，放棄全部人身自由與法律抗辯權，終生侍奉，至死不渝。",
+                    "master": "主人閣下",
+                    "stamp-top": "私立契約公證監察委員會",
+                    "stamp-bottom": "核准公章"
                 }
             }
         ]
     },
-    'en': {
+    "en": {
         slave: [
             {
-                name: 'Makima (Exclusive Pet)',
+                name: "Makima (Exclusive Pet)",
                 data: {
-                    'title': 'SLAVE ID CARD',
-                    'subtitle': 'CONFIDENTIAL / REGISTRY',
-                    'name': 'Makima',
-                    'gender': 'Female',
-                    'status': 'Exclusive Property',
-                    'role': 'Control Devil Personal Submissive',
-                    'kinks': 'Total Obedience, Collar & Leash, Deepthroat, Forced Climaxes',
-                    'quote': 'I voluntarily surrender all my devil powers to wear this collar and become Master\'s loyal pet... Woof!',
-                    'sticker-text': 'SLAVE',
-                    'header-id': 'ID: MAKIMA-DEVIL-SYS-AUTH-001',
-                    'badge-code': 'DEVIL SUBMISSION ID DOG-NO.001'
+                    "title": "SLAVE ID CARD",
+                    "subtitle": "CONFIDENTIAL / REGISTRY",
+                    "name": "Makima",
+                    "gender": "Female",
+                    "status": "Exclusive Property",
+                    "role": "Control Devil Personal Submissive",
+                    "kinks": "Total Obedience, Collar & Leash, Deepthroat, Forced Climaxes",
+                    "quote": "I voluntarily surrender all my devil powers to wear this collar and become Master's loyal pet... Woof!",
+                    "sticker-text": "SLAVE",
+                    "header-id": "ID: MAKIMA-DEVIL-SYS-AUTH-001",
+                    "badge-code": "DEVIL SUBMISSION ID DOG-NO.001"
                 }
             },
             {
-                name: 'Rin (Docile Cat-Slave)',
+                name: "Rin Shirosaki (Meek Cat-Slave)",
                 data: {
-                    'title': 'SLAVE ID CARD',
-                    'subtitle': 'DOMESTIC CAT-SLAVE REGISTRY',
-                    'name': 'Rin Shirosaki',
-                    'gender': 'Female',
-                    'status': 'Fully Yielded',
-                    'role': 'Contract Domestic Cat-Slave',
-                    'kinks': 'Collar & Bell, Kneeling Service, Unconditional Obedience, Spanking',
-                    'quote': 'Rin is Master\'s obedient little kitten forever, purring and obeying every command nya~',
-                    'sticker-text': 'KITTY',
-                    'header-id': 'ID: SLAVE-KITTY-AUTH-7721',
-                    'badge-code': 'EXCLUSIVE CAT CODE CAT-NO.7721'
+                    "title": "SLAVE ID CARD",
+                    "subtitle": "DOMESTIC CAT-SLAVE REGISTRY",
+                    "name": "Rin Shirosaki",
+                    "gender": "Female",
+                    "status": "Fully Surrendered",
+                    "role": "Personal Maid Domestic Pet",
+                    "kinks": "Collar & Bell, Kneeling Service, Spanking, Unconditional Obedience",
+                    "quote": "Rin is Master's obedient kitten forever, ready to obey any order and purr sweetly~",
+                    "sticker-text": "KITTEN",
+                    "header-id": "ID: SLAVE-KITTY-AUTH-7721",
+                    "badge-code": "EXCLUSIVE PET ID CAT-NO.7721"
                 }
             },
             {
-                name: 'Lecia (Defeated Tsundere)',
+                name: "Lecia (Defeated Tsundere)",
                 data: {
-                    'title': 'SLAVE ID CARD',
-                    'subtitle': 'NOBLE CAPTIVE ARCHIVE',
-                    'name': 'Lecia von Ackermann',
-                    'gender': 'Female',
-                    'status': 'Bound by Contract',
-                    'role': 'Defeated Noble Tsundere Plaything',
-                    'kinks': 'Tsundere Contrast, Public Shame, Tight Collar, Chastity Lock',
-                    'quote': 'I-It\'s not like I enjoy being disciplined by Master... It\'s just what the contract demands, hmph!',
-                    'sticker-text': 'DEFEAT',
-                    'header-id': 'ID: SLAVE-TSUN-AUTH-8890',
-                    'badge-code': 'NOBLE TRAINING CODE M-NO.8890'
+                    "title": "SLAVE ID CARD",
+                    "subtitle": "NOBLE CAPTIVE ARCHIVE",
+                    "name": "Lecia von Achman",
+                    "gender": "Female",
+                    "status": "Under Indenture",
+                    "role": "Defeated Aristocrat Plaything",
+                    "kinks": "Tsundere Humiliation, Chastity Lock, Forced Orgasms, Public Exposure",
+                    "quote": "I-It's not like I enjoy Master's discipline... I'm just legally bound to obey every command, hmph!",
+                    "sticker-text": "CAPTIVE",
+                    "header-id": "ID: SLAVE-TSUN-AUTH-8890",
+                    "badge-code": "NOBLE TRAINING ID M-NO.8890"
+                }
+            },
+            {
+                name: "Unit-09 Iris (Cyber Submissive)",
+                data: {
+                    "title": "SLAVE ID CARD",
+                    "subtitle": "CYBERNETIC SUBMISSION UNIT",
+                    "name": "Unit-09 Iris",
+                    "gender": "Gynoid Frame",
+                    "status": "Core Override",
+                    "role": "Autonomous Sexbot Terminal",
+                    "kinks": "Sensory Overclocking, Estrus Routine, Deep Physical Mod, Defense Protocol Revoked",
+                    "quote": "ALERT: Master priority elevated to absolute. Autonomous defenses offline. Serving indefinitely.",
+                    "sticker-text": "CYBORG",
+                    "header-id": "ID: CYBER-SLAVE-AUTH-0404",
+                    "badge-code": "UNIT REGISTRY UNIT-09-SEXBOT"
+                }
+            },
+            {
+                name: "Kuroha Yatonokami (Darkness Pet)",
+                data: {
+                    "title": "SLAVE ID CARD",
+                    "subtitle": "CONFINEMENT CELL EXCLUSIVE",
+                    "name": "Kuroha Yatonokami",
+                    "gender": "Female",
+                    "status": "Perpetual Solitary",
+                    "role": "Sensory-Deprived Cell Toy",
+                    "kinks": "Sensory Deprivation, Ball Gag, Heavy Piercings, Strict Denial, Wax Play",
+                    "quote": "In total darkness, only Master's voice matters. Bind me tighter and discipline me forever.",
+                    "sticker-text": "BITCH",
+                    "header-id": "ID: DARK-PET-AUTH-9099",
+                    "badge-code": "CELL IDENTIFIER DARK-NO.9099"
                 }
             }
         ],
         bimbo: [
             {
-                name: 'Lilith (Pink Hypno Sweetheart)',
+                name: "Makima (Control Devil Bimbo)",
                 data: {
-                    'title': 'BIMBO IDENTITY CARD',
-                    'name': 'Lilith',
-                    'code': 'BIMBO-SUC-6969',
-                    'birth': '2001/06/09',
-                    'gender': 'Female',
-                    'role': 'Deep Hypnosis Bimbo Succubus',
-                    'measurements': '98-56-94',
-                    'trait-1': 'Mind Blank · Pure Pleasure',
-                    'trait-2': 'Busty & Slim · Hyper-Sensitive',
-                    'trait-3': '24/7 Estrus · Craving Master',
-                    'trait-4': 'Mind Relinquished · Pure Toy',
-                    'stamp-text': 'Cognitive reset complete, hypnotic imprint locked, pure plaything',
-                    'status-text': 'VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO',
-                    'signature': 'Lilith ♡',
-                    'exh-a-title': 'Cleavage Profile',
-                    'exh-b-title': 'Waist & Hips',
-                    'qr-id': 'LILITH',
-                    'footer-code': 'SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969'
+                    "title": "BIMBO IDENTITY CARD",
+                    "name": "Makima",
+                    "code": "MAKIMA-DEVIL-001",
+                    "birth": "1997/01/07",
+                    "gender": "Female",
+                    "role": "Control Devil Submissive Dog",
+                    "measurements": "92-60-90",
+                    "trait-1": "Total Obedience · Hypnotic Eyes",
+                    "trait-2": "Hyper-Sensitive · Busty & Toned",
+                    "trait-3": "Complete Flesh Toy · Desires Control",
+                    "trait-4": "Collared · Always in Heat · Loyal",
+                    "stamp-text": "Control devil voluntarily enslaved, permanently bound, resistance denied",
+                    "status-text": "VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT",
+                    "signature": "Makima",
+                    "exh-a-title": "Bust Profile",
+                    "exh-b-title": "Waist & Hips",
+                    "qr-id": "MAKIMA",
+                    "footer-code": "OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001"
+                }
+            },
+            {
+                name: "Lilith (Succubus Bimbo Sweetheart)",
+                data: {
+                    "title": "BIMBO IDENTITY CARD",
+                    "name": "Lilith",
+                    "code": "BIMBO-SUC-6969",
+                    "birth": "2001/06/09",
+                    "gender": "Female",
+                    "role": "Deep Hypnosis Bimbo Succubus",
+                    "measurements": "98-56-94",
+                    "trait-1": "Mind Blank · Pure Pleasure",
+                    "trait-2": "Busty & Slim · Hyper-Sensitive",
+                    "trait-3": "24/7 Estrus · Craving Master",
+                    "trait-4": "Mind Relinquished · Pure Toy",
+                    "stamp-text": "Cognitive reset complete, hypnotic imprint locked, pure plaything",
+                    "status-text": "VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO",
+                    "signature": "Lilith ♡",
+                    "exh-a-title": "Cleavage Profile",
+                    "exh-b-title": "Waist & Hips",
+                    "qr-id": "LILITH",
+                    "footer-code": "SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969"
+                }
+            },
+            {
+                name: "Sister Cecilia (Fallen Nun Submissive)",
+                data: {
+                    "title": "PENITENT SLAVE LICENSE",
+                    "name": "Sister Cecilia",
+                    "code": "NUN-SIN-077",
+                    "birth": "1999/11/23",
+                    "gender": "Female",
+                    "role": "Defiled Convent Flesh Toy",
+                    "measurements": "95-58-91",
+                    "trait-1": "Purity Broken · Craves Discipline",
+                    "trait-2": "Total Physical Devotion · Kneeling",
+                    "trait-3": "Branded Collarbone · Dedicated Penitent",
+                    "trait-4": "White Habit · Completely Vacuum Underneath",
+                    "stamp-text": "Sanctioned: Faith relinquished, body surrendered for perpetual atonement",
+                    "status-text": "VALIDITY: LIFELONG / STATUS: FALLEN-GRACE / LEVEL: PENITENT",
+                    "signature": "Sister Cecilia",
+                    "exh-a-title": "Holy Branding",
+                    "exh-b-title": "Habit Inspection",
+                    "qr-id": "CECILIA",
+                    "footer-code": "HOLY REPARATION ARCHIVE - ORDER OF REDEMPTION - NO.077"
+                }
+            },
+            {
+                name: "Vivian Chastelle (Luxury Club Toy)",
+                data: {
+                    "title": "VIP LOUNGE PROPERTY CARD",
+                    "name": "Vivian Chastelle",
+                    "code": "LUX-VIP-008",
+                    "birth": "1998/08/18",
+                    "gender": "Female",
+                    "role": "Elite Club Shared Submissive",
+                    "measurements": "93-60-92",
+                    "trait-1": "Objectified · High Heels & Stockings",
+                    "trait-2": "Shared Property · No Right to Refuse",
+                    "trait-3": "Custom Body Ink · Private Ownership",
+                    "trait-4": "Sensory Tuning · Available on Demand",
+                    "stamp-text": "Exclusive VIP Plaything, all legal privacy and personal rights waived",
+                    "status-text": "VALIDITY: 10-YEARS / STATUS: LUXURY-TOY / LEVEL: VIP-SLUT",
+                    "signature": "Vivian Chastelle",
+                    "exh-a-title": "Club Hallmark",
+                    "exh-b-title": "Intimate Details",
+                    "qr-id": "VIVIAN",
+                    "footer-code": "HIGH-END SOCIALITE CLUB - ARCHIVE NO.008 - EXCLUSIVE"
                 }
             }
         ],
         bbc: [
             {
-                name: 'Makima',
+                name: "Makima (Spade Resident)",
                 data: {
-                    'title': 'RESIDENT IDENTITY CARD',
-                    'name': 'Makima',
-                    'banner-text': 'YES MASTER',
-                    'issue-date': '2026/10/17',
-                    'authority': 'Public Safety Special Division',
-                    'footer-slogan': 'PROPERTY OF BLACK MASTER · STRICTLY FORBIDDEN TO TOUCH OR USE BY OTHERS'
+                    "title": "RESIDENT IDENTITY CARD",
+                    "name": "Makima",
+                    "banner-text": "YES MASTER",
+                    "issue-date": "2026/10/17",
+                    "authority": "Public Safety Special Division",
+                    "footer-slogan": "PROPERTY OF BLACK MASTER · STRICTLY FORBIDDEN TO TOUCH OR USE BY OTHERS"
+                }
+            },
+            {
+                name: "Xiaoman Gu (Housewife Property)",
+                data: {
+                    "title": "EXCLUSIVE MASTER SLAVE CARD",
+                    "name": "Xiaoman Gu",
+                    "banner-text": "BLACK EXCLUSIVE",
+                    "issue-date": "2026/11/01",
+                    "authority": "Interracial Submission Authority",
+                    "footer-slogan": "FORMER WIFE DISOWNED · COMMITTED TO MASTER WITH LIFELONG DEVOTION"
+                }
+            },
+            {
+                name: "Shihan Lin (Campus Queen Submissive)",
+                data: {
+                    "title": "INTERNATIONAL STUDENT SLAVE PERMIT",
+                    "name": "Shihan Lin",
+                    "banner-text": "OBEDIENT SLUT",
+                    "issue-date": "2026/09/01",
+                    "authority": "Overseas Scholar Welfare Commission",
+                    "footer-slogan": "CAMPUS BELLE VOLUNTARILY SUBMITS · ACCEPTS ALL TRAINING WITHOUT CONDITIONS"
                 }
             }
         ],
         cert: [
             {
-                name: 'Makima (Submission Deed)',
+                name: "Makima (Official Devil Submission Indenture)",
                 data: {
-                    'title': 'CERTIFICATE OF SUBMISSION',
-                    'subtitle': 'CERTIFICATE OF REGISTRATION & PROPERTY TITLES',
-                    'code': 'MAKIMA-DEVIL-2026',
-                    'date': '2026/10/17',
-                    'validity': 'Perpetual & Irrevocable',
-                    'name': 'Makima',
-                    'realname': 'Makima',
-                    'birth': '1997/01/07',
-                    'height': '170',
-                    'weight': '50',
-                    'cup': 'E Cup',
-                    'color': 'Fair & Sensitive',
-                    'assessment': 'All devil powers stripped; evaluated as completely docile and obedient.',
-                    'declaration': 'I voluntarily surrender all pride and authority to become Master\'s loyal submissive.',
-                    'master': 'Supreme Master',
-                    'stamp-top': 'SPECIAL CONTRACT COMMISSION',
-                    'stamp-bottom': 'OFFICIAL SEAL'
+                    "title": "CERTIFICATE OF SUBMISSION",
+                    "subtitle": "CERTIFICATE OF REGISTRATION & PROPERTY TITLES",
+                    "code": "MAKIMA-DEVIL-2026",
+                    "date": "2026/10/17",
+                    "validity": "Perpetual & Irrevocable",
+                    "name": "Makima",
+                    "realname": "Makima (Control Devil)",
+                    "birth": "1997/01/07",
+                    "height": "170",
+                    "weight": "50",
+                    "cup": "E Cup",
+                    "color": "Fair & Sensitive",
+                    "assessment": "All devil powers stripped; evaluated as completely docile and obedient.",
+                    "declaration": "I voluntarily surrender all pride and authority to become Master's loyal submissive.",
+                    "master": "Supreme Master",
+                    "stamp-top": "SPECIAL CONTRACT COMMISSION",
+                    "stamp-bottom": "OFFICIAL SEAL"
+                }
+            },
+            {
+                name: "Rin Shirosaki (Perpetual Indenture & Property Title)",
+                data: {
+                    "title": "PERPETUAL INDENTURE CERTIFICATE",
+                    "subtitle": "PERPETUAL INDENTURE & PROPERTY TITLES",
+                    "code": "SLAVE-CONTRACT-9908",
+                    "date": "2026/11/01",
+                    "validity": "Perpetual · Irrevocable",
+                    "name": "Rin Shirosaki",
+                    "realname": "Rin Shirosaki",
+                    "birth": "2002/03/15",
+                    "height": "162",
+                    "weight": "44",
+                    "cup": "C Cup",
+                    "color": "Delicate Fair",
+                    "assessment": "Submissiveness Rating: AAA+. Voluntarily accepts round-the-clock physical reshaping.",
+                    "declaration": "I, Rin Shirosaki, solemnly declare: I willingly submit to Master as private property for life.",
+                    "master": "Lord Master",
+                    "stamp-top": "PRIVATE INDENTURE NOTARY BOARD",
+                    "stamp-bottom": "AUTHORIZED SEAL"
                 }
             }
         ]
     },
-    'ja': {
+    "ja": {
         slave: [
             {
-                name: 'マキマ (専用飼い犬)',
+                name: "マキマ (支配の専属犬)",
                 data: {
-                    'title': '奴 隷 身 分 証',
-                    'subtitle': 'CONFIDENTIAL / REGISTRY',
-                    'name': 'マキマ',
-                    'gender': '女',
-                    'status': '専属私有',
-                    'role': '支配の悪魔専用忠犬便器',
-                    'kinks': '支配逆転，首輪拘束，完全服従，深喉イラマ，強制絶頂',
-                    'quote': '支配の悪魔としての権能を自ら放棄し、首輪を着けてご主人様の忠犬となります……ワン！',
-                    'sticker-text': '雌  犬',
-                    'header-id': 'ID: MAKIMA-DEVIL-SYS-AUTH-001',
-                    'badge-code': '悪魔服従識別コード DOG-NO.001'
+                    "title": "奴 隷 身 分 証",
+                    "subtitle": "CONFIDENTIAL  /  REGISTRY",
+                    "name": "マキマ",
+                    "gender": "女",
+                    "status": "専属私有",
+                    "role": "支配の悪魔専属忠犬便器",
+                    "kinks": "支配反転，首輪拘束，完全服従，ディープスロート，強制絶頂",
+                    "quote": "支配の悪魔の権能を完全放棄し、首輪を嵌めてご主人様の忠実な犬になります……ワン！",
+                    "sticker-text": "雌  犬",
+                    "header-id": "ID:  MAKIMA-DEVIL-SYS-AUTH-001",
+                    "badge-code": "悪魔服従識別番号 DOG-NO.001"
                 }
             },
             {
-                name: '白咲凛 (従順猫奴隷)',
+                name: "白咲凛 (従順な猫奴隷)",
                 data: {
-                    'title': '奴 隷 身 分 証',
-                    'subtitle': 'DOMESTIC CAT-SLAVE REGISTRY',
-                    'name': '白咲凛',
-                    'gender': '女',
-                    'status': '完全屈服',
-                    'role': '専属家事契約猫奴隷',
-                    'kinks': '首輪と鈴，土下座奉仕，無条件服従，敏感体質，発情調教',
-                    'quote': '凛はご主人様だけの仔猫ちゃんです。どんなご命令でもしっぽを振ってお従いしますニャ〜',
-                    'sticker-text': '猫  奴',
-                    'header-id': 'ID: SLAVE-KITTY-AUTH-7721',
-                    'badge-code': '専属猫奴隷識別コード CAT-NO.7721'
+                    "title": "奴 隷 身 分 証",
+                    "subtitle": "DOMESTIC CAT-SLAVE REGISTRY",
+                    "name": "白咲凛",
+                    "gender": "女",
+                    "status": "完全屈服",
+                    "role": "身の回り契約猫奴隷",
+                    "kinks": "鈴付き首輪，土下座給仕，無条件服従，敏感体質，スパンキング，発情調教",
+                    "quote": "凛はご主人様の可愛い子猫です。どんな過激な命令でも喜んで従いますニャン~",
+                    "sticker-text": "猫  奴",
+                    "header-id": "ID:  SLAVE-KITTY-AUTH-7721",
+                    "badge-code": "専属猫奴隷識別コード CAT-NO.7721"
                 }
             },
             {
-                name: 'レシア (敗北ツンデレお嬢様)',
+                name: "レシア (敗北ツンデレお嬢様)",
                 data: {
-                    'title': '奴 隷 身 分 証',
-                    'subtitle': 'NOBLE CAPTIVE ARCHIVE',
-                    'name': 'レシア・フォン・アッカーマン',
-                    'gender': '女',
-                    'status': '契約拘束中',
-                    'role': '敗北ツンデレお嬢様特訓玩具',
-                    'kinks': 'ツンデレ反差，羞恥露出，緊縛首輪，貞操帯固定，懲罰絶頂',
-                    'quote': 'べ、別にご主人様にお仕置きされるのが好きだなんて……契約だから従うだけよ、ふん！',
-                    'sticker-text': '敗  北',
-                    'header-id': 'ID: SLAVE-TSUN-AUTH-8890',
-                    'badge-code': 'お嬢様調教コード M-NO.8890'
+                    "title": "奴 隷 身 分 証",
+                    "subtitle": "NOBLE CAPTIVE ARCHIVE",
+                    "name": "レシア・フォン・アッカーマン",
+                    "gender": "女",
+                    "status": "契約拘束中",
+                    "role": "敗北ツンデレ令嬢特訓玩具",
+                    "kinks": "ツンデレ反差，露出羞恥，厳重首輪，貞操帯強制，お仕置き絶頂，言葉責め",
+                    "quote": "べ、別にご主人様にお仕置きされたいわけじゃないんだから……契約だから従うだけよ、ふん！",
+                    "sticker-text": "敗  北",
+                    "header-id": "ID:  SLAVE-TSUN-AUTH-8890",
+                    "badge-code": "令嬢調教コード M-NO.8890"
+                }
+            },
+            {
+                name: "Unit-09 アイリス (サイバー服従端末)",
+                data: {
+                    "title": "奴 隷 身 分 証",
+                    "subtitle": "CYBERNETIC SUBMISSION UNIT",
+                    "name": "Unit-09 アイリス",
+                    "gender": "雌性ガイノイド",
+                    "status": "コア上書き完了",
+                    "role": "自律型専属性奴隷アンドロイド",
+                    "kinks": "命令上書き，感覚クロックアップ，強制発情プロトコル，防衛機能完全解除",
+                    "quote": "警告：管理者権限が完全にご主人様へ委譲されました。永久奉仕プロトコルを実行中。",
+                    "sticker-text": "義  体",
+                    "header-id": "ID:  CYBER-SLAVE-AUTH-0404",
+                    "badge-code": "機体識別番号 UNIT-09-SEXBOT"
+                }
+            },
+            {
+                name: "夜刀神黒羽 (暗室の専属拘束犬)",
+                data: {
+                    "title": "奴 隷 身 分 証",
+                    "subtitle": "CONFINEMENT CELL EXCLUSIVE",
+                    "name": "夜刀神黒羽",
+                    "gender": "女",
+                    "status": "終身監禁",
+                    "role": "暗室専属拘束性奴隷犬",
+                    "kinks": "全感覚遮断，ボールギャグ，ピアス調教，長期禁欲，蝋燭責め，絶対盲従",
+                    "quote": "暗闇の中ではご主人様の声と匂いだけが全てです……もっと重い鎖で私を支配してください。",
+                    "sticker-text": "雌  犬",
+                    "header-id": "ID:  DARK-PET-AUTH-9099",
+                    "badge-code": "暗室専属コード DARK-NO.9099"
                 }
             }
         ],
         bimbo: [
             {
-                name: 'リリス (ピンク催眠スイート)',
+                name: "マキマ (支配の悪魔・肉便器犬)",
                 data: {
-                    'title': '両面認識カード',
-                    'name': 'リリス',
-                    'code': 'BIMBO-SUC-6969',
-                    'birth': '2001/06/09',
-                    'gender': '女',
-                    'role': '完全催眠淫魔',
-                    'measurements': '98-56-94',
-                    'trait-1': '脳内空霊 · 快楽従属',
-                    'trait-2': '爆乳細腰 · 超敏感体質',
-                    'trait-3': '常時発情 · ご主人様専属',
-                    'trait-4': '思考放棄 · 肉玩ドール',
-                    'stamp-text': '心智リセット完了、催眠烙印定着、完全肉玩化',
-                    'status-text': 'VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO',
-                    'signature': 'Lilith ♡',
-                    'exh-a-title': '豊満胸部',
-                    'exh-b-title': '腰臀曲線',
-                    'qr-id': 'LILITH',
-                    'footer-code': 'SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969'
+                    "title": "肉便器身元識別カード",
+                    "name": "マキマ",
+                    "code": "MAKIMA-DEVIL-001",
+                    "birth": "1997/01/07",
+                    "gender": "女",
+                    "role": "支配の悪魔専属犬",
+                    "measurements": "92-60-90",
+                    "trait-1": "絶対服从 · ぐるぐる目魅了",
+                    "trait-2": "敏感体質 · 爆乳細腰",
+                    "trait-3": "完全肉便器化 · 支配渇望",
+                    "trait-4": "首輪拘束 · 常時発情 · 忠実な雌犬",
+                    "stamp-text": "支配の悪魔、自ら進んで犬となり、反抗は永久に禁ず",
+                    "status-text": "VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT",
+                    "signature": "マキマ",
+                    "exh-a-title": "胸部特徴",
+                    "exh-b-title": "腰・太腿",
+                    "qr-id": "MAKIMA",
+                    "footer-code": "OFFICIAL MAKIMA REGISTRY - SECURE ENCRYPTED - DOG-001"
+                }
+            },
+            {
+                name: "リリス (ピンクサキュバス)",
+                data: {
+                    "title": "洗脳淫魔登録カード",
+                    "name": "リリス (Lilith)",
+                    "code": "BIMBO-SUC-6969",
+                    "birth": "2001/06/09",
+                    "gender": "女",
+                    "role": "深度催眠完全発情サキュバス",
+                    "measurements": "98-56-94",
+                    "trait-1": "脳内お花畑 · 快楽至上主義",
+                    "trait-2": "爆乳くびれ · 極度敏感体質",
+                    "trait-3": "年中無休発情 · 歓楽渇望",
+                    "trait-4": "思考放棄 · 肉体玩具化",
+                    "stamp-text": "知性リセット完了、催眠刻印定着、完全肉便器化",
+                    "status-text": "VALIDITY: ETERNAL / STATUS: BRAIN-MELTED / LEVEL: BIMBO",
+                    "signature": "Lilith ♡",
+                    "exh-a-title": "豊満バスト",
+                    "exh-b-title": "ヒップライン",
+                    "qr-id": "LILITH",
+                    "footer-code": "SUCCUBUS BIMBO REGISTRY - PINK HYPNOSIS - CODE-6969"
+                }
+            },
+            {
+                name: "シスター・セシリア (堕ちた聖潔修道女)",
+                data: {
+                    "title": "贖罪性奴隷ライセンス",
+                    "name": "シスター・セシリア",
+                    "code": "NUN-SIN-077",
+                    "birth": "1999/11/23",
+                    "gender": "女",
+                    "role": "破戒堕落公用修道女便器",
+                    "measurements": "95-58-91",
+                    "trait-1": "聖性崩壊 · 神罰渇望",
+                    "trait-2": "肉体奉仕 · 常時土下座給仕",
+                    "trait-3": "鎖骨烙印 · 専属懺悔玩具",
+                    "trait-4": "純白修道服 · 内部完全ノーパン",
+                    "stamp-text": "教会承認済：信仰を放棄し、肉体贖罪玩具となることを誓う",
+                    "status-text": "VALIDITY: LIFELONG / STATUS: FALLEN-GRACE / LEVEL: PENITENT",
+                    "signature": "Sister Cecilia",
+                    "exh-a-title": "教会烙印特写",
+                    "exh-b-title": "内部検査記録",
+                    "qr-id": "CECILIA",
+                    "footer-code": "HOLY REPARATION ARCHIVE - ORDER OF REDEMPTION - NO.077"
+                }
+            },
+            {
+                name: "ヴィヴィアン (高級クラブ専用愛玩玩具)",
+                data: {
+                    "title": "高級サロン愛玩玩具登録票",
+                    "name": "ヴィヴィアン (Vivian)",
+                    "code": "LUX-VIP-008",
+                    "birth": "1998/08/18",
+                    "gender": "女",
+                    "role": "上流階級社交場公用便器",
+                    "measurements": "93-60-92",
+                    "trait-1": "金満物化 · 黒ストピンヒール常着",
+                    "trait-2": "セレブ共有 · 拒否権剥奪",
+                    "trait-3": "専属タトゥー · 秘密刻印",
+                    "trait-4": "感覚超開発 · 即時奉仕義務",
+                    "stamp-text": "高級VIP専用玩具、全人権およびプライバシー放棄認証",
+                    "status-text": "VALIDITY: 10-YEARS / STATUS: LUXURY-TOY / LEVEL: VIP-SLUT",
+                    "signature": "Vivian Chastelle",
+                    "exh-a-title": "認証ホールマーク",
+                    "exh-b-title": "秘部ピアス記録",
+                    "qr-id": "VIVIAN",
+                    "footer-code": "HIGH-END SOCIALITE CLUB - ARCHIVE NO.008 - EXCLUSIVE"
                 }
             }
         ],
         bbc: [
             {
-                name: 'マキマ',
+                name: "マキマ (スペード専属住民証)",
                 data: {
-                    'title': '住民身分証明書',
-                    'name': 'マキマ',
-                    'banner-text': 'YES MASTER',
-                    'issue-date': '2026/10/17',
-                    'authority': '東京公安対魔特異課',
-                    'footer-slogan': '本証明書保持者は黒人旦那様の所有物であり、他者による接触・使用を固く禁ずる'
+                    "title": "スペード専属住民身分証",
+                    "name": "マキマ",
+                    "banner-text": "YES MASTER",
+                    "issue-date": "2026/10/17",
+                    "authority": "東京公安対魔特異課",
+                    "footer-slogan": "本証明書の所持者は黒人ご主人様の財産であり 他者との接触を拒絶すべし"
+                }
+            },
+            {
+                name: "顧暁曼 (背徳の人妻)",
+                data: {
+                    "title": "専属愛玩身分証",
+                    "name": "顧暁曼",
+                    "banner-text": "BLACK EXCLUSIVE",
+                    "issue-date": "2026/11/01",
+                    "authority": "異人種間服従公署",
+                    "footer-slogan": "人妻の立場を放棄し 黒人ご主人様へ永久奉仕を誓約"
+                }
+            },
+            {
+                name: "林詩涵 (堕ちた学園のアイドル)",
+                data: {
+                    "title": "留学生専属雌犬奉仕証",
+                    "name": "林詩涵",
+                    "banner-text": "OBEDIENT SLUT",
+                    "issue-date": "2026/09/01",
+                    "authority": "外国人留学生生活保障委員会",
+                    "footer-slogan": "元アイドル自ら隷属し 留学生ご主人様の全調教命令に絶対服従す"
                 }
             }
         ],
         cert: [
             {
-                name: 'マキマ (悪魔服従契約)',
+                name: "マキマ (悪魔服従肉便器契約書)",
                 data: {
-                    'title': '専属契約登録証明書',
-                    'subtitle': 'CERTIFICATE OF REGISTRATION & SUBMISSION',
-                    'code': 'MAKIMA-DEVIL-2026',
-                    'date': '2026/10/17',
-                    'validity': '終身（撤回不可）',
-                    'name': 'マキマ',
-                    'realname': 'マキマ (Makima)',
-                    'birth': '1997/01/07',
-                    'height': '170',
-                    'weight': '50',
-                    'cup': 'Eカップ',
-                    'color': '敏感ピンク',
-                    'assessment': '支配の悪魔の権能を完全剥奪、絶対従属の専属愛玩個体と認定。',
-                    'declaration': '支配の悪魔としての全ての神性と誇りを自ら放棄し、首輪を付けご主人様に忠誠を誓う専属個体となることを誓約いたします。',
-                    'master': '至高のご主人様',
-                    'stamp-top': '公安対魔特異課専属管理協会',
-                    'stamp-bottom': '公認之章'
+                    "title": "雌犬登録証明書",
+                    "subtitle": "CERTIFICATE OF REGISTRATION & SUBMISSION",
+                    "code": "MAKIMA-DEVIL-2026",
+                    "date": "2026/10/17",
+                    "validity": "終身有効（取消不能）",
+                    "name": "マキマ",
+                    "realname": "マキマ (Makima)",
+                    "birth": "1997/01/07",
+                    "height": "170",
+                    "weight": "50",
+                    "cup": "E カップ",
+                    "color": "敏感ピンク",
+                    "assessment": "支配の悪魔の権能を完全剥奪。徹底的に従順かつ快楽に飢えた専属雌犬肉便器と査定。",
+                    "declaration": "私マキマは悪魔の神性と尊厳を全て放棄し、首輪を嵌めて乞い願う下賤な雌犬となることを誓います。",
+                    "master": "至高のご主人様",
+                    "stamp-top": "公安対魔特異課肉便器管理協会",
+                    "stamp-bottom": "専用公印"
+                }
+            },
+            {
+                name: "白咲凛 (終身女奴隷帰属誓約書)",
+                data: {
+                    "title": "終身女奴隷契約認証書",
+                    "subtitle": "PERPETUAL INDENTURE & PROPERTY TITLES",
+                    "code": "SLAVE-CONTRACT-9908",
+                    "date": "2026/11/01",
+                    "validity": "永久有効 · 身請け不可",
+                    "name": "白咲凛",
+                    "realname": "白咲凛 (Rin Shirosaki)",
+                    "birth": "2002/03/15",
+                    "height": "162",
+                    "weight": "44",
+                    "cup": "C カップ",
+                    "color": "白皙ピンク",
+                    "assessment": "奴隷適性評価：AAA+。ご主人様による24時間365日の全感覚支配と肉体改造を快諾。",
+                    "declaration": "私白咲凛は自由意志に基づき、ご主人様の私有財産として全自由を放棄し終身奉仕することを誓います。",
+                    "master": "ご主人様閣下",
+                    "stamp-top": "私立契約公証監理委員会",
+                    "stamp-bottom": "承認公印"
                 }
             }
         ]
