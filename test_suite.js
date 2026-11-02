@@ -186,4 +186,49 @@ for (const tc of detectionCases) {
 }
 console.log(`✓ i18n system fully verified: 4 languages (${i18nCtx.SUPPORTED_LANGS.join(', ')}), 100% dictionary parity (${baseKeys.length} keys), and accurate auto-detection/fallback.`);
 
+// 11. Verify DOM hierarchy: scaler-outer-box must contain all 4 card nodes, and no unclosed tags
+(function verifyDomHierarchy() {
+    const stack = [];
+    const cardParents = {};
+    const voidTags = new Set(['img', 'input', 'br', 'hr', 'meta', 'link', 'col', 'base']);
+    
+    // Simple HTML tokenizer
+    const tagRegex = /<\/?([a-zA-Z0-9-]+)([^>]*)>/g;
+    let match;
+    while ((match = tagRegex.exec(html)) !== null) {
+        const fullTag = match[0];
+        const tagName = match[1].toLowerCase();
+        const rawAttrs = match[2];
+        const isClosing = fullTag.startsWith('</');
+        const isSelfClosing = fullTag.endsWith('/>') || voidTags.has(tagName);
+
+        if (isClosing) {
+            if (voidTags.has(tagName)) continue;
+            assert(stack.length > 0, `Unexpected closing tag </${tagName}> with empty stack`);
+            const popped = stack.pop();
+            assert.strictEqual(popped.tag, tagName, `Mismatched closing tag </${tagName}>, expected </${popped.tag}>`);
+        } else if (!isSelfClosing) {
+            const idMatch = rawAttrs.match(/id=["']([^"']+)["']/);
+            const id = idMatch ? idMatch[1] : '';
+            if (['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node', 'bimbo-front-node', 'bimbo-back-node'].includes(id)) {
+                cardParents[id] = stack.map(s => s.id || s.tag);
+            }
+            stack.push({ tag: tagName, id });
+        }
+    }
+    assert.strictEqual(stack.length, 0, `Unclosed HTML tags remaining: ${stack.map(s => s.tag).join(', ')}`);
+    
+    // Verify each card has scaler-outer-box as ancestor
+    ['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node'].forEach(cid => {
+        assert(cardParents[cid], `Card "${cid}" must exist in DOM tree`);
+        assert(cardParents[cid].includes('scaler-outer-box'), `Card "${cid}" must be enclosed inside "scaler-outer-box", got ancestors: ${JSON.stringify(cardParents[cid])}`);
+    });
+    // Verify bimbo front and back are inside bimbo-card-flipper
+    ['bimbo-front-node', 'bimbo-back-node'].forEach(bid => {
+        assert(cardParents[bid], `Bimbo node "${bid}" must exist`);
+        assert(cardParents[bid].includes('bimbo-card-flipper'), `Bimbo node "${bid}" must be inside "bimbo-card-flipper"`);
+    });
+    console.log('✓ DOM tree hierarchy verified: all 4 cards strictly inside scaler-outer-box, and bimbo faces inside 3D flipper.');
+})();
+
 console.log('--- All Modular Web App verification checks passed successfully! ---');
