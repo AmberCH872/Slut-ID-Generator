@@ -12,6 +12,7 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Version-v1.2-blueviolet.svg?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/Resolution-300_PPI_(1011×638)-red.svg?style=flat-square" alt="Resolution" />
   <img src="https://img.shields.io/badge/Privacy-100%25_Client--Side-brightgreen.svg?style=flat-square" alt="Privacy" />
   <img src="https://img.shields.io/badge/i18n-zh--CN_|_zh--TW_|_en_|_ja-blue.svg?style=flat-square" alt="i18n" />
@@ -41,6 +42,12 @@ Built with pure vanilla web technologies (HTML5, TailwindCSS, ES6 modules), it r
   - **Template 2: Spade Resident Card (身份证)**: Deep purple wave banner, 5-star gold crest, 18 customizable obedience checkboxes, "YES MASTER" badge, and barcode.
   - **Template 3: Submission Certificate (登记证书协议)**: Vintage parchment texture, dual decorative borders, rotatable official red seal, dynamic vector QR code, and formal clause list.
   - **Template 4: Double-Sided Bimbo ID Card (极清双面识别卡)**: Double-sided layout with front subject profile (measurements, traits, signature) and back conduct rules (11 guidelines, Exhibit A/B photo slots, custom QR code, batch & merged long-image export).
+- **🔄 Pure CSS 3D Dual-Sided Flip Animation (v1.1)**:
+  Template 4 features fluid, hardware-accelerated 3D flip card interaction using pure CSS transforms (`preserve-3d`, `backface-visibility: hidden`), allowing intuitive inspection of both front and back card faces without page lag.
+- **💡 Modular Dedication & Vow Inspiration Library (v1.2)**:
+  Integrated modal inspiration catalog organized across 4 distinct thematic scenarios (🐶 Loyal Pet, 💧 Extreme Toy, 👠 Officer Fall, ⚖️ Discipline Rules) in 4 languages. Instantly inserts or appends curated oaths, quotes, and disciplinary rules into card fields with a single click.
+- **🏷️ Archival Wave Postmark & 3D Embossed Notary Seal System (v1.2)**:
+  Vector SVG overlay engine for all card templates. Features authentic Archival Cancellation Waves (4 distressed wavy lines + circular date/authority seal) and 3D Embossed Notary Seals (36-point scalloped starburst with relief lighting filters). Supports preset anchor positions, custom pan/tilt/rotation, adjustable opacity, and 4 vintage ink tones.
 - **🎲 Multi-Language Creative Persona Bank**:
   Preset personas for each template across all 4 languages. Roll the dice (🎲) to load creative presets without overwriting existing photos.
 - **💾 Automatic Draft Autosave & Restore**:
@@ -60,16 +67,18 @@ proof_gen/
 │   ├── tpl1_slave.css      # Template 1 styles (Grid & badges)
 │   ├── tpl2_bbc.css        # Template 2 styles (Wave header & crests)
 │   ├── tpl3_cert.css       # Template 3 styles (Parchment & seal transform)
-│   └── tpl4_bimbo.css      # Template 4 styles (Glassmorphism & double-sided)
+│   └── tpl4_bimbo.css      # Template 4 styles (Glassmorphism & 3D flip)
 ├── js/
 │   ├── default_assets.js   # Fallback assets & base64 default images
 │   ├── export.js           # html2canvas export, clipboard & batch downloader
 │   ├── i18n.js             # Internationalization engine & 4-language dictionary
+│   ├── inspiration.js      # Modular vow & dedication library modal controller
 │   ├── personas.js         # Creative persona banks & autosave engine
+│   ├── postmark.js         # Archival wave postmark & 3D embossed seal engine
 │   ├── tpl1_slave.js       # Template 1 logic
 │   ├── tpl2_bbc.js         # Template 2 logic & checkbox matrix
 │   ├── tpl3_cert.js        # Template 3 logic & seal renderer
-│   ├── tpl4_bimbo.js       # Template 4 logic & double-sided engine
+│   ├── tpl4_bimbo.js       # Template 4 logic & double-sided 3D flip engine
 │   └── app.js              # Viewport controller, touch gestures & routing
 ├── assets/                 # SVGs, stamps, barcodes & default photos
 └── test_suite.js           # 10-step automated verification suite

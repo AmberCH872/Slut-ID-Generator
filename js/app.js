@@ -21,6 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if (typeof initAutosaveListeners === 'function') {
         initAutosaveListeners();
     }
+    if (typeof initPostmarkSystem === 'function') {
+        initPostmarkSystem();
+    }
 
     const hash = location.hash.replace('#', '');
     if (hash === 'bimbo-back') {

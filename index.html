@@ -40,7 +40,7 @@
             <div class="flex flex-col">
                 <div class="flex items-center gap-1.5">
                     <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide" data-i18n="header_title">卡片工坊</span>
-                    <span class="text-[10px] font-mono font-bold bg-pink-900/60 text-pink-300 border border-pink-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v1.1</span>
+                    <span class="text-[10px] font-mono font-bold bg-pink-900/60 text-pink-300 border border-pink-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v1.2</span>
                 </div>
                 <span class="text-[10px] text-gray-400 font-mono hidden md:inline" data-i18n="header_subtitle">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
@@ -236,12 +236,26 @@
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_kinks">性癖说明</label>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_sc_kinks">性癖说明</label>
+                            <button type="button" onclick="openInspirationModal('sc-in-kinks')"
+                                class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                title="打开灵感语录库">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
                         <input type="text" id="sc-in-kinks" value="支配反转，项圈拘束，完全服从，深喉口交，强制高潮" oninput="updateScField('kinks')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_sc_quote">左下角服从誓言 / 批注</label>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_sc_quote">左下角服从誓言 / 批注</label>
+                            <button type="button" onclick="openInspirationModal('sc-in-quote')"
+                                class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                title="打开灵感语录库">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
                         <textarea id="sc-in-quote" rows="2" oninput="updateScField('quote')"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200">我自愿放弃支配恶魔的全部权能，甘愿戴上项圈成为主人的专属忠犬……汪汪！</textarea>
                     </div>
@@ -397,6 +411,112 @@
                         </div>
                     </div>
                 </section>
+
+                                    <!-- 档案波浪邮戳 / 防伪钢印贴纸 -->
+                    <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="sec_postmark_title">档案波浪邮戳 / 防伪钢印</span>
+                            </h2>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-xs text-amber-300">
+                                <input type="checkbox" id="sc-in-postmark-enable" onchange="togglePostmark('sc')" class="rounded accent-amber-500">
+                                <span class="text-[11px]" data-i18n="chk_enable_postmark">启用档案戳印贴纸</span>
+                            </label>
+                        </div>
+                        <div id="sc-postmark-controls" class="space-y-3 hidden">
+                            <!-- 戳印风格选择: 盖销戳 vs 钢印 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_postmark_style">戳印风格</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" id="sc-btn-pm-wave" onclick="setPostmarkStyle('sc', 'wave')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-gray-950 shadow" data-i18n="btn_pm_wave">
+                                        📮 复古波浪盖销戳
+                                    </button>
+                                    <button type="button" id="sc-btn-pm-emboss" onclick="setPostmarkStyle('sc', 'emboss')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white" data-i18n="btn_pm_emboss">
+                                        🎖️ 3D 立体防伪钢印
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 位置预设 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_preset">位置预设</label>
+                                <div class="grid grid-cols-3 gap-1.5">
+                                    <button type="button" onclick="setPostmarkPreset('sc', 'photo')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_photo">
+                                        证件照角标
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('sc', 'bottom-right')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_right">
+                                        卡片右下角
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('sc', 'bottom-left')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_left">
+                                        卡片左下角
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 印泥颜色 (盖销戳专属) -->
+                            <div id="sc-postmark-color-group">
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_color">印泥颜色</label>
+                                <div class="flex gap-2">
+                                    <button type="button" onclick="setPostmarkColor('sc', '#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-white/80 shadow" title="印泥红"></button>
+                                    <button type="button" onclick="setPostmarkColor('sc', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600 border border-gray-700 shadow" title="机密紫"></button>
+                                    <button type="button" onclick="setPostmarkColor('sc', '#1d4ed8')" class="w-6 h-6 rounded-full bg-blue-600 border border-gray-700 shadow" title="档案蓝"></button>
+                                    <button type="button" onclick="setPostmarkColor('sc', '#18181b')" class="w-6 h-6 rounded-full bg-zinc-900 border border-gray-700 shadow" title="碳素黑"></button>
+                                </div>
+                            </div>
+                            <!-- 微调控制项 -->
+                            <div class="space-y-2 pt-1 border-t border-gray-800/80">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_x">水平位移 (X)</span>
+                                        <span id="sc-val-pm-pan-x">0px</span>
+                                    </div>
+                                    <input type="range" id="sc-in-pm-pan-x" min="-250" max="250" step="2" value="0" oninput="updatePostmark('sc')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
+                                        <span id="sc-val-pm-pan-y">0px</span>
+                                    </div>
+                                    <input type="range" id="sc-in-pm-pan-y" min="-250" max="250" step="2" value="0" oninput="updatePostmark('sc')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_rotation">旋转角度</span>
+                                            <span id="sc-val-pm-rot">-12°</span>
+                                        </div>
+                                        <input type="range" id="sc-in-pm-rot" min="-45" max="45" step="1" value="-12" oninput="updatePostmark('sc')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_opacity">不透明度</span>
+                                            <span id="sc-val-pm-opacity">85%</span>
+                                        </div>
+                                        <input type="range" id="sc-in-pm-opacity" min="20" max="100" step="1" value="85" oninput="updatePostmark('sc')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_dept">印章机构文字</label>
+                                        <input type="text" id="sc-in-pm-dept" value="★ SPECIAL DEVIL REGISTRY DIV. ★" oninput="updatePostmark('sc')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_date">盖印日期</label>
+                                        <input type="text" id="sc-in-pm-date" value="2026.11.02" oninput="updatePostmark('sc')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white font-mono">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 <!-- 导出控制按钮 -->
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
@@ -576,11 +696,124 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bbc_footer_banner">底部强制横幅标语</label>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_bbc_footer_banner">底部强制横幅标语</label>
+                            <button type="button" onclick="openInspirationModal('bbc-in-footer-slogan')"
+                                class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                title="打开灵感语录库">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
                         <input type="text" id="bbc-in-footer-slogan" value="持此身份证明者系黑爹财产 应主动拒绝被黑爹以外者触摸及使用" oninput="updateBbcField('footer-slogan')"
                             class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1.5 text-xs text-white">
                     </div>
                 </section>
+                    <!-- 档案波浪邮戳 / 防伪钢印贴纸 -->
+                    <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="sec_postmark_title">档案波浪邮戳 / 防伪钢印</span>
+                            </h2>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-xs text-amber-300">
+                                <input type="checkbox" id="bbc-in-postmark-enable" onchange="togglePostmark('bbc')" class="rounded accent-amber-500">
+                                <span class="text-[11px]" data-i18n="chk_enable_postmark">启用档案戳印贴纸</span>
+                            </label>
+                        </div>
+                        <div id="bbc-postmark-controls" class="space-y-3 hidden">
+                            <!-- 戳印风格选择: 盖销戳 vs 钢印 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_postmark_style">戳印风格</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" id="bbc-btn-pm-wave" onclick="setPostmarkStyle('bbc', 'wave')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-gray-950 shadow" data-i18n="btn_pm_wave">
+                                        📮 复古波浪盖销戳
+                                    </button>
+                                    <button type="button" id="bbc-btn-pm-emboss" onclick="setPostmarkStyle('bbc', 'emboss')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white" data-i18n="btn_pm_emboss">
+                                        🎖️ 3D 立体防伪钢印
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 位置预设 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_preset">位置预设</label>
+                                <div class="grid grid-cols-3 gap-1.5">
+                                    <button type="button" onclick="setPostmarkPreset('bbc', 'photo')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_photo">
+                                        证件照角标
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('bbc', 'bottom-right')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_right">
+                                        卡片右下角
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('bbc', 'bottom-left')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_left">
+                                        卡片左下角
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 印泥颜色 (盖销戳专属) -->
+                            <div id="bbc-postmark-color-group">
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_color">印泥颜色</label>
+                                <div class="flex gap-2">
+                                    <button type="button" onclick="setPostmarkColor('bbc', '#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-white/80 shadow" title="印泥红"></button>
+                                    <button type="button" onclick="setPostmarkColor('bbc', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600 border border-gray-700 shadow" title="机密紫"></button>
+                                    <button type="button" onclick="setPostmarkColor('bbc', '#1d4ed8')" class="w-6 h-6 rounded-full bg-blue-600 border border-gray-700 shadow" title="档案蓝"></button>
+                                    <button type="button" onclick="setPostmarkColor('bbc', '#18181b')" class="w-6 h-6 rounded-full bg-zinc-900 border border-gray-700 shadow" title="碳素黑"></button>
+                                </div>
+                            </div>
+                            <!-- 微调控制项 -->
+                            <div class="space-y-2 pt-1 border-t border-gray-800/80">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_x">水平位移 (X)</span>
+                                        <span id="bbc-val-pm-pan-x">0px</span>
+                                    </div>
+                                    <input type="range" id="bbc-in-pm-pan-x" min="-250" max="250" step="2" value="0" oninput="updatePostmark('bbc')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
+                                        <span id="bbc-val-pm-pan-y">0px</span>
+                                    </div>
+                                    <input type="range" id="bbc-in-pm-pan-y" min="-250" max="250" step="2" value="0" oninput="updatePostmark('bbc')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_rotation">旋转角度</span>
+                                            <span id="bbc-val-pm-rot">-10°</span>
+                                        </div>
+                                        <input type="range" id="bbc-in-pm-rot" min="-45" max="45" step="1" value="-10" oninput="updatePostmark('bbc')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_opacity">不透明度</span>
+                                            <span id="bbc-val-pm-opacity">85%</span>
+                                        </div>
+                                        <input type="range" id="bbc-in-pm-opacity" min="20" max="100" step="1" value="85" oninput="updatePostmark('bbc')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_dept">印章机构文字</label>
+                                        <input type="text" id="bbc-in-pm-dept" value="★ BBC METROPOLITAN BUREAU ★" oninput="updatePostmark('bbc')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_date">盖印日期</label>
+                                        <input type="text" id="bbc-in-pm-date" value="2026.11.02" oninput="updatePostmark('bbc')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white font-mono">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 <!-- 导出按钮 -->
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
@@ -743,14 +976,28 @@
                         </h2>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_assessment">评估定性结论</label>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_cert_assessment">评估定性结论</label>
+                            <button type="button" onclick="openInspirationModal('cert-in-assessment')"
+                                class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                title="打开灵感语录库">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
                         <textarea id="cert-in-assessment" rows="2" oninput="updateCertField('assessment')"
                             class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-xs text-white leading-relaxed">已彻底剥夺支配恶魔之权能，判定为极度渴望被管教、完全顺从主人的专属雌犬肉便器。</textarea>
                     </div>
                     <div>
                         <div class="flex items-center justify-between mb-1">
                             <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_terms_list">身份与义务条款 (每行一条)</label>
-                            <button type="button" onclick="resetCertTerms()" class="text-[11px] text-blue-400 hover:text-blue-300" data-i18n="btn_cert_reset_terms">重置条款</button>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="openInspirationModal('cert-in-terms')"
+                                    class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                    title="打开灵感语录库">
+                                    <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                                </button>
+                                <button type="button" onclick="resetCertTerms()" class="text-[11px] text-blue-400 hover:text-blue-300" data-i18n="btn_cert_reset_terms">重置条款</button>
+                            </div>
                         </div>
                         <textarea id="cert-in-terms" rows="6" oninput="updateCertTerms()"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200 custom-scrollbar font-mono leading-relaxed">1. 贱畜承认自己为天生女奴/母狗身份，仅供被主人随意使用、把玩、调教。
@@ -761,7 +1008,14 @@
 6. 本贱畜自愿终身永远服从，不得脱离，如有违背愿受最严厉惩罚。</textarea>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_cert_declaration">本贱畜声明</label>
+                        <div class="flex items-center justify-between mb-1">
+                            <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_cert_declaration">本贱畜声明</label>
+                            <button type="button" onclick="openInspirationModal('cert-in-declaration')"
+                                class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                title="打开灵感语录库">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
                         <textarea id="cert-in-declaration" rows="3" oninput="updateCertField('declaration')"
                             class="w-full bg-gray-950 border border-gray-700 rounded p-2 text-xs text-white leading-relaxed">我自愿放弃支配恶魔的一切神性与自尊，从今往后只是一头必须戴着项圈摇尾乞怜的下贱母狗，感谢主人赐予我这份契约，让我成为您的专属发泄玩具。</textarea>
                     </div>
@@ -840,6 +1094,112 @@
                         </div>
                     </div>
                 </section>
+                    <!-- 档案波浪邮戳 / 防伪钢印贴纸 -->
+                    <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="sec_postmark_title">档案波浪邮戳 / 防伪钢印</span>
+                            </h2>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-xs text-amber-300">
+                                <input type="checkbox" id="cert-in-postmark-enable" onchange="togglePostmark('cert')" class="rounded accent-amber-500">
+                                <span class="text-[11px]" data-i18n="chk_enable_postmark">启用档案戳印贴纸</span>
+                            </label>
+                        </div>
+                        <div id="cert-postmark-controls" class="space-y-3 hidden">
+                            <!-- 戳印风格选择: 盖销戳 vs 钢印 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_postmark_style">戳印风格</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" id="cert-btn-pm-wave" onclick="setPostmarkStyle('cert', 'wave')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-gray-950 shadow" data-i18n="btn_pm_wave">
+                                        📮 复古波浪盖销戳
+                                    </button>
+                                    <button type="button" id="cert-btn-pm-emboss" onclick="setPostmarkStyle('cert', 'emboss')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white" data-i18n="btn_pm_emboss">
+                                        🎖️ 3D 立体防伪钢印
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 位置预设 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_preset">位置预设</label>
+                                <div class="grid grid-cols-3 gap-1.5">
+                                    <button type="button" onclick="setPostmarkPreset('cert', 'photo')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_photo">
+                                        证件照角标
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('cert', 'bottom-right')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_right">
+                                        卡片右下角
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('cert', 'bottom-left')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_left">
+                                        卡片左下角
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 印泥颜色 (盖销戳专属) -->
+                            <div id="cert-postmark-color-group">
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_color">印泥颜色</label>
+                                <div class="flex gap-2">
+                                    <button type="button" onclick="setPostmarkColor('cert', '#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-white/80 shadow" title="印泥红"></button>
+                                    <button type="button" onclick="setPostmarkColor('cert', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600 border border-gray-700 shadow" title="机密紫"></button>
+                                    <button type="button" onclick="setPostmarkColor('cert', '#1d4ed8')" class="w-6 h-6 rounded-full bg-blue-600 border border-gray-700 shadow" title="档案蓝"></button>
+                                    <button type="button" onclick="setPostmarkColor('cert', '#18181b')" class="w-6 h-6 rounded-full bg-zinc-900 border border-gray-700 shadow" title="碳素黑"></button>
+                                </div>
+                            </div>
+                            <!-- 微调控制项 -->
+                            <div class="space-y-2 pt-1 border-t border-gray-800/80">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_x">水平位移 (X)</span>
+                                        <span id="cert-val-pm-pan-x">0px</span>
+                                    </div>
+                                    <input type="range" id="cert-in-pm-pan-x" min="-250" max="250" step="2" value="0" oninput="updatePostmark('cert')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
+                                        <span id="cert-val-pm-pan-y">0px</span>
+                                    </div>
+                                    <input type="range" id="cert-in-pm-pan-y" min="-250" max="250" step="2" value="0" oninput="updatePostmark('cert')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_rotation">旋转角度</span>
+                                            <span id="cert-val-pm-rot">-8°</span>
+                                        </div>
+                                        <input type="range" id="cert-in-pm-rot" min="-45" max="45" step="1" value="-8" oninput="updatePostmark('cert')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_opacity">不透明度</span>
+                                            <span id="cert-val-pm-opacity">85%</span>
+                                        </div>
+                                        <input type="range" id="cert-in-pm-opacity" min="20" max="100" step="1" value="85" oninput="updatePostmark('cert')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_dept">印章机构文字</label>
+                                        <input type="text" id="cert-in-pm-dept" value="★ OFFICIAL NOTARY NOTARIZED SEAL ★" oninput="updatePostmark('cert')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_date">盖印日期</label>
+                                        <input type="text" id="cert-in-pm-date" value="2026.11.02" oninput="updatePostmark('cert')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white font-mono">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 <!-- 导出按钮 -->
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
@@ -1080,7 +1440,14 @@
                             </h2>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_bimbo_stamp_text">印章旁红字声明</label>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-medium text-gray-400" data-i18n="lbl_bimbo_stamp_text">印章旁红字声明</label>
+                                <button type="button" onclick="openInspirationModal('bimbo-in-stamp-text')"
+                                    class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                    title="打开灵感语录库">
+                                    <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                                </button>
+                            </div>
                             <input type="text" id="bimbo-in-stamp-text" value="支配恶魔，自愿为犬，永久锁死，禁止反抗" oninput="updateBimboField('stamp-text')"
                                 class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-red-400">
                         </div>
@@ -1128,7 +1495,14 @@
                             <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
                                 <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_back_rules">11条使用规范 (换行分隔)</span>
                             </h2>
-                            <button type="button" onclick="resetBimboRules()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_bimbo_reset_11_rules">重置11条</button>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="openInspirationModal('bimbo-in-rules')"
+                                    class="text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-950/70 border border-amber-700/50 rounded px-1.5 py-0.5 flex items-center gap-1 transition shadow-sm"
+                                    title="打开灵感语录库">
+                                    <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                                </button>
+                                <button type="button" onclick="resetBimboRules()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_bimbo_reset_11_rules">重置11条</button>
+                            </div>
                         </div>
                         <textarea id="bimbo-in-rules" rows="8" oninput="updateBimboRules()"
                             class="w-full bg-gray-950 border border-gray-700 rounded-lg p-2 text-xs text-gray-200 font-mono leading-relaxed custom-scrollbar"></textarea>
@@ -1163,6 +1537,112 @@
                         </div>
                     </div>
                 </div>
+                    <!-- 档案波浪邮戳 / 防伪钢印贴纸 -->
+                    <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-2">
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="sec_postmark_title">档案波浪邮戳 / 防伪钢印</span>
+                            </h2>
+                            <label class="flex items-center gap-1.5 cursor-pointer text-xs text-amber-300">
+                                <input type="checkbox" id="bimbo-in-postmark-enable" onchange="togglePostmark('bimbo')" class="rounded accent-amber-500">
+                                <span class="text-[11px]" data-i18n="chk_enable_postmark">启用档案戳印贴纸</span>
+                            </label>
+                        </div>
+                        <div id="bimbo-postmark-controls" class="space-y-3 hidden">
+                            <!-- 戳印风格选择: 盖销戳 vs 钢印 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_postmark_style">戳印风格</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" id="bimbo-btn-pm-wave" onclick="setPostmarkStyle('bimbo', 'wave')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-gray-950 shadow" data-i18n="btn_pm_wave">
+                                        📮 复古波浪盖销戳
+                                    </button>
+                                    <button type="button" id="bimbo-btn-pm-emboss" onclick="setPostmarkStyle('bimbo', 'emboss')"
+                                        class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white" data-i18n="btn_pm_emboss">
+                                        🎖️ 3D 立体防伪钢印
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 位置预设 -->
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_preset">位置预设</label>
+                                <div class="grid grid-cols-3 gap-1.5">
+                                    <button type="button" onclick="setPostmarkPreset('bimbo', 'photo')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_photo">
+                                        证件照角标
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('bimbo', 'bottom-right')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_right">
+                                        卡片右下角
+                                    </button>
+                                    <button type="button" onclick="setPostmarkPreset('bimbo', 'bottom-left')"
+                                        class="py-1 px-2 rounded bg-gray-800 hover:bg-gray-700 text-[11px] font-bold text-gray-300 hover:text-white text-center truncate" data-i18n="opt_pm_bottom_left">
+                                        卡片左下角
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 印泥颜色 (盖销戳专属) -->
+                            <div id="bimbo-postmark-color-group">
+                                <label class="block text-xs font-medium text-gray-400 mb-1" data-i18n="lbl_pm_color">印泥颜色</label>
+                                <div class="flex gap-2">
+                                    <button type="button" onclick="setPostmarkColor('bimbo', '#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-white/80 shadow" title="印泥红"></button>
+                                    <button type="button" onclick="setPostmarkColor('bimbo', '#7c3aed')" class="w-6 h-6 rounded-full bg-purple-600 border border-gray-700 shadow" title="机密紫"></button>
+                                    <button type="button" onclick="setPostmarkColor('bimbo', '#1d4ed8')" class="w-6 h-6 rounded-full bg-blue-600 border border-gray-700 shadow" title="档案蓝"></button>
+                                    <button type="button" onclick="setPostmarkColor('bimbo', '#18181b')" class="w-6 h-6 rounded-full bg-zinc-900 border border-gray-700 shadow" title="碳素黑"></button>
+                                </div>
+                            </div>
+                            <!-- 微调控制项 -->
+                            <div class="space-y-2 pt-1 border-t border-gray-800/80">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_x">水平位移 (X)</span>
+                                        <span id="bimbo-val-pm-pan-x">0px</span>
+                                    </div>
+                                    <input type="range" id="bimbo-in-pm-pan-x" min="-250" max="250" step="2" value="0" oninput="updatePostmark('bimbo')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_offset_y">垂直位移 (Y)</span>
+                                        <span id="bimbo-val-pm-pan-y">0px</span>
+                                    </div>
+                                    <input type="range" id="bimbo-in-pm-pan-y" min="-250" max="250" step="2" value="0" oninput="updatePostmark('bimbo')"
+                                        class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_rotation">旋转角度</span>
+                                            <span id="bimbo-val-pm-rot">-14°</span>
+                                        </div>
+                                        <input type="range" id="bimbo-in-pm-rot" min="-45" max="45" step="1" value="-14" oninput="updatePostmark('bimbo')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-[11px] text-gray-400">
+                                            <span data-i18n="lbl_opacity">不透明度</span>
+                                            <span id="bimbo-val-pm-opacity">85%</span>
+                                        </div>
+                                        <input type="range" id="bimbo-in-pm-opacity" min="20" max="100" step="1" value="85" oninput="updatePostmark('bimbo')"
+                                            class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_dept">印章机构文字</label>
+                                        <input type="text" id="bimbo-in-pm-dept" value="★ BIMBO LICENSING ARCHIVES ★" oninput="updatePostmark('bimbo')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-medium text-gray-400 mb-0.5" data-i18n="lbl_pm_date">盖印日期</label>
+                                        <input type="text" id="bimbo-in-pm-date" value="2026.11.02" oninput="updatePostmark('bimbo')"
+                                            class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white font-mono">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 <!-- 导出按钮 -->
                 <div class="pt-2 border-t border-gray-800/80 space-y-2 shrink-0">
@@ -1193,7 +1673,7 @@
 
             <!-- 底部版本标识与离线指示 -->
             <div class="pt-3 pb-1 text-center text-[10px] text-gray-500 font-mono select-none border-t border-gray-900/80 mt-2">
-                <span>Proof Gen <strong class="text-pink-400">v1.1</strong> · Offline First</span>
+                <span>Proof Gen <strong class="text-pink-400">v1.2</strong> · Offline First</span>
             </div>
 
         </aside>
@@ -1345,6 +1825,9 @@
                         </div>
 
                     </div>
+                        <!-- 5. 复古档案波浪邮戳 / 防伪钢印层 -->
+                        <div id="sc-postmark-layer" class="absolute pointer-events-none select-none z-20 hidden"></div>
+                    </div>
 
 
                     <!-- ================= 核心实体卡片 2: 媚黑爹大屌婊子身份证 (1011 × 638 @ 300 PPI) ================= -->
@@ -1455,7 +1938,9 @@
                             </span>
                         </div>
 
-                    </div>
+                        <!-- 5. 复古档案波浪邮戳 / 防伪钢印层 -->
+                        <div id="bbc-postmark-layer" class="absolute pointer-events-none select-none z-30 hidden"></div>
+                    </div></div>
 
 
                     <!-- ================= 核心实体卡片 3: 登记证书协议 (850 × 1200) ================= -->
@@ -1595,7 +2080,9 @@
                             </div>
                         </div>
 
-                    </div>
+                        <!-- 5. 复古档案波浪邮戳 / 防伪钢印层 -->
+                        <div id="cert-postmark-layer" class="absolute pointer-events-none select-none z-30 hidden"></div>
+                    </div></div>
 
 
                     <!-- ================= 核心实体卡片 4: 极清双面识别卡 (1011 × 638 @ 300 PPI) ================= -->
@@ -1700,7 +2187,9 @@
                                     VALIDITY: PERMANENT / STATUS: FULLY OPEN / LEVEL: SLUT
                                 </span>
                             </div>
-                        </div>
+                            <!-- 复古档案波浪邮戳 / 防伪钢印层 -->
+                            <div id="bimbo-postmark-layer" class="absolute pointer-events-none select-none z-30 hidden"></div>
+                        </div></div>
 
                         <!-- 背面 (Back) -->
                         <div id="bimbo-back-node" class="bimbo-card-face bimbo-card-face-back relative overflow-hidden">
@@ -1850,12 +2339,58 @@
         <p id="loading-text" class="text-white text-sm font-bold tracking-wide">正在极清渲染卡片...</p>
     </div>
 
+    <!-- 模块化誓言/批注灵感库 模态框 -->
+    <div id="inspiration-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-3 md:p-6 hidden no-print">
+        <div class="bg-gray-900 border border-amber-500/60 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+            <!-- Header -->
+            <div class="p-4 border-b border-gray-800 flex items-center justify-between bg-gray-950">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">💡</span>
+                    <div>
+                        <h3 class="font-black text-amber-300 text-sm md:text-base leading-tight" data-i18n="modal_inspire_title">💡 誓言与条款灵感语录库</h3>
+                        <p class="text-[11px] text-gray-400 mt-0.5">
+                            <span data-i18n="lbl_inspire_target">当前正在编辑</span>：<span id="inspire-target-name" class="text-amber-200 font-bold font-mono">--</span>
+                        </p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeInspirationModal()" class="text-gray-400 hover:text-white text-lg px-2 py-1">✕</button>
+            </div>
+
+            <!-- Controls bar: Category tabs & Append toggle -->
+            <div class="p-3 bg-gray-950/80 border-b border-gray-800 space-y-2.5">
+                <div id="inspire-cat-tabs" class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scrollbar"></div>
+                <div class="flex items-center justify-between text-xs text-gray-400 px-1">
+                    <span id="inspire-cat-desc" class="text-[11px] text-gray-400 truncate"></span>
+                    <label class="flex items-center gap-1.5 cursor-pointer text-[11px] text-amber-200 hover:text-amber-100 select-none shrink-0 ml-2">
+                        <input type="checkbox" id="inspire-mode-append" class="rounded accent-amber-500">
+                        <span data-i18n="lbl_inspire_mode_append">追加到末尾新起一行</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Item list -->
+            <div id="inspire-item-list" class="p-4 overflow-y-auto space-y-3 custom-scrollbar max-h-[58vh]">
+                <!-- Dynamically rendered -->
+            </div>
+
+            <!-- Footer -->
+            <div class="p-3 border-t border-gray-800 bg-gray-950 flex justify-end">
+                <button type="button" onclick="closeInspirationModal()"
+                    class="bg-gray-800 hover:bg-gray-700 text-gray-300 font-medium py-1.5 px-4 rounded-xl text-xs transition">
+                    <span data-i18n="modal_back_to_edit">关闭</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modular Script Imports -->
     <script src="js/qrcode.min.js"></script>
     <script src="js/default_assets.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/export.js"></script>
     <script src="js/personas.js"></script>
+    <script src="js/inspiration.js"></script>
+    <script src="js/postmark.js"></script>
     <script src="js/tpl1_slave.js"></script>
     <script src="js/tpl2_bbc.js"></script>
     <script src="js/tpl3_cert.js"></script>

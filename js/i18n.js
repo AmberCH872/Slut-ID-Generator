@@ -14,6 +14,24 @@ let currentLang = 'en';
 
 const I18N_DICTIONARY = {
     "zh-CN": {
+        "btn_inspire_lib": "灵感库",
+        "btn_inspire_apply": "填入此句 ➔",
+        "modal_inspire_title": "💡 誓言与条款灵感语录库",
+        "lbl_inspire_target": "当前正在编辑",
+        "lbl_inspire_mode_append": "追加到末尾新起一行 (未勾选则完全替换)",
+        "toast_inspire_applied": "💡 灵感文案已成功填入！",
+        "sec_postmark_title": "档案波浪邮戳 / 防伪钢印",
+        "chk_enable_postmark": "启用档案戳印贴纸",
+        "lbl_postmark_style": "戳印风格",
+        "btn_pm_wave": "📮 复古波浪盖销戳",
+        "btn_pm_emboss": "🎖️ 3D 立体防伪钢印",
+        "lbl_pm_preset": "位置预设",
+        "opt_pm_photo": "证件照角标 (跨照)",
+        "opt_pm_bottom_right": "卡片右下角",
+        "opt_pm_bottom_left": "卡片左下角",
+        "lbl_pm_color": "印泥颜色",
+        "lbl_pm_dept": "印章机构文字",
+        "lbl_pm_date": "盖印日期",
         'btn_goto_back': '去背面 ➔',
         'sec_title_and_code': '标题与系统编码',
         'sec_slave_attributes': '奴隶身份属性信息',
@@ -23,6 +41,7 @@ const I18N_DICTIONARY = {
         'lbl_offset_x': '水平位移 (X)',
         'lbl_offset_y': '垂直位移 (Y)',
         'lbl_rotation': '旋转角度',
+        'lbl_opacity': '不透明度',
         'lbl_sticker_censor_bar': '启用眼睛处遮罩黑条贴纸',
         'lbl_sticker_text': '贴纸文字',
         'lbl_sticker_pos_y': '垂直高度位置',
@@ -284,6 +303,24 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用规范"
     },
     "zh-TW": {
+        "btn_inspire_lib": "靈感庫",
+        "btn_inspire_apply": "填入此句 ➔",
+        "modal_inspire_title": "💡 誓言與條款靈感語錄庫",
+        "lbl_inspire_target": "當前正在編輯",
+        "lbl_inspire_mode_append": "追加到末尾新起一行 (未勾選則完全替換)",
+        "toast_inspire_applied": "💡 靈感文案已成功填入！",
+        "sec_postmark_title": "檔案波浪郵戳 / 防偽鋼印",
+        "chk_enable_postmark": "啟用檔案戳印貼紙",
+        "lbl_postmark_style": "戳印風格",
+        "btn_pm_wave": "📮 復古波浪蓋銷戳",
+        "btn_pm_emboss": "🎖️ 3D 立體防偽鋼印",
+        "lbl_pm_preset": "位置預設",
+        "opt_pm_photo": "證件照角標 (跨照)",
+        "opt_pm_bottom_right": "卡片右下角",
+        "opt_pm_bottom_left": "卡片左下角",
+        "lbl_pm_color": "印泥顏色",
+        "lbl_pm_dept": "印章機構文字",
+        "lbl_pm_date": "蓋印日期",
         'btn_goto_back': '去背面 ➔',
         'sec_title_and_code': '標題與系統編碼',
         'sec_slave_attributes': '奴隸身份屬性資訊',
@@ -293,6 +330,7 @@ const I18N_DICTIONARY = {
         'lbl_offset_x': '水平位移 (X)',
         'lbl_offset_y': '垂直位移 (Y)',
         'lbl_rotation': '旋轉角度',
+        'lbl_opacity': '不透明度',
         'lbl_sticker_censor_bar': '啟用眼睛處遮罩黑條貼紙',
         'lbl_sticker_text': '貼紙文字',
         'lbl_sticker_pos_y': '垂直高度位置',
@@ -554,6 +592,24 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用規範"
     },
     "en": {
+        "btn_inspire_lib": "Inspiration",
+        "btn_inspire_apply": "Apply Quote ➔",
+        "modal_inspire_title": "💡 Dedication & Vow Inspiration Library",
+        "lbl_inspire_target": "Editing Field",
+        "lbl_inspire_mode_append": "Append to end (replaces entirely if unchecked)",
+        "toast_inspire_applied": "💡 Inspiration text applied successfully!",
+        "sec_postmark_title": "Archival Postmark & Notary Seal",
+        "chk_enable_postmark": "Enable Archival Stamp & Seal Overlay",
+        "lbl_postmark_style": "Stamp Style",
+        "btn_pm_wave": "📮 Cancellation Wave",
+        "btn_pm_emboss": "🎖️ 3D Embossed Seal",
+        "lbl_pm_preset": "Position Preset",
+        "opt_pm_photo": "Photo Corner (Overlap)",
+        "opt_pm_bottom_right": "Card Bottom-Right",
+        "opt_pm_bottom_left": "Card Bottom-Left",
+        "lbl_pm_color": "Ink Color",
+        "lbl_pm_dept": "Agency / Institution Text",
+        "lbl_pm_date": "Stamp Date",
         'btn_goto_back': 'Flip to Back ➔',
         'sec_title_and_code': 'Title & System Code',
         'sec_slave_attributes': 'Slave Attributes & Info',
@@ -563,6 +619,7 @@ const I18N_DICTIONARY = {
         'lbl_offset_x': 'Offset X',
         'lbl_offset_y': 'Offset Y',
         'lbl_rotation': 'Rotation',
+        'lbl_opacity': 'Opacity',
         'lbl_sticker_censor_bar': 'Enable Eye Censor Bar Sticker',
         'lbl_sticker_text': 'Sticker Text',
         'lbl_sticker_pos_y': 'Vertical Position',
@@ -824,6 +881,24 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES & CONDUCT"
     },
     "ja": {
+        "btn_inspire_lib": "名言集",
+        "btn_inspire_apply": "適用する ➔",
+        "modal_inspire_title": "💡 誓約・条項インスピレーション集",
+        "lbl_inspire_target": "対象フィールド",
+        "lbl_inspire_mode_append": "末尾に追加（オフの場合は全置換）",
+        "toast_inspire_applied": "💡 インスピレーションを適用しました！",
+        "sec_postmark_title": "公印・消印スタンプ / 偽造防止刻印",
+        "chk_enable_postmark": "公印・消印スタンプを有効化",
+        "lbl_postmark_style": "スタンプ様式",
+        "btn_pm_wave": "📮 波状消印",
+        "btn_pm_emboss": "🎖️ 3D立体エンボス刻印",
+        "lbl_pm_preset": "配置プリセット",
+        "opt_pm_photo": "写真右下（跨ぎ）",
+        "opt_pm_bottom_right": "カード右下",
+        "opt_pm_bottom_left": "カード左下",
+        "lbl_pm_color": "インク色",
+        "lbl_pm_dept": "印章機関名",
+        "lbl_pm_date": "捺印日付",
         'btn_goto_back': '裏面へ ➔',
         'sec_title_and_code': 'タイトルとシステムコード',
         'sec_slave_attributes': '奴隷属性情報',
@@ -833,6 +908,7 @@ const I18N_DICTIONARY = {
         'lbl_offset_x': '水平移動 (X)',
         'lbl_offset_y': '垂直移動 (Y)',
         'lbl_rotation': '回転角度',
+        'lbl_opacity': '不透明度',
         'lbl_sticker_censor_bar': '目線モザイク黒帯ステッカーを有効化',
         'lbl_sticker_text': 'ステッカー文字',
         'lbl_sticker_pos_y': '垂直位置',
@@ -1208,6 +1284,10 @@ function applyTranslations(lang = currentLang) {
         ['slave', 'bbc', 'cert', 'bimbo'].forEach(tpl => {
             loadDefaultPersonaForLanguage(tpl, lang);
         });
+    }
+    if (typeof renderInspirationCategories === 'function' && document.getElementById('inspiration-modal') && !document.getElementById('inspiration-modal').classList.contains('hidden')) {
+        renderInspirationCategories();
+        renderInspirationItems();
     }
 }
 
