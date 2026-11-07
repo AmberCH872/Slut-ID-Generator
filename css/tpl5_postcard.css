@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Template 5: 母畜明信片 (Kinky Postcard - 1011 × 638 px @ 300 PPI)
+   ========================================================================== */
+
+#postcard-card-node {
+    width: 1011px;
+    height: 638px;
+    transform-origin: top left;
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+}
+
+/* 3D Scene Perspective */
+.postcard-card-3d-scene {
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+}
+
+/* 3D Flipper that rotates in space */
+.postcard-card-flipper {
+    width: 1011px;
+    height: 638px;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.postcard-card-flipper.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.postcard-card-face {
+    width: 1011px;
+    height: 638px;
+    border-radius: 24px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.postcard-card-face-front {
+    transform: rotateY(0deg);
+    z-index: 2;
+    background: #0f0b12;
+}
+
+.postcard-card-face-back {
+    transform: rotateY(180deg);
+    z-index: 1;
+    background: #fbf8f0;
+    color: #1c1917;
+}
+
+/* ---------------- FRONT FRAME STYLES ---------------- */
+.postcard-front-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* 1. Full Bleed */
+.postcard-front-container.frame-full {
+    border: none;
+    padding: 0;
+}
+
+/* 2. Polaroid Frame */
+.postcard-front-container.frame-polaroid {
+    border: 20px solid #f8f6f0;
+    border-bottom: 76px solid #f8f6f0;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.35);
+}
+
+/* 3. Postal Ornate Border */
+.postcard-front-container.frame-postal {
+    border: 12px double #e5b95f;
+    outline: 2px dashed #b45309;
+    outline-offset: -8px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------------- FRONT FILTERS ---------------- */
+.postcard-photo-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.postcard-photo-overlay.filter-normal {
+    background: transparent;
+}
+
+.postcard-photo-overlay.filter-noir {
+    box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.85);
+    backdrop-filter: contrast(1.15) brightness(0.9);
+}
+
+.postcard-photo-overlay.filter-sepia {
+    background: rgba(180, 130, 80, 0.18);
+    backdrop-filter: sepia(0.55) contrast(1.05);
+    box-shadow: inset 0 0 90px rgba(70, 35, 10, 0.5);
+}
+
+.postcard-photo-overlay.filter-cyber {
+    background: radial-gradient(circle at 75% 25%, rgba(244, 63, 94, 0.22) 0%, rgba(139, 92, 246, 0.26) 70%, rgba(15, 23, 42, 0.4) 100%);
+    box-shadow: inset 0 0 100px rgba(168, 85, 247, 0.35);
+}
+
+/* ---------------- BACK POSTCARD ELEMENTS ---------------- */
+.postcard-back-paper {
+    background-color: #fbf8f0;
+    background-image: 
+        radial-gradient(#e7dfd1 0.75px, transparent 0.75px),
+        radial-gradient(#e7dfd1 0.75px, #fbf8f0 0.75px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    font-family: var(--postcard-card-font, 'Noto Sans SC', sans-serif);
+}
+
+/* Postal Code Boxes */
+.postcard-code-box {
+    width: 28px;
+    height: 34px;
+    border: 1.5px solid #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    font-size: 20px;
+    color: #991b1b;
+    background: rgba(254, 242, 242, 0.75);
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Center Dividing Line */
+.postcard-divider {
+    width: 1px;
+    height: 100%;
+    background: #d6cbbf;
+    position: relative;
+    margin: 0 16px;
+    flex-shrink: 0;
+}
+
+.postcard-divider span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    white-space: nowrap;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #9c8e80;
+    font-family: 'Courier New', Courier, monospace;
+    background: #fbf8f0;
+    padding: 0 12px;
+    text-transform: uppercase;
+}
+
+/* Formatted Ruled Address Lines */
+.postcard-address-line {
+    border-bottom: 1.5px solid #c9bbaa;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.postcard-address-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #78716c;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+/* Stamp Perforated Styling */
+.postcard-stamp {
+    width: 100px;
+    height: 120px;
+    border-radius: 3px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.postcard-stamp:hover {
+    transform: scale(1.03);
+}
+
+/* Circular Postmark Ink Ring */
+.postcard-postmark-ring {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 2px dashed rgba(185, 28, 28, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform: rotate(-14deg);
+    position: absolute;
+    right: 76px;
+    top: 2px;
+    z-index: 20;
+    pointer-events: none;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+/* 4 Wavy Postal Cancellation Lines */
+.postcard-wavy-lines {
+    width: 80px;
+    height: 38px;
+    position: absolute;
+    right: 154px;
+    top: 26px;
+    z-index: 19;
+    pointer-events: none;
+    opacity: 0.75;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 6px,
+        #b91c1c 7px,
+        #b91c1c 8px
+    );
+    mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 100%);
+}

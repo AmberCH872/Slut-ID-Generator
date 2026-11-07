@@ -12,7 +12,8 @@ const POSTMARK_CONFIGS = {
     sc: { enabled: false, style: 'wave', preset: 'photo', panX: 0, panY: 0, rot: -12, opacity: 85, color: '#dc2626', dept: '★ SPECIAL DEVIL REGISTRY DIV. ★', date: '' },
     bbc: { enabled: false, style: 'wave', preset: 'photo', panX: 0, panY: 0, rot: -10, opacity: 85, color: '#7c3aed', dept: '★ BBC METROPOLITAN BUREAU ★', date: '' },
     cert: { enabled: false, style: 'emboss', preset: 'photo', panX: 0, panY: 0, rot: -8, opacity: 80, color: '#b45309', dept: '★ OFFICIAL NOTARY NOTARIZED SEAL ★', date: '' },
-    bimbo: { enabled: false, style: 'wave', preset: 'photo', panX: 0, panY: 0, rot: -14, opacity: 85, color: '#dc2626', dept: '★ BIMBO LICENSING ARCHIVES ★', date: '' }
+    bimbo: { enabled: false, style: 'wave', preset: 'photo', panX: 0, panY: 0, rot: -14, opacity: 85, color: '#dc2626', dept: '★ BIMBO LICENSING ARCHIVES ★', date: '' },
+    postcard: { enabled: false, style: 'wave', preset: 'photo', panX: 0, panY: 0, rot: -12, opacity: 85, color: '#dc2626', dept: '★ KINKY POSTAL AIRMAIL ★', date: '' }
 };
 POSTMARK_CONFIGS.slave = POSTMARK_CONFIGS.sc;
 
@@ -40,6 +41,12 @@ const POSTMARK_PRESET_POSITIONS = {
         photo: { left: 180, top: 380 },
         'bottom-right': { left: 650, top: 450 },
         'bottom-left': { left: 50, top: 450 },
+        custom: { left: 180, top: 380 }
+    },
+    postcard: {
+        photo: { left: 180, top: 380 },
+        'bottom-right': { left: 650, top: 450 },
+        'bottom-left': { left: 80, top: 450 },
         custom: { left: 180, top: 380 }
     }
 };

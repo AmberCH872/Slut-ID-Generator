@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/tpl2_bbc.css">
     <link rel="stylesheet" href="css/tpl3_cert.css">
     <link rel="stylesheet" href="css/tpl4_bimbo.css">
+    <link rel="stylesheet" href="css/tpl5_postcard.css">
 </head>
 
 <body class="h-screen flex flex-col overflow-hidden select-none" data-mobile-mode="edit">
@@ -40,7 +41,7 @@
             <div class="flex flex-col">
                 <div class="flex items-center gap-1.5">
                     <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide" data-i18n="header_title">卡片工坊</span>
-                    <span class="text-[10px] font-mono font-bold bg-pink-900/60 text-pink-300 border border-pink-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v1.3</span>
+                    <span class="text-[10px] font-mono font-bold bg-amber-900/60 text-amber-300 border border-amber-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v2.0</span>
                 </div>
                 <span class="text-[10px] text-gray-400 font-mono hidden md:inline" data-i18n="header_subtitle">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
@@ -55,6 +56,7 @@
                     <option value="bbc" data-i18n="opt_bbc">♠️ 身份证</option>
                     <option value="cert" data-i18n="opt_cert">📜 登记证书</option>
                     <option value="bimbo" data-i18n="opt_bimbo">🎀 双面身份卡</option>
+                    <option value="postcard" data-i18n="opt_postcard">💌 母畜明信片</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +66,7 @@
             </div>
         </div>
 
-        <!-- 桌面端 4 款模版快速切换 Tab + 多语言切换 -->
+        <!-- 桌面端 5 款模版快速切换 Tab + 多语言切换 -->
         <div class="flex items-center gap-2 shrink-0">
             <nav class="hidden md:flex items-center bg-gray-900/90 p-1 rounded-xl border border-gray-800 gap-1 shrink-0">
                 <button type="button" onclick="switchTemplate('slave')" id="tab-btn-slave"
@@ -82,6 +84,10 @@
                 <button type="button" onclick="switchTemplate('bimbo')" id="tab-btn-bimbo"
                     class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
                     <span>🎀</span> <span data-i18n="tab_bimbo">模版四: 双面卡</span>
+                </button>
+                <button type="button" onclick="switchTemplate('postcard')" id="tab-btn-postcard"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 whitespace-nowrap text-gray-300 hover:text-white">
+                    <span>💌</span> <span data-i18n="tab_postcard">模版五: 明信片</span>
                 </button>
             </nav>
 
@@ -1731,9 +1737,355 @@
                 </div>
             </div>
 
+            <!-- ===================== 模版 5 编辑器 (母畜明信片) ===================== -->
+            <div id="tpl5-editor" class="tpl-editor-panel space-y-4 hidden">
+                <!-- 顶部快捷操作 -->
+                <div class="space-y-2">
+                    <button type="button" onclick="rollRandomPersona('postcard')"
+                        class="w-full bg-gradient-to-r from-amber-600 via-rose-600 to-amber-700 hover:from-amber-500 hover:to-rose-500 text-white text-xs font-black py-2.5 px-3 rounded-xl border border-amber-500/40 shadow-md shadow-amber-950/30 transition flex items-center justify-between gap-1">
+                        <span class="flex items-center gap-1.5"><span>✨ 🎲</span> <span data-i18n="postcard_btn_random">随机明信片人设 (一键填入情趣寄语)</span></span>
+                        <span class="bg-black/30 text-[10px] font-mono px-2 py-0.5 rounded-full border border-white/20">NEW</span>
+                    </button>
+
+                    <!-- 正反面编辑切换 Tab -->
+                    <div class="flex items-center bg-gray-900/90 border border-gray-800 p-1 rounded-xl gap-1">
+                        <button type="button" onclick="switchPostcardSide('front')" id="postcard-edit-tab-btn-front"
+                            class="flex-1 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 bg-amber-600 text-white shadow-sm">
+                            <span>📸</span> <span data-i18n="side_front">正面编辑</span>
+                        </button>
+                        <button type="button" onclick="switchPostcardSide('back')" id="postcard-edit-tab-btn-back"
+                            class="flex-1 py-1.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 text-gray-400 hover:text-white">
+                            <span>💌</span> <span data-i18n="side_back">背面编辑</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ================= 正面编辑面板 ================= -->
+                <div id="postcard-edit-section-front" class="space-y-4">
+                    <!-- 1. 正面写真与内置图库 -->
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                                <span>📸</span> <span data-i18n="postcard_sec_photo">正面写真与海报相框</span>
+                            </span>
+                        </div>
+
+                        <!-- 快速预设立绘快选 -->
+                        <div class="space-y-1.5">
+                            <label class="text-[11px] font-bold text-amber-300 block" data-i18n="postcard_preset_photo_lbl">内置高清预设立绘与写真</label>
+                            <div class="grid grid-cols-4 gap-1.5">
+                                <button type="button" onclick="selectPostcardPresetPhoto('assets/tpl4/photo_default.png')"
+                                    class="p-1 rounded-lg border border-gray-700 bg-gray-950 hover:border-amber-500 flex flex-col items-center gap-1 transition group">
+                                    <img src="assets/tpl4/photo_default.png" class="w-10 h-12 object-cover rounded shadow group-hover:scale-105 transition" alt="Preset 1">
+                                    <span class="text-[9px] text-gray-300 truncate w-full text-center" data-i18n="postcard_preset_p1">🌹 魅魔红唇</span>
+                                </button>
+                                <button type="button" onclick="selectPostcardPresetPhoto('assets/tpl4/photo_fallen.png')"
+                                    class="p-1 rounded-lg border border-gray-700 bg-gray-950 hover:border-amber-500 flex flex-col items-center gap-1 transition group">
+                                    <img src="assets/tpl4/photo_fallen.png" class="w-10 h-12 object-cover rounded shadow group-hover:scale-105 transition" alt="Preset 2">
+                                    <span class="text-[9px] text-gray-300 truncate w-full text-center" data-i18n="postcard_preset_p2">⛓️ 沦陷天使</span>
+                                </button>
+                                <button type="button" onclick="selectPostcardPresetPhoto('assets/tpl1/avatar_collar_uniform.png')"
+                                    class="p-1 rounded-lg border border-gray-700 bg-gray-950 hover:border-amber-500 flex flex-col items-center gap-1 transition group">
+                                    <img src="assets/tpl1/avatar_collar_uniform.png" class="w-10 h-12 object-cover rounded shadow group-hover:scale-105 transition" alt="Preset 3">
+                                    <span class="text-[9px] text-gray-300 truncate w-full text-center" data-i18n="postcard_preset_p3">🖤 冷艳项圈</span>
+                                </button>
+                                <button type="button" onclick="selectPostcardPresetPhoto('assets/tpl1/avatar_censored_noir.png')"
+                                    class="p-1 rounded-lg border border-gray-700 bg-gray-950 hover:border-amber-500 flex flex-col items-center gap-1 transition group">
+                                    <img src="assets/tpl1/avatar_censored_noir.png" class="w-10 h-12 object-cover rounded shadow group-hover:scale-105 transition" alt="Preset 4">
+                                    <span class="text-[9px] text-gray-300 truncate w-full text-center" data-i18n="postcard_preset_p4">🕶️ 绝密档案</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 自定义本地照片上传 -->
+                        <div class="flex items-center gap-2 pt-1">
+                            <label class="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold py-2 px-3 rounded-lg border border-gray-700 text-center cursor-pointer transition flex items-center justify-center gap-1.5">
+                                <span>📁</span> <span data-i18n="lbl_upload_photo">上传本地自定义照片</span>
+                                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'postcard-out-photo')">
+                            </label>
+                        </div>
+
+                        <!-- 照片微调缩放/位移滑块 -->
+                        <div class="space-y-2 bg-gray-950/70 p-2.5 rounded-lg border border-gray-800/80">
+                            <div class="flex items-center justify-between text-[11px] text-gray-400">
+                                <span data-i18n="lbl_zoom">缩放倍率</span>
+                                <span id="postcard-val-zoom" class="font-mono text-amber-400 font-bold">1.00x</span>
+                            </div>
+                            <input type="range" id="postcard-in-zoom" min="0.5" max="3" step="0.05" value="1"
+                                oninput="updatePhotoTransform('postcard')" class="w-full accent-amber-500 h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+
+                            <div class="grid grid-cols-2 gap-2 pt-1">
+                                <div>
+                                    <div class="flex items-center justify-between text-[10px] text-gray-400">
+                                        <span data-i18n="lbl_pan_x">水平 X</span>
+                                        <span id="postcard-val-pan-x" class="font-mono text-gray-200">0px</span>
+                                    </div>
+                                    <input type="range" id="postcard-in-pan-x" min="-300" max="300" step="2" value="0"
+                                        oninput="updatePhotoTransform('postcard')" class="w-full accent-amber-500 h-1 bg-gray-800 rounded-lg cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between text-[10px] text-gray-400">
+                                        <span data-i18n="lbl_pan_y">垂直 Y</span>
+                                        <span id="postcard-val-pan-y" class="font-mono text-gray-200">0px</span>
+                                    </div>
+                                    <input type="range" id="postcard-in-pan-y" min="-300" max="300" step="2" value="0"
+                                        oninput="updatePhotoTransform('postcard')" class="w-full accent-amber-500 h-1 bg-gray-800 rounded-lg cursor-pointer">
+                                </div>
+                            </div>
+
+                            <div class="pt-1">
+                                <div class="flex items-center justify-between text-[10px] text-gray-400">
+                                    <span data-i18n="lbl_rotation">旋转角度</span>
+                                    <span id="postcard-val-rot" class="font-mono text-gray-200">0°</span>
+                                </div>
+                                <input type="range" id="postcard-in-rot" min="-180" max="180" step="1" value="0"
+                                    oninput="updatePhotoTransform('postcard')" class="w-full accent-amber-500 h-1 bg-gray-800 rounded-lg cursor-pointer">
+                            </div>
+                        </div>
+
+                        <!-- 相框风格切换 -->
+                        <div class="space-y-1.5 pt-1">
+                            <label class="text-[11px] font-bold text-gray-300 block" data-i18n="postcard_frame_style">相框风格</label>
+                            <div class="grid grid-cols-3 gap-1.5">
+                                <button type="button" id="postcard-frame-btn-full" onclick="setPostcardFrame('full')"
+                                    class="py-1 px-2.5 rounded-lg text-xs font-bold transition bg-amber-600 text-white shadow-sm" data-i18n="postcard_frame_full">全幅无界</button>
+                                <button type="button" id="postcard-frame-btn-polaroid" onclick="setPostcardFrame('polaroid')"
+                                    class="py-1 px-2.5 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_frame_polaroid">复古拍立得</button>
+                                <button type="button" id="postcard-frame-btn-postal" onclick="setPostcardFrame('postal')"
+                                    class="py-1 px-2.5 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_frame_postal">古典邮政</button>
+                            </div>
+                        </div>
+
+                        <!-- 滤镜质感切换 -->
+                        <div class="space-y-1.5 pt-1">
+                            <label class="text-[11px] font-bold text-gray-300 block" data-i18n="postcard_filter_style">胶片质感与滤镜</label>
+                            <div class="grid grid-cols-4 gap-1.5">
+                                <button type="button" id="postcard-filter-btn-normal" onclick="setPostcardFilter('normal')"
+                                    class="py-1 px-2 rounded-lg text-[11px] font-bold transition bg-amber-600 text-white shadow-sm" data-i18n="postcard_filter_normal">高清原画</button>
+                                <button type="button" id="postcard-filter-btn-noir" onclick="setPostcardFilter('noir')"
+                                    class="py-1 px-2 rounded-lg text-[11px] font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_filter_noir">暗角胶片</button>
+                                <button type="button" id="postcard-filter-btn-sepia" onclick="setPostcardFilter('sepia')"
+                                    class="py-1 px-2 rounded-lg text-[11px] font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_filter_sepia">暖调古籍</button>
+                                <button type="button" id="postcard-filter-btn-cyber" onclick="setPostcardFilter('cyber')"
+                                    class="py-1 px-2 rounded-lg text-[11px] font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_filter_cyber">赛博霓虹</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 海报文案与徽章定制 -->
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-3">
+                        <span class="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                            <span>🏷️</span> <span data-i18n="postcard_front_badges">海报标语与类别徽章</span>
+                        </span>
+
+                        <div class="space-y-2">
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_badge_left">左上烫金邮徽铭文</label>
+                                <input type="text" id="postcard-in-badge-left" value="PAR AVION · CONFIDENTIAL DISPATCH"
+                                    oninput="updatePostcardField('badge-left')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_badge_right">右上从属类别标签</label>
+                                <input type="text" id="postcard-in-badge-right" value="🐾 专属母畜 · 极度驯服"
+                                    oninput="updatePostcardField('badge-right')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_title">海报主标题</label>
+                                <input type="text" id="postcard-in-title" value="MIDNIGHT CONFESSION · 午夜绝密寄语"
+                                    oninput="updatePostcardField('title')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_subtitle">主奴私语副标题</label>
+                                <input type="text" id="postcard-in-subtitle" value="Helplessly Under Your Spell · 每一缕呼吸都在呼唤主人的名字"
+                                    oninput="updatePostcardField('subtitle')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_dispatch_code">邮件绝密检索号</label>
+                                <input type="text" id="postcard-in-dispatch-code" value="DISPATCH ID: #POST-2026-X8472"
+                                    oninput="updatePostcardField('dispatch-code')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 背面编辑面板 ================= -->
+                <div id="postcard-edit-section-back" class="space-y-4 hidden">
+                    <!-- 1. 私密手写情话与誓词 -->
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                                <span>✍️</span> <span data-i18n="postcard_sec_back_msg">背面私密手写情话与誓词</span>
+                            </span>
+                            <button type="button" onclick="openInspirationModal('postcard-in-message', 'pet')"
+                                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-600/20 text-amber-300 border border-amber-500/30 hover:bg-amber-600/30 transition shadow-sm">
+                                <span>💡</span> <span data-i18n="btn_inspire_lib">灵感库</span>
+                            </button>
+                        </div>
+
+                        <!-- 字体选择器 -->
+                        <div class="space-y-1.5">
+                            <label class="text-[11px] font-bold text-gray-300 block" data-i18n="postcard_font_style">手写字体风格</label>
+                            <div class="grid grid-cols-4 gap-1.5">
+                                <button type="button" id="postcard-font-btn-sans" onclick="setPostcardFont('sans')"
+                                    class="flex-1 py-1.5 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="font_sans">黑体</button>
+                                <button type="button" id="postcard-font-btn-serif" onclick="setPostcardFont('serif')"
+                                    class="flex-1 py-1.5 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700 font-serif" data-i18n="font_serif">宋体</button>
+                                <button type="button" id="postcard-font-btn-handwriting" onclick="setPostcardFont('handwriting')"
+                                    class="flex-1 py-1.5 rounded-lg text-xs font-bold transition bg-amber-600 text-white shadow-sm font-serif" data-i18n="font_handwriting">手写草书</button>
+                                <button type="button" id="postcard-font-btn-cute" onclick="setPostcardFont('cute')"
+                                    class="flex-1 py-1.5 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="font_cute">可爱手写</button>
+                            </div>
+                        </div>
+
+                        <!-- 字号调节 -->
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between text-[11px] text-gray-400">
+                                <span data-i18n="postcard_font_size">情话文字大小</span>
+                                <span id="postcard-val-font-size" class="font-mono text-amber-400 font-bold">18px</span>
+                            </div>
+                            <input type="range" id="postcard-in-font-size" min="14" max="28" step="1" value="18"
+                                oninput="updatePostcardFontSize(this.value)" class="w-full accent-amber-500 h-1.5 bg-gray-800 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- 正文输入区 -->
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_message">私密寄语内容 (支持灵感库一键填入)</label>
+                            <textarea id="postcard-in-message" rows="6" oninput="updatePostcardField('message')"
+                                class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-2 text-xs text-white focus:outline-none focus:border-amber-500 leading-relaxed custom-scrollbar font-serif">尊敬的主人：
+从戴上项圈的那一刻起，我所有的骄傲与理智便已全部献祭给您。今夜无论您降下何种严厉的调训与戒律，我都将在您的脚边无条件顺从，静候您的指令与宠幸……</textarea>
+                        </div>
+
+                        <!-- 落款签名 -->
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_signoff">持卡奴落款署名</label>
+                            <input type="text" id="postcard-in-signoff" value="永远属于您的母犬 朱子依 (持卡奴07号)"
+                                oninput="updatePostcardField('signoff')"
+                                class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                        </div>
+
+                        <!-- 伴随印记切换 -->
+                        <div class="space-y-1.5 pt-1">
+                            <label class="text-[11px] font-bold text-gray-300 block" data-i18n="postcard_mark_style">落款伴随印记</label>
+                            <div class="grid grid-cols-4 gap-1.5">
+                                <button type="button" id="postcard-mark-btn-kiss" onclick="selectPostcardMark('kiss')"
+                                    class="py-1 px-2 rounded-lg text-xs font-bold transition bg-amber-600 text-white shadow-sm" data-i18n="postcard_mark_kiss">💋 唇印</button>
+                                <button type="button" id="postcard-mark-btn-paw" onclick="selectPostcardMark('paw')"
+                                    class="py-1 px-2 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_mark_paw">🐾 肉爪</button>
+                                <button type="button" id="postcard-mark-btn-wax" onclick="selectPostcardMark('wax')"
+                                    class="py-1 px-2 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_mark_wax">🩸 蜡印</button>
+                                <button type="button" id="postcard-mark-btn-none" onclick="selectPostcardMark('none')"
+                                    class="py-1 px-2 rounded-lg text-xs font-bold transition bg-gray-800 text-gray-300 hover:text-white border border-gray-700" data-i18n="postcard_mark_none">无印记</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 邮票与邮戳 -->
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-3">
+                        <span class="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                            <span>📮</span> <span data-i18n="postcard_sec_stamps">专属情趣邮票与盖销波浪戳</span>
+                        </span>
+
+                        <!-- 邮票选单 -->
+                        <div class="space-y-1.5">
+                            <label class="text-[11px] font-bold text-amber-300 block" data-i18n="postcard_stamp_select">点击选择内置邮票</label>
+                            <div id="postcard-stamp-options-container" class="grid grid-cols-3 gap-2">
+                                <!-- 动态渲染 6 组邮票 -->
+                            </div>
+                        </div>
+
+                        <!-- 自定义邮票上传 -->
+                        <div class="pt-1">
+                            <label class="w-full bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold py-2 px-3 rounded-lg border border-gray-700 text-center cursor-pointer transition flex items-center justify-center gap-1.5">
+                                <span>🖼️</span> <span data-i18n="postcard_stamp_custom_upload">上传自定义邮票图案</span>
+                                <input type="file" id="postcard-in-custom-stamp" accept="image/*" class="hidden" onchange="handlePostcardCustomStampUpload(event)">
+                            </label>
+                        </div>
+
+                        <!-- 盖销戳日期 -->
+                        <div>
+                            <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_postmark_date">盖销戳日期</label>
+                            <input type="text" id="postcard-in-postmark-date" value="★ NOV 07 2026 ★"
+                                oninput="updatePostcardField('postmark-date')"
+                                class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                        </div>
+                    </div>
+
+                    <!-- 3. 收发地址栏与防伪印鉴 -->
+                    <div class="bg-gray-900/80 border border-gray-800 rounded-xl p-3.5 space-y-3">
+                        <span class="text-xs font-bold text-gray-200 flex items-center gap-1.5">
+                            <span>🏠</span> <span data-i18n="postcard_sec_address">收信人与投递归属地址栏</span>
+                        </span>
+
+                        <div class="space-y-2">
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_to_name">TO (收件犬姓名/佩戴编号)</label>
+                                <input type="text" id="postcard-in-to-name" value="朱子依 · 佩戴编号 #SLV-9902"
+                                    oninput="updatePostcardField('to-name')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_deliver_to">DELIVER TO (调教归属处/专属寝居)</label>
+                                <input type="text" id="postcard-in-deliver-to" value="主人专属私人寝居 · 极乐刑房"
+                                    oninput="updatePostcardField('deliver-to')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_from_name">FROM (寄件主人/签发官大名)</label>
+                                <input type="text" id="postcard-in-from-name" value="铃谷主人 (Master S)"
+                                    oninput="updatePostcardField('from-name')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-serif">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_postcode">POSTCODE (6位邮编)</label>
+                                <input type="text" id="postcard-in-postcode" maxlength="6" value="690420"
+                                    oninput="updatePostcardPostcode()"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono tracking-widest">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400 block mb-1" data-i18n="postcard_lbl_verification">底部防伪留存批注</label>
+                                <input type="text" id="postcard-in-verification" value="SEALED & DELIVERED · NON-TRANSFERABLE"
+                                    oninput="updatePostcardField('verification')"
+                                    class="w-full bg-gray-950 border border-gray-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 font-mono">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 导出操作区 -->
+                <div class="space-y-2 pt-2 border-t border-gray-800">
+                    <div class="grid grid-cols-2 gap-2">
+                        <button type="button" onclick="exportPostcard('front', 2)"
+                            class="py-2.5 px-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center justify-center gap-1 shadow transition">
+                            <span>📸</span> <span data-i18n="postcard_export_front">导出正面 (海报写真)</span>
+                        </button>
+                        <button type="button" onclick="exportPostcard('back', 2)"
+                            class="py-2.5 px-2 rounded-lg bg-red-700 hover:bg-red-600 text-white font-bold text-xs flex items-center justify-center gap-1 shadow transition">
+                            <span>💌</span> <span data-i18n="postcard_export_back">导出背面 (手写明信片)</span>
+                        </button>
+                    </div>
+                    <button type="button" onclick="exportPostcardCombined(2)"
+                        class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-amber-600 via-rose-600 to-red-700 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition">
+                        <span>🖼️</span> <span data-i18n="postcard_export_combined">导出正反合并展示长图 (全览珍藏)</span>
+                    </button>
+                    <button type="button" onclick="exportPostcardZip(2)"
+                        class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-stone-800 via-amber-800 to-stone-800 hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-lg transition border border-amber-600/40">
+                        <span>📦</span> <span data-i18n="postcard_export_zip">打包下载双面原图 ZIP (300 PPI)</span>
+                    </button>
+                    <button type="button" onclick="copyCardToClipboard('postcard')"
+                        class="w-full py-2 px-4 rounded-lg bg-gray-900 hover:bg-gray-850 text-gray-300 border border-gray-800 font-medium text-xs flex items-center justify-center gap-1.5 transition">
+                        <span>📋</span> <span data-i18n="btn_copy_clipboard">复制到剪贴板</span>
+                    </button>
+                </div>
+            </div>
+
             <!-- 底部版本标识与离线指示 -->
             <div class="pt-3 pb-1 text-center text-[10px] text-gray-500 font-mono select-none border-t border-gray-900/80 mt-2">
-                <span>Proof Gen <strong class="text-pink-400">v1.3</strong> · Offline First</span>
+                <span>Proof Gen <strong class="text-amber-400">v2.0</strong> · Offline First</span>
             </div>
 
         </aside>
@@ -1747,6 +2099,11 @@
                     <div id="bimbo-side-selector" class="hidden flex items-center bg-gray-900 border border-pink-700/60 rounded-lg p-0.5 text-xs shadow-sm">
                         <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition" data-i18n="side_front">正面</button>
                         <button type="button" id="bimbo-side-btn-back" onclick="switchBimboSide('back')" class="px-2 py-1 rounded-md font-bold text-gray-300 hover:text-white transition" data-i18n="side_back">背面</button>
+                    </div>
+                    <div id="postcard-side-selector" class="hidden flex items-center bg-gray-900 border border-amber-700/60 rounded-lg p-0.5 text-xs shadow-sm">
+                        <button type="button" id="postcard-side-btn-front" onclick="switchPostcardSide('front')" class="px-2 py-1 rounded-md font-bold bg-amber-600 text-white shadow-sm transition" data-i18n="side_front">正面</button>
+                        <button type="button" id="postcard-side-btn-back" onclick="switchPostcardSide('back')" class="px-2 py-1 rounded-md font-bold text-gray-300 hover:text-white transition" data-i18n="side_back">背面</button>
+                        <button type="button" onclick="flipPostcardCard()" class="px-2 py-1 rounded-md font-bold text-amber-300 hover:text-amber-100 flex items-center gap-1 transition" title="3D 空间翻转" data-i18n="btn_flip_3d">🔄 3D翻转</button>
                     </div>
                     <span id="card-dimension-tip" class="text-[11px] sm:text-xs text-gray-400 font-mono bg-gray-900 border border-gray-800 px-2 py-0.5 rounded hidden sm:inline">1011 × 638 px</span>
                 </div>
@@ -2335,6 +2692,153 @@
 
                     </div>
 
+                    <!-- ================= 核心实体卡片 5: 母畜明信片 (1011 × 638 @ 300 PPI) ================= -->
+                    <div id="postcard-card-node" class="absolute top-0 left-0 hidden shrink-0 select-none postcard-card-3d-scene" style="width: 1011px; height: 638px;">
+                        <div id="postcard-card-flipper" class="postcard-card-flipper">
+
+                            <!-- 正面 (Front): 视觉海报 / 写真面 -->
+                            <div id="postcard-front-node" class="postcard-card-face postcard-card-face-front">
+                                <div id="postcard-front-container" class="postcard-front-container frame-full">
+                                    <!-- 背景/照片层 -->
+                                    <div class="absolute inset-0 overflow-hidden bg-black flex items-center justify-center">
+                                        <img id="postcard-out-photo" src="assets/tpl4/photo_fallen.png" alt="Postcard Front Art"
+                                            class="w-full h-full object-cover transition-transform origin-center">
+                                    </div>
+                                    <!-- 滤镜覆盖层 -->
+                                    <div id="postcard-photo-overlay" class="postcard-photo-overlay filter-normal"></div>
+                                    <!-- 暗部渐变层 -->
+                                    <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-black/25 pointer-events-none"></div>
+
+                                    <!-- 左上角烫金邮戳标志 -->
+                                    <div class="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/65 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-400/50 shadow-lg">
+                                        <span class="text-amber-400 text-xs">✈️</span>
+                                        <span id="postcard-out-badge-left" class="font-mono text-[11px] font-black tracking-widest text-amber-200 uppercase">PAR AVION · CONFIDENTIAL DISPATCH</span>
+                                    </div>
+
+                                    <!-- 右上角类别归属徽章 -->
+                                    <div class="absolute top-6 right-6 z-20 flex items-center gap-2 bg-rose-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-rose-500/60 shadow-lg">
+                                        <span class="text-rose-300 text-xs">🐾</span>
+                                        <span id="postcard-out-badge-right" class="font-mono text-[11px] font-black tracking-wider text-rose-100 uppercase">专属母畜 · 极度驯服</span>
+                                    </div>
+
+                                    <!-- 底部大标题与寄语摘要 -->
+                                    <div class="absolute bottom-6 left-8 right-8 z-20 flex flex-col justify-end">
+                                        <h2 id="postcard-out-title" class="text-white text-[32px] font-black tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] leading-tight mb-1 font-serif">
+                                            MIDNIGHT CONFESSION · 午夜绝密寄语
+                                        </h2>
+                                        <p id="postcard-out-subtitle" class="text-rose-200/95 text-[16px] font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] leading-relaxed mb-3 font-serif">
+                                            Helplessly Under Your Spell · 每一缕呼吸都在呼唤主人的名字
+                                        </p>
+                                        <div class="flex items-center justify-between pt-2.5 border-t border-white/25 text-white/80 text-[12px] font-mono">
+                                            <span id="postcard-out-dispatch-code">DISPATCH ID: #POST-2026-X8472</span>
+                                            <span class="text-amber-300 italic font-sans flex items-center gap-1.5 cursor-pointer hover:underline" onclick="flipPostcardCard()">
+                                                <span>🔄</span> <span data-i18n="postcard_click_to_flip">点击翻转查看私密背面</span>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 档案邮戳图层 -->
+                                    <div id="postcard-postmark-layer" class="absolute pointer-events-none select-none z-30 hidden"></div>
+                                </div>
+                            </div>
+
+                            <!-- 背面 (Back): 拟真明信片投递面 -->
+                            <div id="postcard-back-node" class="postcard-card-face postcard-card-face-back postcard-back-paper p-8 flex flex-col justify-between">
+                                <!-- 顶部明信片标头 -->
+                                <div class="flex items-start justify-between pb-3 border-b-2 border-stone-300/90 shrink-0">
+                                    <div class="flex flex-col">
+                                        <span class="font-mono text-[11px] font-extrabold text-stone-500 tracking-wider">CARTE POSTALE · NO. <span id="postcard-out-serial">#POST-6902-DS</span></span>
+                                        <span class="text-[9px] font-mono text-stone-400 tracking-widest uppercase mt-0.5">EXCLUSIVE PRIVILEGE · CONFIDENTIAL</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="font-serif font-black text-[24px] tracking-[0.35em] text-stone-800 uppercase leading-none">CARTE POSTALE</span>
+                                        <span class="text-[8.5px] font-mono tracking-widest text-stone-500 uppercase mt-1">UNIVERSAL POSTAL DISPATCH · D/S CORRESPONDENCE</span>
+                                    </div>
+                                    <!-- 邮政编码方格 -->
+                                    <div class="flex items-center gap-1" id="postcard-out-postcode-boxes">
+                                        <span class="postcard-code-box">6</span>
+                                        <span class="postcard-code-box">9</span>
+                                        <span class="postcard-code-box">0</span>
+                                        <span class="postcard-code-box">4</span>
+                                        <span class="postcard-code-box">2</span>
+                                        <span class="postcard-code-box">0</span>
+                                    </div>
+                                </div>
+
+                                <!-- 主体双栏区域 -->
+                                <div class="flex-1 flex mt-4 overflow-hidden">
+                                    <!-- 左栏: 手写情话寄语 -->
+                                    <div class="w-[530px] flex flex-col justify-between pr-4 border-r border-stone-300/80">
+                                        <div class="flex-1 flex flex-col">
+                                            <span class="text-[10px] font-mono tracking-wider uppercase text-stone-400 mb-1">COMMUNICATION / CORRESPONDANCE :</span>
+                                            <div id="postcard-out-message" class="text-stone-900 text-[18px] leading-[1.65] whitespace-pre-line overflow-y-auto pr-2 custom-scrollbar font-handwriting" style="max-height: 340px;">
+尊敬的主人：
+从戴上项圈的那一刻起，我所有的骄傲与理智便已全部献祭给您。今夜无论您降下何种严厉的调训与戒律，我都将在您的脚边无条件顺从，静候您的指令与宠幸……
+                                            </div>
+                                        </div>
+                                        <!-- 底部签名署名 -->
+                                        <div class="pt-2 border-t border-stone-300/70 flex items-end justify-between">
+                                            <div class="flex flex-col">
+                                                <span class="text-[9.5px] font-mono text-stone-500 uppercase tracking-wider">Forever Collared &amp; Devoted :</span>
+                                                <span id="postcard-out-signoff" class="text-rose-950 text-[26px] font-black font-handwriting leading-tight">朱子依 (持卡奴07号)</span>
+                                            </div>
+                                            <div id="postcard-out-kiss-mark" class="w-14 h-12 flex items-center justify-center shrink-0">
+                                                <!-- 伴随印记 (唇印/爪印/印章) -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 中间微缩文字分隔 -->
+                                    <div class="postcard-divider">
+                                        <span>POST CARD · FOR SENSORY DELIVERIES ONLY</span>
+                                    </div>
+
+                                    <!-- 右栏: 邮票 + 盖销波浪戳 + 格式化地址栏 -->
+                                    <div class="flex-1 flex flex-col justify-between pl-3">
+                                        <!-- 邮票与波浪戳 -->
+                                        <div class="relative flex justify-end items-start h-[135px]">
+                                            <!-- 圆形盖销印章 -->
+                                            <div class="postcard-postmark-ring">
+                                                <span class="text-[7.5px] font-bold tracking-widest text-red-900 uppercase">KINKY POST</span>
+                                                <span id="postcard-out-postmark-date" class="text-[9.5px] font-mono font-black text-red-950 my-0.5">★ NOV 07 2026 ★</span>
+                                                <span class="text-[6.5px] font-bold text-red-900/80 uppercase tracking-wider">SPECIAL DISPATCH</span>
+                                            </div>
+                                            <!-- 波浪盖销线 -->
+                                            <div class="postcard-wavy-lines"></div>
+                                            <!-- 邮票容器 -->
+                                            <div id="postcard-stamp-container" class="postcard-stamp">
+                                                <div id="postcard-stamp-svg-wrapper" class="w-full h-full"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 格式化横线地址栏 -->
+                                        <div class="space-y-3 pt-2">
+                                            <div class="postcard-address-line">
+                                                <span class="postcard-address-label">TO (收件人):</span>
+                                                <span id="postcard-out-to-name" class="text-stone-900 font-handwriting text-[22px] leading-tight truncate">朱子依 · 佩戴编号 #SLV-9902</span>
+                                            </div>
+                                            <div class="postcard-address-line">
+                                                <span class="postcard-address-label">DELIVER TO (调教归属处):</span>
+                                                <span id="postcard-out-deliver-to" class="text-stone-800 font-serif font-bold text-[15px] leading-tight truncate">主人专属私人寝居 · 极乐刑房</span>
+                                            </div>
+                                            <div class="postcard-address-line">
+                                                <span class="postcard-address-label">FROM (寄件主人):</span>
+                                                <span id="postcard-out-from-name" class="text-stone-900 font-handwriting text-[20px] leading-tight truncate">铃谷主人 (Master S)</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 底部防伪批注与印章 -->
+                                        <div class="flex items-center justify-between text-stone-500 font-mono text-[9px] uppercase border-t border-stone-300/60 pt-1.5 mt-1">
+                                            <span id="postcard-out-verification-text" class="truncate max-w-[220px]">SEALED &amp; DELIVERED · NON-TRANSFERABLE</span>
+                                            <span class="px-2 py-0.5 border border-red-800/60 text-red-800 rounded font-black text-[8.5px] bg-red-50/50">MASTER VERIFIED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </main>
         </div>
@@ -2367,6 +2871,19 @@
                     <button type="button" onclick="closeExportModal(); switchBimboSide('back');"
                         class="bg-pink-600 hover:bg-pink-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 transition shadow flex items-center gap-1">
                         <span data-i18n="modal_goto_back">去背面导出</span>
+                        <span>➔</span>
+                    </button>
+                </div>
+
+                <!-- 明信片正面导出后专属微小提示 -->
+                <div id="modal-postcard-tip" class="hidden w-full bg-amber-950/70 border border-amber-700/60 rounded-xl p-3 text-xs text-amber-200 flex items-center justify-between gap-2 shadow">
+                    <span class="flex items-center gap-1.5 font-medium">
+                        <span>💌</span>
+                        <span data-i18n="modal_postcard_tip">您还可以切换至明信片背面手写寄语继续导出</span>
+                    </span>
+                    <button type="button" onclick="closeExportModal(); switchPostcardSide('back');"
+                        class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 transition shadow flex items-center gap-1">
+                        <span data-i18n="modal_goto_postcard_back">去背面导出</span>
                         <span>➔</span>
                     </button>
                 </div>
@@ -2473,6 +2990,7 @@
 
     <!-- Modular Script Imports -->
     <script src="js/qrcode.min.js"></script>
+    <script src="js/jszip.min.js"></script>
     <script src="js/default_assets.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/export.js"></script>
@@ -2483,6 +3001,7 @@
     <script src="js/tpl2_bbc.js"></script>
     <script src="js/tpl3_cert.js"></script>
     <script src="js/tpl4_bimbo.js"></script>
+    <script src="js/tpl5_postcard.js"></script>
     <script src="js/app.js"></script>
 </body>
 

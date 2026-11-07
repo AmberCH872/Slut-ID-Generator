@@ -617,6 +617,9 @@ function applyInspirationText(text) {
     } else if (id === 'bimbo-in-stamp-text') {
         updateBimboField('stamp-text');
         triggerAutosave('bimbo');
+    } else if (id === 'postcard-in-message') {
+        if (typeof updatePostcardField === 'function') updatePostcardField('message');
+        triggerAutosave('postcard');
     }
 
     // Provide visual feedback

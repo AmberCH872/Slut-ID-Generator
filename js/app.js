@@ -2,7 +2,7 @@
  * App Main Controller & Viewport Engine
  */
 
-let currentTemplate = 'slave'; // 'slave' | 'bbc' | 'cert' | 'bimbo'
+let currentTemplate = 'slave'; // 'slave' | 'bbc' | 'cert' | 'bimbo' | 'postcard'
 let mobileMode = 'edit';       // 'edit' | 'preview'
 let currentScale = 1.0;
 
@@ -10,6 +10,9 @@ window.addEventListener('DOMContentLoaded', () => {
     initBbcKinks();
     initCert();
     initBimboRules();
+    if (typeof initPostcard === 'function') {
+        initPostcard();
+    }
     updateScQR();
     updateCertQR();
     updateBimboQR();
@@ -29,7 +32,12 @@ window.addEventListener('DOMContentLoaded', () => {
     if (hash === 'bimbo-back') {
         switchTemplate('bimbo');
         switchBimboSide('back');
-    } else if (['slave', 'bbc', 'cert', 'bimbo'].includes(hash)) {
+    } else if (hash === 'postcard-back') {
+        switchTemplate('postcard');
+        if (typeof switchPostcardSide === 'function') {
+            switchPostcardSide('back');
+        }
+    } else if (['slave', 'bbc', 'cert', 'bimbo', 'postcard'].includes(hash)) {
         switchTemplate(hash);
     } else {
         fitCurrentScreen();
@@ -70,7 +78,8 @@ function switchTemplate(tpl) {
         slave: '🏷️ 奴隶身份卡',
         bbc: '♠️ 身份证',
         cert: '📜 登记证书',
-        bimbo: '🎀 双面身份卡'
+        bimbo: '🎀 双面身份卡',
+        postcard: '💌 母畜明信片'
     };
     const tplName = templateNames[tpl] || tpl;
     trackPageView(`/#${tpl}`, `${tplName} - 证件与协议工坊`);
@@ -83,10 +92,11 @@ function switchTemplate(tpl) {
         slave: 'bg-red-600',
         bbc: 'bg-purple-700',
         cert: 'bg-blue-600',
-        bimbo: 'bg-pink-600'
+        bimbo: 'bg-pink-600',
+        postcard: 'bg-amber-600'
     };
 
-    ['slave', 'bbc', 'cert', 'bimbo'].forEach(t => {
+    ['slave', 'bbc', 'cert', 'bimbo', 'postcard'].forEach(t => {
         const btn = document.getElementById(`tab-btn-${t}`);
         if (btn) {
             btn.className = (t === tpl)
@@ -102,7 +112,8 @@ function switchTemplate(tpl) {
             slave: 'border-red-600',
             bbc: 'border-purple-600',
             cert: 'border-blue-600',
-            bimbo: 'border-pink-600'
+            bimbo: 'border-pink-600',
+            postcard: 'border-amber-600'
         };
         mobileSel.className = `w-full bg-gray-900 text-white font-bold text-xs rounded-xl border ${borderColors[tpl] || 'border-gray-700'} focus:outline-none appearance-none shadow-sm cursor-pointer truncate`;
     }
@@ -111,15 +122,21 @@ function switchTemplate(tpl) {
     document.getElementById('tpl2-editor')?.classList.toggle('hidden', tpl !== 'bbc');
     document.getElementById('tpl3-editor')?.classList.toggle('hidden', tpl !== 'cert');
     document.getElementById('tpl4-editor')?.classList.toggle('hidden', tpl !== 'bimbo');
+    document.getElementById('tpl5-editor')?.classList.toggle('hidden', tpl !== 'postcard');
 
     document.getElementById('sc-card-node')?.classList.toggle('hidden', tpl !== 'slave');
     document.getElementById('bbc-card-node')?.classList.toggle('hidden', tpl !== 'bbc');
     document.getElementById('cert-certificate-node')?.classList.toggle('hidden', tpl !== 'cert');
     document.getElementById('bimbo-card-node')?.classList.toggle('hidden', tpl !== 'bimbo');
+    document.getElementById('postcard-card-node')?.classList.toggle('hidden', tpl !== 'postcard');
 
-    const sideSelector = document.getElementById('bimbo-side-selector');
-    if (sideSelector) {
-        sideSelector.classList.toggle('hidden', tpl !== 'bimbo');
+    const bimboSelector = document.getElementById('bimbo-side-selector');
+    if (bimboSelector) {
+        bimboSelector.classList.toggle('hidden', tpl !== 'bimbo');
+    }
+    const postcardSelector = document.getElementById('postcard-side-selector');
+    if (postcardSelector) {
+        postcardSelector.classList.toggle('hidden', tpl !== 'postcard');
     }
 
     if (typeof loadDefaultPersonaForLanguage === 'function' && typeof currentLang !== 'undefined') {
@@ -135,7 +152,8 @@ function switchTemplate(tpl) {
                 slave: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
                 bbc: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
                 cert: '尺寸: 850 × 1200 px (A4 协议标准)',
-                bimbo: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)'
+                bimbo: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)',
+                postcard: '尺寸: 1011 × 638 px (85.6 × 54.0 mm @ 300 PPI)'
             };
             tipEl.innerText = dims[tpl];
         }
@@ -233,6 +251,7 @@ function getActiveCardDimensions() {
     if (currentTemplate === 'slave') return [1011, 638];
     if (currentTemplate === 'bbc') return [1011, 638];
     if (currentTemplate === 'bimbo') return [1011, 638];
+    if (currentTemplate === 'postcard') return [1011, 638];
     const cert = document.getElementById('cert-certificate-node');
     const h = (cert && cert.offsetHeight > 1200) ? cert.offsetHeight : 1200;
     return [850, h];
@@ -242,6 +261,7 @@ function getActiveCardNode() {
     if (currentTemplate === 'slave') return document.getElementById('sc-card-node');
     if (currentTemplate === 'bbc') return document.getElementById('bbc-card-node');
     if (currentTemplate === 'bimbo') return document.getElementById('bimbo-card-node');
+    if (currentTemplate === 'postcard') return document.getElementById('postcard-card-node');
     return document.getElementById('cert-certificate-node');
 }
 

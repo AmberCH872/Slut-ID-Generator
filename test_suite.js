@@ -7,7 +7,7 @@ console.log('--- Running Modular Web App Verification Suite ---');
 const html = fs.readFileSync('index.html', 'utf8');
 
 // 1. Verify CSS files exist and are referenced
-const cssFiles = ['css/base.css', 'css/tpl1_slave.css', 'css/tpl2_bbc.css', 'css/tpl3_cert.css', 'css/tpl4_bimbo.css'];
+const cssFiles = ['css/base.css', 'css/tpl1_slave.css', 'css/tpl2_bbc.css', 'css/tpl3_cert.css', 'css/tpl4_bimbo.css', 'css/tpl5_postcard.css'];
 for (const f of cssFiles) {
     assert(fs.existsSync(f), `CSS file "${f}" must exist`);
     assert(html.includes(f), `index.html must link to "${f}"`);
@@ -15,7 +15,7 @@ for (const f of cssFiles) {
 console.log(`✓ All ${cssFiles.length} modular CSS files exist and are linked in index.html.`);
 
 // 2. Load all JS files
-const jsFiles = ['js/default_assets.js', 'js/i18n.js', 'js/export.js', 'js/personas.js', 'js/inspiration.js', 'js/postmark.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/app.js'];
+const jsFiles = ['js/default_assets.js', 'js/i18n.js', 'js/export.js', 'js/personas.js', 'js/inspiration.js', 'js/postmark.js', 'js/tpl1_slave.js', 'js/tpl2_bbc.js', 'js/tpl3_cert.js', 'js/tpl4_bimbo.js', 'js/tpl5_postcard.js', 'js/app.js'];
 let combinedJs = '';
 for (const f of jsFiles) {
     assert(fs.existsSync(f), `JS file "${f}" must exist`);
@@ -66,23 +66,23 @@ for (const id of getByIdCalls) {
 }
 console.log(`✓ All ${getByIdCalls.size} static getElementById calls target existing DOM elements.`);
 
-// 6. Verify dynamic photo transform IDs for 'sc', 'bbc', 'bimbo'
-['sc', 'bbc', 'bimbo'].forEach(pfx => {
+// 6. Verify dynamic photo transform IDs for 'sc', 'bbc', 'bimbo', 'postcard'
+['sc', 'bbc', 'bimbo', 'postcard'].forEach(pfx => {
     ['in-zoom', 'in-pan-x', 'in-pan-y', 'in-rot', 'val-zoom', 'val-pan-x', 'val-pan-y', 'val-rot', 'out-photo'].forEach(suffix => {
         const id = `${pfx}-${suffix}`;
         assert(definedIds.has(id), `Dynamic photo transform ID "${id}" must exist in HTML`);
     });
 });
-console.log('✓ All dynamic photo transform IDs exist for sc, bbc, and bimbo templates.');
+console.log('✓ All dynamic photo transform IDs exist for sc, bbc, bimbo, and postcard templates.');
 
-// 7. Verify font buttons exist for all 4 templates
-['sc', 'bbc', 'cert', 'bimbo'].forEach(pfx => {
+// 7. Verify font buttons exist for all 5 templates
+['sc', 'bbc', 'cert', 'bimbo', 'postcard'].forEach(pfx => {
     ['sans', 'serif', 'handwriting', 'cute'].forEach(font => {
         const id = `${pfx}-font-btn-${font}`;
         assert(definedIds.has(id), `Font button ID "${id}" must exist in HTML`);
     });
 });
-console.log('✓ All font button IDs exist for sc, bbc, cert, and bimbo templates.');
+console.log('✓ All font button IDs exist for sc, bbc, cert, bimbo, and postcard templates.');
 
 // 8. Verify all image src references point to existing files
 const imgSrcs = [
@@ -105,6 +105,9 @@ assert(bbcHtmlMatch && bbcHtmlMatch[1] === '1011' && bbcHtmlMatch[2] === '638', 
 const bimboHtmlMatch = html.match(/id="bimbo-card-node"[^>]*style="[^"]*width:\s*(\d+)px;\s*height:\s*(\d+)px;/);
 assert(bimboHtmlMatch && bimboHtmlMatch[1] === '1011' && bimboHtmlMatch[2] === '638', 'bimbo-card-node in HTML must have width: 1011px; height: 638px');
 
+const postcardHtmlMatch = html.match(/id="postcard-card-node"[^>]*style="[^"]*width:\s*(\d+)px;\s*height:\s*(\d+)px;/);
+assert(postcardHtmlMatch && postcardHtmlMatch[1] === '1011' && postcardHtmlMatch[2] === '638', 'postcard-card-node in HTML must have width: 1011px; height: 638px');
+
 const tpl1Css = fs.readFileSync('css/tpl1_slave.css', 'utf8');
 assert(tpl1Css.includes('width: 1011px;') && tpl1Css.includes('height: 638px;'), 'css/tpl1_slave.css must specify 1011px x 638px');
 
@@ -114,12 +117,16 @@ assert(tpl2Css.includes('width: 1011px;') && tpl2Css.includes('height: 638px;'),
 const tpl4Css = fs.readFileSync('css/tpl4_bimbo.css', 'utf8');
 assert(tpl4Css.includes('width: 1011px;') && tpl4Css.includes('height: 638px;'), 'css/tpl4_bimbo.css must specify 1011px x 638px');
 
+const tpl5Css = fs.readFileSync('css/tpl5_postcard.css', 'utf8');
+assert(tpl5Css.includes('width: 1011px;') && tpl5Css.includes('height: 638px;'), 'css/tpl5_postcard.css must specify 1011px x 638px');
+
 const appJs = fs.readFileSync('js/app.js', 'utf8');
 assert(appJs.includes("currentTemplate === 'slave') return [1011, 638]"), 'app.js getActiveCardDimensions must return [1011, 638] for slave');
 assert(appJs.includes("currentTemplate === 'bbc') return [1011, 638]"), 'app.js getActiveCardDimensions must return [1011, 638] for bbc');
 assert(appJs.includes("currentTemplate === 'bimbo') return [1011, 638]"), 'app.js getActiveCardDimensions must return [1011, 638] for bimbo');
+assert(appJs.includes("currentTemplate === 'postcard') return [1011, 638]"), 'app.js getActiveCardDimensions must return [1011, 638] for postcard');
 
-console.log('✓ All 3 cards strictly standardized to 1011 × 638 px (85.6mm × 54.0mm @ 300 PPI) across HTML, CSS, and JS.');
+console.log('✓ All 4 cards strictly standardized to 1011 × 638 px (85.6mm × 54.0mm @ 300 PPI) across HTML, CSS, and JS.');
 
 // 10. Verify i18n internationalization engine & language parity
 const vm = require('vm');
@@ -210,7 +217,7 @@ console.log(`✓ i18n system fully verified: 4 languages (${i18nCtx.SUPPORTED_LA
         } else if (!isSelfClosing) {
             const idMatch = rawAttrs.match(/id=["']([^"']+)["']/);
             const id = idMatch ? idMatch[1] : '';
-            if (['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node', 'bimbo-front-node', 'bimbo-back-node'].includes(id)) {
+            if (['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node', 'bimbo-front-node', 'bimbo-back-node', 'postcard-card-node', 'postcard-front-node', 'postcard-back-node'].includes(id)) {
                 cardParents[id] = stack.map(s => s.id || s.tag);
             }
             stack.push({ tag: tagName, id });
@@ -219,7 +226,7 @@ console.log(`✓ i18n system fully verified: 4 languages (${i18nCtx.SUPPORTED_LA
     assert.strictEqual(stack.length, 0, `Unclosed HTML tags remaining: ${stack.map(s => s.tag).join(', ')}`);
     
     // Verify each card has scaler-outer-box as ancestor
-    ['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node'].forEach(cid => {
+    ['sc-card-node', 'bbc-card-node', 'cert-certificate-node', 'bimbo-card-node', 'postcard-card-node'].forEach(cid => {
         assert(cardParents[cid], `Card "${cid}" must exist in DOM tree`);
         assert(cardParents[cid].includes('scaler-outer-box'), `Card "${cid}" must be enclosed inside "scaler-outer-box", got ancestors: ${JSON.stringify(cardParents[cid])}`);
     });
@@ -228,7 +235,12 @@ console.log(`✓ i18n system fully verified: 4 languages (${i18nCtx.SUPPORTED_LA
         assert(cardParents[bid], `Bimbo node "${bid}" must exist`);
         assert(cardParents[bid].includes('bimbo-card-flipper'), `Bimbo node "${bid}" must be inside "bimbo-card-flipper"`);
     });
-    console.log('✓ DOM tree hierarchy verified: all 4 cards strictly inside scaler-outer-box, and bimbo faces inside 3D flipper.');
+    // Verify postcard front and back are inside postcard-card-flipper
+    ['postcard-front-node', 'postcard-back-node'].forEach(pid => {
+        assert(cardParents[pid], `Postcard node "${pid}" must exist`);
+        assert(cardParents[pid].includes('postcard-card-flipper'), `Postcard node "${pid}" must be inside "postcard-card-flipper"`);
+    });
+    console.log('✓ DOM tree hierarchy verified: all 5 cards strictly inside scaler-outer-box, and 3D flippers verified.');
 })();
 
 console.log('--- All Modular Web App verification checks passed successfully! ---');

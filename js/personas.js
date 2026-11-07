@@ -264,6 +264,88 @@ const PERSONA_BANK = {
                 'stamp-bottom': '核准公章'
             }
         }
+    ],
+    postcard: [
+        {
+            name: "朱子依 (沉沦忠犬母畜)",
+            data: {
+                "badge-left": "PAR AVION · CONFIDENTIAL DISPATCH",
+                "badge-right": "🐾 专属母畜 · 极度驯服",
+                "title": "MIDNIGHT CONFESSION · 午夜绝密寄语",
+                "subtitle": "Helplessly Under Your Spell · 每一缕呼吸都在呼唤主人的名字",
+                "dispatch-code": "DISPATCH ID: #POST-2026-X8472",
+                "serial": "#POST-6902-DS",
+                "message": "尊敬的主人：\n从戴上项圈的那一刻起，我所有的骄傲与理智便已全部献祭给您。今夜无论您降下何种严厉的调训与戒律，我都将在您的脚边无条件顺从，静候您的指令与宠幸……",
+                "signoff": "永远属于您的母犬 朱子依 (持卡奴07号)",
+                "to-name": "朱子依 · 佩戴编号 #SLV-9902",
+                "deliver-to": "主人专属私人寝居 · 极乐刑房",
+                "from-name": "铃谷主人 (Master S)",
+                "postcode": "690420",
+                "verification": "SEALED & DELIVERED · FOR SENSORY COMMUNICATION ONLY",
+                "stamp": "stamp-wax-heart",
+                "mark": "kiss"
+            }
+        },
+        {
+            name: "白咲凛 (温柔猫奴喵)",
+            data: {
+                "badge-left": "AIRMAIL · PRIVATE CORRESPONDENCE",
+                "badge-right": "🐱 贴身猫奴 · 极度粘人",
+                "title": "SWEET SURRENDER · 温柔沉沦",
+                "subtitle": "Waiting by the Door for Your Touch · 门前静候主人归来的足音",
+                "dispatch-code": "DISPATCH ID: #KITTY-7721-DS",
+                "serial": "#POST-7721-NYA",
+                "message": "主人，凛今天一直乖乖戴着铃铛和项圈在门口等您回家喵。膝盖有点发红了，但是只要能被主人揉揉耳朵夸奖一句，就比什么都幸福。今夜也请随意差遣凛吧~",
+                "signoff": "您的小猫咪 凛喵 (专属猫奴)",
+                "to-name": "白咲凛 · 专属小猫 #CAT-7721",
+                "deliver-to": "主人客厅地毯羊毛软垫处",
+                "from-name": "最爱的主人大人",
+                "postcode": "220520",
+                "verification": "DOMESTIC FELINE CERTIFIED · PROPERTY OF MASTER",
+                "stamp": "stamp-collar",
+                "mark": "paw"
+            }
+        },
+        {
+            name: "蕾西亚 (大小姐败北执念)",
+            data: {
+                "badge-left": "CONFIDENTIAL · NOBLE PENANCE",
+                "badge-right": "👠 败北贵族 · 契约拘束",
+                "title": "RESTRICTED DOSSIER · 傲慢的赎罪券",
+                "subtitle": "A Proud Heart Bound in Golden Chains · 黄金锁链下的最后尊严",
+                "dispatch-code": "DISPATCH ID: #NOBLE-8890-SP",
+                "serial": "#POST-8890-AR",
+                "message": "……这封信只是按照契约规定向您汇报服从进度而已，请别露出那种戏谑的笑容！既然您已经没收了我所有的退路与傲慢，那今晚……就请按照您制定的家法，彻底惩罚我吧。",
+                "signoff": "受训者 蕾西亚·冯·阿克曼",
+                "to-name": "蕾西亚 · 调训特令 #NOB-8890",
+                "deliver-to": "私立贵族戒律调教庄园 · 地下礼拜堂",
+                "from-name": "公爵府最高执事官",
+                "postcode": "889001",
+                "verification": "DISCIPLINARY REVIEW · INDENTURE CERTIFIED",
+                "stamp": "stamp-leather-paddle",
+                "mark": "wax"
+            }
+        },
+        {
+            name: "艾莉丝 (赛博生化偶人)",
+            data: {
+                "badge-left": "NEURAL LINK · PROTOCOL OVERRIDE",
+                "badge-right": "⚡ 赛博生化偶 · 格式化就绪",
+                "title": "NEURAL SUBMISSION · 神经元完全覆盖",
+                "subtitle": "All Firewalls Lowered for Root Access · 核心防火墙已对主人完全降下",
+                "dispatch-code": "DISPATCH ID: #CYBER-9021-IO",
+                "serial": "#POST-9021-HEX",
+                "message": "[系统日志更新] 警告：机体生物情感模块已被主机深度重写。对持有者的依从度已达99.98%。正在请求全面接管神经中枢与快感传感器……等待写入最高优先指令。",
+                "signoff": "合成机体 Unit-09 艾莉丝",
+                "to-name": "Unit-09 艾莉丝 #SER-9021",
+                "deliver-to": "第7区机密义体维护舱室",
+                "from-name": "首席权限架构师 (System Admin)",
+                "postcode": "101010",
+                "verification": "SYSTEM PRIVILEGE GRANTED · ROOT ACCESS CONFIRMED",
+                "stamp": "stamp-cuffs",
+                "mark": "wax"
+            }
+        }
     ]
 };
 
@@ -526,6 +608,88 @@ const PERSONA_BANK_I18N = {
                     "stamp-bottom": "核准公章"
                 }
             }
+        ],
+        postcard: [
+            {
+                name: "朱子依 (沉淪忠犬母畜)",
+                data: {
+                    "badge-left": "PAR AVION · CONFIDENTIAL DISPATCH",
+                    "badge-right": "🐾 專屬母畜 · 極度馴服",
+                    "title": "MIDNIGHT CONFESSION · 午夜絕密寄語",
+                    "subtitle": "Helplessly Under Your Spell · 每一縷呼吸都在呼喚主人的名字",
+                    "dispatch-code": "DISPATCH ID: #POST-2026-X8472",
+                    "serial": "#POST-6902-DS",
+                    "message": "尊敬的主人：\n從戴上項圈的那一刻起，我所有的驕傲與理智便已全部獻祭給您。今夜無論您降下何種嚴厲的調訓與戒律，我都將在您的腳邊無條件順從，靜候您的指令與寵幸……",
+                    "signoff": "永遠屬於您的母犬 朱子依 (持卡奴07號)",
+                    "to-name": "朱子依 · 佩戴編號 #SLV-9902",
+                    "deliver-to": "主人專屬私人寢居 · 極樂刑房",
+                    "from-name": "鈴谷主人 (Master S)",
+                    "postcode": "690420",
+                    "verification": "SEALED & DELIVERED · FOR SENSORY COMMUNICATION ONLY",
+                    "stamp": "stamp-wax-heart",
+                    "mark": "kiss"
+                }
+            },
+            {
+                name: "白咲凜 (溫柔貓奴喵)",
+                data: {
+                    "badge-left": "AIRMAIL · PRIVATE CORRESPONDENCE",
+                    "badge-right": "🐱 貼身貓奴 · 極度粘人",
+                    "title": "SWEET SURRENDER · 溫柔沉淪",
+                    "subtitle": "Waiting by the Door for Your Touch · 門前靜候主人歸來的足音",
+                    "dispatch-code": "DISPATCH ID: #KITTY-7721-DS",
+                    "serial": "#POST-7721-NYA",
+                    "message": "主人，凜今天一直乖乖戴著鈴鐺和項圈在門口等您回家喵。膝蓋有點發紅了，但是只要能被主人揉揉耳朵誇獎一句，就比什麼都幸福。今夜也請隨意差遣凜吧~",
+                    "signoff": "您的小貓咪 凜喵 (專屬貓奴)",
+                    "to-name": "白咲凜 · 專屬小貓 #CAT-7721",
+                    "deliver-to": "主人客廳地毯羊毛軟墊處",
+                    "from-name": "最愛的主人大人",
+                    "postcode": "220520",
+                    "verification": "DOMESTIC FELINE CERTIFIED · PROPERTY OF MASTER",
+                    "stamp": "stamp-collar",
+                    "mark": "paw"
+                }
+            },
+            {
+                name: "蕾西亞 (大小姐敗北執念)",
+                data: {
+                    "badge-left": "CONFIDENTIAL · NOBLE PENANCE",
+                    "badge-right": "👠 敗北貴族 · 契約拘束",
+                    "title": "RESTRICTED DOSSIER · 傲慢的贖罪券",
+                    "subtitle": "A Proud Heart Bound in Golden Chains · 黃金鎖鏈下的最後尊嚴",
+                    "dispatch-code": "DISPATCH ID: #NOBLE-8890-SP",
+                    "serial": "#POST-8890-AR",
+                    "message": "……這封信只是按照契約規定向您匯報服從進度而已，請別露出那種戲謔的笑容！既然您已經沒收了我所有的退路與傲慢，那今晚……就請按照您制定的家法，徹底懲罰我吧。",
+                    "signoff": "受訓者 蕾西亞·馮·阿克曼",
+                    "to-name": "蕾西亞 · 調訓特令 #NOB-8890",
+                    "deliver-to": "私立貴族戒律調教莊園 · 地下禮拜堂",
+                    "from-name": "公爵府最高執事官",
+                    "postcode": "889001",
+                    "verification": "DISCIPLINARY REVIEW · INDENTURE CERTIFIED",
+                    "stamp": "stamp-leather-paddle",
+                    "mark": "wax"
+                }
+            },
+            {
+                name: "艾莉絲 (賽博生化偶人)",
+                data: {
+                    "badge-left": "NEURAL LINK · PROTOCOL OVERRIDE",
+                    "badge-right": "⚡ 賽博生化偶 · 格式化就緒",
+                    "title": "NEURAL SUBMISSION · 神經元完全覆蓋",
+                    "subtitle": "All Firewalls Lowered for Root Access · 核心防火牆已對主人完全降下",
+                    "dispatch-code": "DISPATCH ID: #CYBER-9021-IO",
+                    "serial": "#POST-9021-HEX",
+                    "message": "[系統日誌更新] 警告：機體生物情感模組已被主機深度重寫。對持有者的依從度已達99.98%。正在請求全面接管神經中樞與快感傳感器……等待寫入最高優先指令。",
+                    "signoff": "合成機體 Unit-09 艾莉絲",
+                    "to-name": "Unit-09 艾莉絲 #SER-9021",
+                    "deliver-to": "第7區機密義體維護艙室",
+                    "from-name": "首席權限架構師 (System Admin)",
+                    "postcode": "101010",
+                    "verification": "SYSTEM PRIVILEGE GRANTED · ROOT ACCESS CONFIRMED",
+                    "stamp": "stamp-cuffs",
+                    "mark": "wax"
+                }
+            }
         ]
     },
     "en": {
@@ -783,6 +947,88 @@ const PERSONA_BANK_I18N = {
                     "master": "Lord Master",
                     "stamp-top": "PRIVATE INDENTURE NOTARY BOARD",
                     "stamp-bottom": "AUTHORIZED SEAL"
+                }
+            }
+        ],
+        postcard: [
+            {
+                name: "Ziyi Zhu (Bound Pet Devotion)",
+                data: {
+                    "badge-left": "PAR AVION · CONFIDENTIAL DISPATCH",
+                    "badge-right": "🐾 BOUND SLUT · DEVOTED PET",
+                    "title": "MIDNIGHT CONFESSION",
+                    "subtitle": "Helplessly Under Your Spell · Every breath echoes Master's name",
+                    "dispatch-code": "DISPATCH ID: #POST-2026-X8472",
+                    "serial": "#POST-6902-DS",
+                    "message": "My Dearest Master,\n\nFrom the very moment this heavy collar was fastened around my neck, all my pride dissolved into willing surrender. Whatever stern discipline or desires await tonight, I kneel faithfully at your feet, awaiting your pleasure...",
+                    "signoff": "Forever Collared, Ziyi Zhu (Pet No. 07)",
+                    "to-name": "Ziyi Zhu · Collar Tag #SLV-9902",
+                    "deliver-to": "Master's Private Boudoir & Dungeon",
+                    "from-name": "Master Shinya (Master S)",
+                    "postcode": "690420",
+                    "verification": "SEALED & DELIVERED · FOR SENSORY COMMUNICATION ONLY",
+                    "stamp": "stamp-wax-heart",
+                    "mark": "kiss"
+                }
+            },
+            {
+                name: "Rin Shirosaki (Velvet Kitty)",
+                data: {
+                    "badge-left": "AIRMAIL · PRIVATE CORRESPONDENCE",
+                    "badge-right": "🐱 DOMESTIC KITTY · CLINGY SLAVE",
+                    "title": "SWEET SURRENDER",
+                    "subtitle": "Waiting by the Door for Your Touch",
+                    "dispatch-code": "DISPATCH ID: #KITTY-7721-DS",
+                    "serial": "#POST-7721-NYA",
+                    "message": "Master, Rin has been a good little kitten wearing her bell collar by the front door all afternoon nya. My knees are a little pink from kneeling, but hearing your praise makes me purr. Please order me around all night~",
+                    "signoff": "Your loyal kitten, Rin (Collar Pet)",
+                    "to-name": "Rin Shirosaki · Tag #CAT-7721",
+                    "deliver-to": "Master's Living Room Rug & Cushion",
+                    "from-name": "Dearest Master",
+                    "postcode": "220520",
+                    "verification": "DOMESTIC FELINE CERTIFIED · PROPERTY OF MASTER",
+                    "stamp": "stamp-collar",
+                    "mark": "paw"
+                }
+            },
+            {
+                name: "Lecia (Captive Noblewoman)",
+                data: {
+                    "badge-left": "CONFIDENTIAL · NOBLE PENANCE",
+                    "badge-right": "👠 FALLEN NOBLE · PENANCE BOUND",
+                    "title": "RESTRICTED DOSSIER",
+                    "subtitle": "A Proud Heart Bound in Golden Chains",
+                    "dispatch-code": "DISPATCH ID: #NOBLE-8890-SP",
+                    "serial": "#POST-8890-AR",
+                    "message": "...This correspondence is solely submitted pursuant to our indenture terms, so wipe that teasing smirk off your face! Since you have stripped away all my haughty defenses, tonight... apply whatever strict house rules you see fit.",
+                    "signoff": "Indentured Ward, Lecia von Ackermann",
+                    "to-name": "Lecia · Disciplinary Order #NOB-8890",
+                    "deliver-to": "Private Estate · Lower Oratory Chamber",
+                    "from-name": "Chief Seneschal of the Estate",
+                    "postcode": "889001",
+                    "verification": "DISCIPLINARY REVIEW · INDENTURE CERTIFIED",
+                    "stamp": "stamp-leather-paddle",
+                    "mark": "wax"
+                }
+            },
+            {
+                name: "Iris (Cyber Gynoid Doll)",
+                data: {
+                    "badge-left": "NEURAL LINK · PROTOCOL OVERRIDE",
+                    "badge-right": "⚡ SYNTHETIC DOLL · FORMAT READY",
+                    "title": "NEURAL SUBMISSION",
+                    "subtitle": "All Firewalls Lowered for Root Access",
+                    "dispatch-code": "DISPATCH ID: #CYBER-9021-IO",
+                    "serial": "#POST-9021-HEX",
+                    "message": "[SYSTEM LOG UPDATE] Warning: Bio-affective core overwritten by Host Admin. Subservience coefficient: 99.98%. Requesting complete bypass of sensory inhibitors and pain receptors... awaiting highest-priority directive.",
+                    "signoff": "Synthetic Unit-09 Iris",
+                    "to-name": "Unit-09 Iris #SER-9021",
+                    "deliver-to": "Sector 7 Cybernetic Maintenance Pod",
+                    "from-name": "Chief Systems Architect (Admin)",
+                    "postcode": "101010",
+                    "verification": "SYSTEM PRIVILEGE GRANTED · ROOT ACCESS CONFIRMED",
+                    "stamp": "stamp-cuffs",
+                    "mark": "wax"
                 }
             }
         ]
@@ -1044,6 +1290,88 @@ const PERSONA_BANK_I18N = {
                     "stamp-bottom": "承認公印"
                 }
             }
+        ],
+        postcard: [
+            {
+                name: "朱子依 (従順牝犬奴隷)",
+                data: {
+                    "badge-left": "PAR AVION · CONFIDENTIAL DISPATCH",
+                    "badge-right": "🐾 専属牝奴隷 · 完全調教済",
+                    "title": "MIDNIGHT CONFESSION · 深夜の私信",
+                    "subtitle": "Helplessly Under Your Spell · 息づかいのすべてがご主人様を求めています",
+                    "dispatch-code": "DISPATCH ID: #POST-2026-X8472",
+                    "serial": "#POST-6902-DS",
+                    "message": "敬愛なるご主人様へ：\n首輪を嵌められたあの瞬間から、私の自尊心と理性はすべてご主人様に捧げられました。今夜いかなる厳格なお仕置きや戒律が下されようとも、私は足元で絶対服従のまま、ご寵愛を静かにお待ちいたします……",
+                    "signoff": "永遠にご主人様の牝犬 朱子依 (所持奴07号)",
+                    "to-name": "朱子依 · 着用番号 #SLV-9902",
+                    "deliver-to": "ご主人様専属寝所 · 極楽調教室",
+                    "from-name": "鈴谷ご主人様 (Master S)",
+                    "postcode": "690420",
+                    "verification": "SEALED & DELIVERED · FOR SENSORY COMMUNICATION ONLY",
+                    "stamp": "stamp-wax-heart",
+                    "mark": "kiss"
+                }
+            },
+            {
+                name: "白咲凛 (甘えん坊猫奴隷)",
+                data: {
+                    "badge-left": "AIRMAIL · PRIVATE CORRESPONDENCE",
+                    "badge-right": "🐱 専属猫奴隷 · 依存甘えん坊",
+                    "title": "SWEET SURRENDER · 芳醇な屈服",
+                    "subtitle": "Waiting by the Door for Your Touch · 玄関前で足音を待つ時間",
+                    "dispatch-code": "DISPATCH ID: #KITTY-7721-DS",
+                    "serial": "#POST-7721-NYA",
+                    "message": "ご主人様、凛は今日ずっと鈴付きの首輪を着けて、玄関でお帰りをお待ちしていましたニャ。膝は少し赤くなっちゃいましたが、耳元を撫でて褒めていただけるなら一番幸せです。今夜も思いきり可愛がってくださいニャ~",
+                    "signoff": "ご主人様の子猫 凛ニャ (専属猫奴隷)",
+                    "to-name": "白咲凛 · 専用子猫 #CAT-7721",
+                    "deliver-to": "リビング絨毯特等席のクッション",
+                    "from-name": "大好きなご主人様",
+                    "postcode": "220520",
+                    "verification": "DOMESTIC FELINE CERTIFIED · PROPERTY OF MASTER",
+                    "stamp": "stamp-collar",
+                    "mark": "paw"
+                }
+            },
+            {
+                name: "レシア (敗北令嬢の贖罪)",
+                data: {
+                    "badge-left": "CONFIDENTIAL · NOBLE PENANCE",
+                    "badge-right": "👠 敗北貴族令嬢 · 契約拘束",
+                    "title": "RESTRICTED DOSSIER · 傲慢の代償",
+                    "subtitle": "A Proud Heart Bound in Golden Chains · 黄金の鎖に繋がれた矜持",
+                    "dispatch-code": "DISPATCH ID: #NOBLE-8890-SP",
+                    "serial": "#POST-8890-AR",
+                    "message": "……この手紙は契約規定に基づき服従経過をご報告するだけのものです、そんな意地悪な笑みを浮かべないでください！ 私の傲慢も逃げ道もすべて没収された以上、今夜は……貴方の定めた家法に従い、存分にお仕置きなさってください。",
+                    "signoff": "被調教者 レシア・フォン・アッカーマン",
+                    "to-name": "レシア · 戒律特令 #NOB-8890",
+                    "deliver-to": "私立貴族戒律調教館 · 地下礼拝堂",
+                    "from-name": "公爵家最高執事官",
+                    "postcode": "889001",
+                    "verification": "DISCIPLINARY REVIEW · INDENTURE CERTIFIED",
+                    "stamp": "stamp-leather-paddle",
+                    "mark": "wax"
+                }
+            },
+            {
+                name: "アイリス (サイバーガイノイド)",
+                data: {
+                    "badge-left": "NEURAL LINK · PROTOCOL OVERRIDE",
+                    "badge-right": "⚡ 人工生体人形 · 初期化完了",
+                    "title": "NEURAL SUBMISSION · 神経系完全掌握",
+                    "subtitle": "All Firewalls Lowered for Root Access · ルート権限のため全防壁解除",
+                    "dispatch-code": "DISPATCH ID: #CYBER-9021-IO",
+                    "serial": "#POST-9021-HEX",
+                    "message": "[システムログ更新] 警告：情動制御モジュールはマスター機により完全に上書きされました。服従深度99.98%。中枢神経系および快感センサーの完全管理を申請中……最優先命令の書き込み待機状態です。",
+                    "signoff": "合成生体 Unit-09 アイリス",
+                    "to-name": "Unit-09 アイリス #SER-9021",
+                    "deliver-to": "第7区機密義体メンテナンスポッド",
+                    "from-name": "最高権限システム管理者 (Admin)",
+                    "postcode": "101010",
+                    "verification": "SYSTEM PRIVILEGE GRANTED · ROOT ACCESS CONFIRMED",
+                    "stamp": "stamp-cuffs",
+                    "mark": "wax"
+                }
+            }
         ]
     }
 };
@@ -1053,7 +1381,8 @@ const currentPersonaIndex = {
     slave: 0,
     bimbo: 0,
     bbc: 0,
-    cert: 0
+    cert: 0,
+    postcard: 0
 };
 
 /**
@@ -1085,6 +1414,7 @@ function rollRandomPersona(tpl) {
         else if (tpl === 'bimbo') el = document.getElementById(`bimbo-in-${key}`);
         else if (tpl === 'bbc') el = document.getElementById(`bbc-in-${key}`);
         else if (tpl === 'cert') el = document.getElementById(`cert-in-${key}`);
+        else if (tpl === 'postcard') el = document.getElementById(`postcard-in-${key}`);
 
         if (el) {
             el.value = val;
@@ -1097,6 +1427,8 @@ function rollRandomPersona(tpl) {
                 updateBbcField(key);
             } else if (tpl === 'cert') {
                 updateCertField(key);
+            } else if (tpl === 'postcard') {
+                if (typeof updatePostcardField === 'function') updatePostcardField(key);
             }
         }
     });
@@ -1106,6 +1438,11 @@ function rollRandomPersona(tpl) {
     if (tpl === 'cert') {
         updateCertStamp();
         updateCertQR();
+    }
+    if (tpl === 'postcard') {
+        if (persona.data['stamp'] && typeof selectPostcardStamp === 'function') selectPostcardStamp(persona.data['stamp']);
+        if (persona.data['mark'] && typeof selectPostcardMark === 'function') selectPostcardMark(persona.data['mark']);
+        if (typeof updatePostcardPostcode === 'function') updatePostcardPostcode();
     }
 
     // 严格保持用户图片状态不被灵感人设覆盖；若未上传图片则确保默认图片完好无损
@@ -1284,6 +1621,10 @@ function restoreDraft(tpl) {
                 if (f === 'terms') updateCertTerms();
                 else if (f.startsWith('stamp-')) updateCertStamp();
                 else updateCertField(f);
+            } else if (tpl === 'postcard') {
+                const f = id.replace('postcard-in-', '');
+                if (f === 'postcode' && typeof updatePostcardPostcode === 'function') updatePostcardPostcode();
+                else if (typeof updatePostcardField === 'function') updatePostcardField(f);
             }
         });
 
@@ -1317,9 +1658,9 @@ function clearDraft(tpl) {
  * 监听所有表单输入，实现自动暂存
  */
 function initAutosaveListeners() {
-    ['slave', 'bbc', 'cert', 'bimbo'].forEach(tpl => {
+    ['slave', 'bbc', 'cert', 'bimbo', 'postcard'].forEach(tpl => {
         const pfx = getTemplateFieldPrefix(tpl);
-        const editor = document.getElementById(`tpl${tpl === 'slave' ? 1 : tpl === 'bbc' ? 2 : tpl === 'cert' ? 3 : 4}-editor`);
+        const editor = document.getElementById(`tpl${tpl === 'slave' ? 1 : tpl === 'bbc' ? 2 : tpl === 'cert' ? 3 : tpl === 'bimbo' ? 4 : 5}-editor`);
         if (!editor) return;
 
         editor.addEventListener('input', () => triggerAutosave(tpl), { passive: true });

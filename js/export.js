@@ -162,6 +162,11 @@ function openExportModal(dataUrl, filename, templateContext = {}) {
         const isBimboFront = (templateContext.template === 'bimbo' && templateContext.side === 'front');
         bimboTip.classList.toggle('hidden', !isBimboFront);
     }
+    const postcardTip = document.getElementById('modal-postcard-tip');
+    if (postcardTip) {
+        const isPostcardFront = (templateContext.template === 'postcard' && templateContext.side === 'front');
+        postcardTip.classList.toggle('hidden', !isPostcardFront);
+    }
 
     if (modal) modal.classList.remove('hidden');
 }
@@ -182,6 +187,10 @@ async function copyCardToClipboard(tpl) {
         node = (bimboCurrentSide === 'front')
             ? document.getElementById('bimbo-front-node')
             : document.getElementById('bimbo-back-node');
+    } else if (tpl === 'postcard' || currentTemplate === 'postcard') {
+        node = (typeof postcardCurrentSide !== 'undefined' && postcardCurrentSide === 'front')
+            ? document.getElementById('postcard-front-node')
+            : document.getElementById('postcard-back-node');
     } else {
         node = getActiveCardNode();
     }
@@ -189,6 +198,7 @@ async function copyCardToClipboard(tpl) {
     let bg = '#ffffff';
     if (tpl === 'slave' || currentTemplate === 'slave') bg = scCurrentBgColor;
     else if (tpl === 'bimbo' || currentTemplate === 'bimbo') bg = '#1f132b';
+    else if (tpl === 'postcard' || currentTemplate === 'postcard') bg = (typeof postcardCurrentSide !== 'undefined' && postcardCurrentSide === 'front') ? '#0f0b12' : '#fbf8f0';
 
     const overlay = document.getElementById('loading-overlay');
     const loadingText = document.getElementById('loading-text');
@@ -235,6 +245,7 @@ function quickExportActive() {
     if (currentTemplate === 'slave') exportSc(1);
     else if (currentTemplate === 'bbc') exportBbc(1);
     else if (currentTemplate === 'bimbo') exportBimbo(bimboCurrentSide, 1);
+    else if (currentTemplate === 'postcard') exportPostcard(postcardCurrentSide, 1);
     else exportCert(1);
 }
 
