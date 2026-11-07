@@ -40,7 +40,7 @@
             <div class="flex flex-col">
                 <div class="flex items-center gap-1.5">
                     <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide" data-i18n="header_title">卡片工坊</span>
-                    <span class="text-[10px] font-mono font-bold bg-pink-900/60 text-pink-300 border border-pink-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v1.2</span>
+                    <span class="text-[10px] font-mono font-bold bg-pink-900/60 text-pink-300 border border-pink-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v1.3</span>
                 </div>
                 <span class="text-[10px] text-gray-400 font-mono hidden md:inline" data-i18n="header_subtitle">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
@@ -268,6 +268,24 @@
                             <span class="w-2 h-2 rounded-full bg-red-500"></span> <span data-i18n="sec_photo_and_stickers">证件照与贴纸设置</span>
                         </h2>
                         <button type="button" onclick="resetScPhoto()" class="text-[11px] text-red-400 hover:text-red-300" data-i18n="btn_reset_photo">重置头像</button>
+                    </div>
+                    <!-- 内置高清预设头像 -->
+                    <div class="space-y-1.5 mb-2">
+                        <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_avatars">内置高清预设头像</label>
+                        <div class="grid grid-cols-3 gap-1.5">
+                            <button type="button" onclick="setScAvatarPreset('default')"
+                                class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                <span>👔</span> <span data-i18n="btn_preset_uniform">经典支配</span>
+                            </button>
+                            <button type="button" onclick="setScAvatarPreset('collar')"
+                                class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                <span>🖤</span> <span data-i18n="btn_preset_collar">冷艳项圈</span>
+                            </button>
+                            <button type="button" onclick="setScAvatarPreset('noir')"
+                                class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                <span>🕶️</span> <span data-i18n="btn_preset_noir">绝密档案</span>
+                            </button>
+                        </div>
                     </div>
                     <div>
                         <input type="file" id="sc-in-photo-file" accept="image/*" onchange="handleScPhotoUpload(event)"
@@ -618,6 +636,20 @@
                             <span class="w-2 h-2 rounded-full bg-purple-500"></span> <span data-i18n="sec_bbc_photo_adjust">右侧大幅证件照微调</span>
                         </h2>
                         <button type="button" onclick="resetBbcPhoto()" class="text-[11px] text-purple-400 hover:text-purple-300" data-i18n="btn_reset_photo">重置照片</button>
+                    </div>
+                    <!-- 内置高清预设头像 -->
+                    <div class="space-y-1.5 mb-2">
+                        <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_avatars">内置高清预设头像</label>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <button type="button" onclick="setBbcAvatarPreset('default')"
+                                class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                <span>♠️</span> <span data-i18n="btn_preset_bbc_default">经典黑桃</span>
+                            </button>
+                            <button type="button" onclick="setBbcAvatarPreset('collar')"
+                                class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                <span>🖤</span> <span data-i18n="btn_preset_collar">冷艳项圈</span>
+                            </button>
+                        </div>
                     </div>
                     <div>
                         <input type="file" id="bbc-in-photo-file" accept="image/*" onchange="handleBbcPhotoUpload(event)"
@@ -1034,6 +1066,20 @@
                         </h2>
                     </div>
                     <div>
+                        <!-- 内置高清预设头像 -->
+                        <div class="space-y-1.5 mb-2">
+                            <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_avatars">内置高清预设头像</label>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                <button type="button" onclick="setCertAvatarPreset('default')"
+                                    class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                    <span>📜</span> <span data-i18n="btn_preset_cert_default">公证档案</span>
+                                </button>
+                                <button type="button" onclick="setCertAvatarPreset('collar')"
+                                    class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                    <span>🖤</span> <span data-i18n="btn_preset_collar">冷艳项圈</span>
+                                </button>
+                            </div>
+                        </div>
                         <div class="flex items-center justify-between mb-1">
                             <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_photo_head">证件免冠照片</label>
                             <label class="text-xs text-gray-400 flex items-center gap-1.5 cursor-pointer">
@@ -1336,6 +1382,20 @@
                                 <span class="w-2 h-2 rounded-full bg-pink-500"></span> <span data-i18n="sec_bimbo_front_photo">左侧证件照微调</span>
                             </h2>
                             <button type="button" onclick="resetBimboPhoto()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_reset_photo">重置照片</button>
+                        </div>
+                        <!-- 内置高清预设写真与证物 -->
+                        <div class="space-y-1.5 mb-2">
+                            <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_bimbo_photos">内置高清预设写真与证物</label>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                <button type="button" onclick="setBimboPhotoPreset('default')"
+                                    class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                    <span>😈</span> <span data-i18n="btn_preset_bimbo_default">恶魔魅魔</span>
+                                </button>
+                                <button type="button" onclick="setBimboPhotoPreset('fallen')"
+                                    class="px-2 py-1.5 bg-gray-800 hover:bg-gray-700 active:scale-95 text-[11px] text-gray-200 rounded border border-gray-700 transition flex items-center justify-center gap-1">
+                                    <span>⛓️</span> <span data-i18n="btn_preset_bimbo_fallen">沦陷实录</span>
+                                </button>
+                            </div>
                         </div>
                         <div>
                             <input type="file" id="bimbo-in-photo-file" accept="image/*" onchange="handleBimboPhotoUpload(event)"
@@ -1673,7 +1733,7 @@
 
             <!-- 底部版本标识与离线指示 -->
             <div class="pt-3 pb-1 text-center text-[10px] text-gray-500 font-mono select-none border-t border-gray-900/80 mt-2">
-                <span>Proof Gen <strong class="text-pink-400">v1.2</strong> · Offline First</span>
+                <span>Proof Gen <strong class="text-pink-400">v1.3</strong> · Offline First</span>
             </div>
 
         </aside>
@@ -1720,6 +1780,16 @@
                             <img id="sc-card-bg-img" src="assets/IMG_20261031_200600_743.jpg" alt="Slave Card Background"
                                 class="w-full h-full object-cover transition-opacity duration-150"
                                 style="opacity: 0.4;">
+                        </div>
+
+                        <!-- 绝密档案水印层 -->
+                        <div class="sc-watermark-layer pointer-events-none select-none" aria-hidden="true">
+                            <div class="sc-watermark-row">RESTRICTED DOSSIER · CONFIDENTIAL PROPERTY · DO NOT DISCLOSE · OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE</div>
+                            <div class="sc-watermark-row">OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE · RESTRICTED DOSSIER · CONFIDENTIAL PROPERTY · DO NOT DISCLOSE</div>
+                            <div class="sc-watermark-row">CONFIDENTIAL PROPERTY · DO NOT DISCLOSE · OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE · RESTRICTED DOSSIER</div>
+                            <div class="sc-watermark-row">RESTRICTED DOSSIER · CONFIDENTIAL PROPERTY · DO NOT DISCLOSE · OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE</div>
+                            <div class="sc-watermark-row">OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE · RESTRICTED DOSSIER · CONFIDENTIAL PROPERTY · DO NOT DISCLOSE</div>
+                            <div class="sc-watermark-row">CONFIDENTIAL PROPERTY · DO NOT DISCLOSE · OFFICIAL SPECIMEN · CLASSIFIED ARCHIVE · RESTRICTED DOSSIER</div>
                         </div>
 
                         <!-- 1. 顶部黑色系统条 -->
@@ -1887,18 +1957,18 @@
                                 </span>
                             </div>
 
-                            <!-- 黑桃Q徽章艺术图 -->
+                            <!-- 黑桃Q徽章艺术图 (24K金晶质感矢量无白边) -->
                             <div class="w-[280px] my-1 flex items-center justify-center">
-                                <img src="assets/tpl2/crest.png" alt="Spade Crest" class="w-[270px] h-auto object-contain">
+                                <img src="assets/tpl2/crest_gold.svg" alt="Spade Crest" class="w-[270px] h-auto object-contain">
                             </div>
 
-                            <!-- 红色印章 + 条形码 -->
+                            <!-- 红色印章 + 条形码 (高清矢量排版) -->
                             <div class="w-full flex items-center justify-between px-2 pt-1">
                                 <div class="w-[130px] flex items-center justify-center">
-                                    <img src="assets/tpl2/stamp.png" alt="Stamp" class="w-[125px] h-auto object-contain">
+                                    <img src="assets/tpl2/stamp.svg" alt="Stamp" class="w-[125px] h-auto object-contain">
                                 </div>
                                 <div class="w-[135px] flex items-center justify-center">
-                                    <img src="assets/tpl2/barcode.png" alt="Barcode" class="w-[130px] h-auto object-contain">
+                                    <img src="assets/tpl2/barcode.svg" alt="Barcode" class="w-[130px] h-auto object-contain">
                                 </div>
                             </div>
                         </div>
@@ -2057,15 +2127,34 @@
                                 <p data-i18n="cert_card_label_footer">附注：复印无效，涂改无效 · 最终裁决权归属主人</p>
                             </div>
 
-                            <!-- 官方专用印章 (绝对定位，可旋转角度) -->
+                            <!-- 官方专用印章 (高精矢量防伪齿纹圈与立体刻面五角星) -->
                             <div id="cert-out-stamp-wrapper" class="absolute pointer-events-none select-none"
                                 style="bottom: -20px; right: 28px; transform: rotate(-14deg);">
                                 <svg width="240" height="240" viewBox="0 0 320 320"
-                                    style="color: #c92a2a; opacity: 0.88; filter: drop-shadow(0 1px 2px rgba(185, 28, 28, 0.15));">
-                                    <circle cx="160" cy="160" r="144" stroke="currentColor" stroke-width="7" fill="none" stroke-dasharray="2,1" />
-                                    <circle cx="160" cy="160" r="135" stroke="currentColor" stroke-width="2" fill="none" />
-                                    <polygon points="160,119 168.8,142.9 194.2,143.9 174.3,159.6 181.2,184.1 160,170 138.8,184.1 145.7,159.6 125.8,143.9 151.2,142.9"
-                                        fill="currentColor" />
+                                    style="color: #c92a2a; opacity: 0.90; filter: drop-shadow(0 1px 3px rgba(185, 28, 28, 0.22));">
+                                    <!-- 外圈防伪微缩点阵与双圈钢印轮廓 -->
+                                    <circle cx="160" cy="160" r="153" stroke="currentColor" stroke-width="2.5" stroke-dasharray="2.5,2.5" fill="none" opacity="0.85" />
+                                    <circle cx="160" cy="160" r="144" stroke="currentColor" stroke-width="5" fill="none" />
+                                    <circle cx="160" cy="160" r="137" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1.5,3" fill="none" opacity="0.8" />
+                                    <circle cx="160" cy="160" r="132" stroke="currentColor" stroke-width="1.8" fill="none" />
+
+                                    <!-- 立体刻面质感五角星 (双色切面无栅格锯齿) -->
+                                    <g id="cert-stamp-star">
+                                        <!-- 明面 (100% 饱和度) -->
+                                        <polygon points="160,155 160,123 167.6,144.5" fill="currentColor" />
+                                        <polygon points="160,155 190.4,145.1 172.4,159.0" fill="currentColor" />
+                                        <polygon points="160,155 178.8,180.9 160,168" fill="currentColor" />
+                                        <polygon points="160,155 141.2,180.9 147.6,159.0" fill="currentColor" />
+                                        <polygon points="160,155 129.6,145.1 152.4,144.5" fill="currentColor" />
+                                        <!-- 暗面 (微透折光质感) -->
+                                        <polygon points="160,155 160,123 152.4,144.5" fill="currentColor" opacity="0.62" />
+                                        <polygon points="160,155 190.4,145.1 167.6,144.5" fill="currentColor" opacity="0.62" />
+                                        <polygon points="160,155 178.8,180.9 172.4,159.0" fill="currentColor" opacity="0.62" />
+                                        <polygon points="160,155 141.2,180.9 160,168" fill="currentColor" opacity="0.62" />
+                                        <polygon points="160,155 129.6,145.1 147.6,159.0" fill="currentColor" opacity="0.62" />
+                                    </g>
+
+                                    <!-- 环形公章机构字样与底部专用章 -->
                                     <path id="cert-curveTextPath" d="M 68,212 A 106,106 0 1,1 252,212" fill="none" />
                                     <text font-size="19" font-weight="900" fill="currentColor" letter-spacing="3"
                                         font-family="'Noto Serif SC', serif">

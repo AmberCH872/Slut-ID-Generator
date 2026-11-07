@@ -123,6 +123,58 @@ function resetBimboPhoto() {
     updateBimboPhotoTransform();
 }
 
+function setBimboPhotoPreset(presetKey) {
+    const photo = document.getElementById('bimbo-out-photo');
+    const exhA = document.getElementById('bimbo-out-exh-a');
+    const exhB = document.getElementById('bimbo-out-exh-b');
+    const exhATitleIn = document.getElementById('bimbo-in-exh-a-title');
+    const exhBTitleIn = document.getElementById('bimbo-in-exh-b-title');
+    const exhATitleOut = document.getElementById('bimbo-out-exh-a-title');
+    const exhBTitleOut = document.getElementById('bimbo-out-exh-b-title');
+
+    if (presetKey === 'fallen') {
+        const photoPath = 'assets/tpl4/photo_fallen.png';
+        const exhAPath = 'assets/tpl4/exh_a_macro.png';
+        const exhBPath = 'assets/tpl4/exh_b_macro.png';
+        if (photo) photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(photoPath) : photoPath;
+        if (exhA) exhA.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(exhAPath) : exhAPath;
+        if (exhB) exhB.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(exhBPath) : exhBPath;
+        if (exhATitleIn) exhATitleIn.value = '项圈特征';
+        if (exhBTitleIn) exhBTitleIn.value = '拘束皮带';
+        if (exhATitleOut) exhATitleOut.textContent = '项圈特征';
+        if (exhBTitleOut) exhBTitleOut.textContent = '拘束皮带';
+    } else {
+        const photoPath = 'assets/tpl4/photo_default.png';
+        const exhAPath = 'assets/tpl4/exh_a.png';
+        const exhBPath = 'assets/tpl4/exh_b.png';
+        if (photo) photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(photoPath) : photoPath;
+        if (exhA) exhA.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(exhAPath) : exhAPath;
+        if (exhB) exhB.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(exhBPath) : exhBPath;
+        if (exhATitleIn) exhATitleIn.value = '胸部特征';
+        if (exhBTitleIn) exhBTitleIn.value = '腰腹大腿';
+        if (exhATitleOut) exhATitleOut.textContent = '胸部特征';
+        if (exhBTitleOut) exhBTitleOut.textContent = '腰腹大腿';
+    }
+
+    const zoom = document.getElementById('bimbo-in-zoom');
+    const panX = document.getElementById('bimbo-in-pan-x');
+    const panY = document.getElementById('bimbo-in-pan-y');
+    const rot = document.getElementById('bimbo-in-rot');
+    const file = document.getElementById('bimbo-in-photo-file');
+
+    if (zoom) zoom.value = '1.0';
+    if (panX) panX.value = '0';
+    if (panY) panY.value = '0';
+    if (rot) rot.value = '0';
+    if (file) file.value = '';
+    updateBimboPhotoTransform();
+
+    if (typeof showToast === 'function') {
+        showToast(typeof getI18n === 'function' ? getI18n('toast_preset_applied') : '✨ 预设头像与证物素材已成功应用！');
+    }
+    if (typeof triggerAutosave === 'function') triggerAutosave();
+}
+
 function handleBimboExhUpload(e, exh) {
     handleImageUpload(e, `bimbo-out-exh-${exh}`);
 }

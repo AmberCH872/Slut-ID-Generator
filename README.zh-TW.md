@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/版本-v1.2-blueviolet.svg?style=flat-square" alt="版本" />
+  <img src="https://img.shields.io/badge/版本-v1.3-blueviolet.svg?style=flat-square" alt="版本" />
   <img src="https://img.shields.io/badge/解析度-300_PPI_(1011×638)-red.svg?style=flat-square" alt="解析度" />
   <img src="https://img.shields.io/badge/隱私-100%25_純本地運行-brightgreen.svg?style=flat-square" alt="隱私安全" />
   <img src="https://img.shields.io/badge/多語言-中_|_繁_|_英_|_日-blue.svg?style=flat-square" alt="i18n" />
@@ -48,6 +48,8 @@
   側欄整合彈窗式靈感庫，收納四大風格情境（🐶 忠犬拘束、💧 極度調教、👠 長官淪陷、⚖️ 嚴酷規訓），支援四種語言之精緻文本。支援一鍵取代或追加填寫至誓約、格言、條款與細則中。
 - **🏷️ 復古檔案波浪郵戳與防偽鋼印貼紙系統 (v1.2)**：
   全新向量 SVG 鋼印防偽圖層，支援所有模版（模版 1-4）。提供**仿舊波浪消印郵戳**（四道平行波浪線 + 圓形機構日期戳）與**3D 浮雕立體鋼印**（36 齒精緻星芒邊框 + 浮雕立體光影濾鏡）。支援照片局部遮蓋、右下角、左下角等預設位置，並可自由平移、傾斜旋轉（-45° ~ +45°）、微調透明度與切換 4 款復古墨水配色。
+- **🖼️ 視覺資產重製與預設頭像庫 (v1.3)**：
+  前四個模板視覺元素全面高畫質化：模版 1 升級高密毫米坐標線網格與傾斜機密檔案浮水印層；模版 2 徹底重構黑桃 Q 徽章為 24K 晶體黃金向量（`crest_gold.svg`），印章與條碼升級為純向量 SVG；模版 3 引入復古歐洲雙層羊皮紙底紋（`parchment_texture.svg`）與齒輪點陣微縮防偽、立體刻面五角星公章；模版 4 新增淪陷實錄法醫微距證物附圖。全部 4 套模板增設內建高畫質預設證件照與寫真圖庫（經典支配、冷艷項圈、絕密檔案、淪陷實錄等），支援一鍵快選切換與微調復位。
 - **🎲 多語系靈感人設文案庫**：
   為 4 款模版各自準備了 4 種語言的靈感人設。點擊骰子（🎲）即可一鍵填入精彩設定，且絕不覆蓋當前已上傳的照片。
 - **💾 本地草稿自動暫存與復原**：

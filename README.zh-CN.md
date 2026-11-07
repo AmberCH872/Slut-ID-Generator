@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/版本-v1.2-blueviolet.svg?style=flat-square" alt="版本" />
+  <img src="https://img.shields.io/badge/版本-v1.3-blueviolet.svg?style=flat-square" alt="版本" />
   <img src="https://img.shields.io/badge/分辨率-300_PPI_(1011×638)-red.svg?style=flat-square" alt="分辨率" />
   <img src="https://img.shields.io/badge/隐私-100%25_纯本地运行-brightgreen.svg?style=flat-square" alt="隐私安全" />
   <img src="https://img.shields.io/badge/多语言-中_|_繁_|_英_|_日-blue.svg?style=flat-square" alt="i18n" />
@@ -48,6 +48,8 @@
   侧栏集成专属弹窗式灵感文库，覆盖四大特色分类（🐶 忠犬拘束、💧 极度调教、👠 长官沦陷、⚖️ 严酷规训），提供四种语言的高质量文案。支持一键直接替换或追加填入卡片誓词、语录、条款与规训细则中。
 - **🏷️ 复古档案波浪邮戳与防伪钢印贴纸系统 (v1.2)**：
   全新矢量 SVG 防伪与盖印层，全模版（模版 1-4）无缝覆盖。提供**破损做旧波浪邮戳**（四道平行波浪线 + 环形机构日期章）与**3D 浮雕压纹钢印**（36 齿精密花边星芒 + 立体光影滤镜）。支持照片遮盖、右下角、左下角预设位置，并可实时微调平移、旋转倾斜角度（-45° ~ +45°）、透明度与 4 种复古印泥色系。
+- **🖼️ 视觉资产重制与预设头像库 (v1.3)**：
+  前四个模板视觉元素全面高清化：模版 1 升级高密毫米坐标线网格与倾斜机密档案水印层；模版 2 彻底重构黑桃 Q 徽章为 24K 晶体黄金矢量（`crest_gold.svg`），印章与条码升级为纯矢量 SVG；模版 3 引入复古欧洲双层羊皮纸底纹（`parchment_texture.svg`）与齿轮点阵微缩防伪、立体刻面五角星公章；模版 4 新增沦陷实录法医微距证物附图。全部 4 套模板增设内置高清预设寸照与写真图库（经典支配、冷艳项圈、绝密档案、沦陷实录等），支持一键快选切换与微调复位。
 - **🎲 多语言灵感人设文案库**：
   针对 4 款模版分别内置四种语言的灵感人设文案。点击骰子（🎲）一键快速填入，同时保持当前照片完好无损。
 - **💾 本地草稿自动保存与恢复**：

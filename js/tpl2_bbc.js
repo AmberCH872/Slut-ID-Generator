@@ -134,6 +134,31 @@ function resetBbcPhoto() {
     updateBbcPhotoTransform();
 }
 
+function setBbcAvatarPreset(presetKey) {
+    const photo = document.getElementById('bbc-out-photo');
+    if (!photo) return;
+    let assetPath = 'assets/tpl2/photo_default.png';
+    if (presetKey === 'collar') {
+        assetPath = 'assets/tpl1/avatar_collar_uniform.png';
+    }
+    photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(assetPath) : assetPath;
+    const zoom = document.getElementById('bbc-in-zoom');
+    const panX = document.getElementById('bbc-in-pan-x');
+    const panY = document.getElementById('bbc-in-pan-y');
+    const rot = document.getElementById('bbc-in-rot');
+    const file = document.getElementById('bbc-in-photo-file');
+    if (zoom) zoom.value = '1.0';
+    if (panX) panX.value = '0';
+    if (panY) panY.value = '0';
+    if (rot) rot.value = '0';
+    if (file) file.value = '';
+    updateBbcPhotoTransform();
+    if (typeof showToast === 'function') {
+        showToast(typeof getI18n === 'function' ? getI18n('toast_preset_applied') : '✨ 预设头像与证物素材已成功应用！');
+    }
+    if (typeof triggerAutosave === 'function') triggerAutosave();
+}
+
 function selectBbcFont(fontKey) {
     const fonts = {
         sans: "'Noto Sans SC', sans-serif",

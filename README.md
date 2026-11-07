@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-v1.2-blueviolet.svg?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.3-blueviolet.svg?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/Resolution-300_PPI_(1011×638)-red.svg?style=flat-square" alt="Resolution" />
   <img src="https://img.shields.io/badge/Privacy-100%25_Client--Side-brightgreen.svg?style=flat-square" alt="Privacy" />
   <img src="https://img.shields.io/badge/i18n-zh--CN_|_zh--TW_|_en_|_ja-blue.svg?style=flat-square" alt="i18n" />
@@ -48,6 +48,8 @@ Built with pure vanilla web technologies (HTML5, TailwindCSS, ES6 modules), it r
   Integrated modal inspiration catalog organized across 4 distinct thematic scenarios (🐶 Loyal Pet, 💧 Extreme Toy, 👠 Officer Fall, ⚖️ Discipline Rules) in 4 languages. Instantly inserts or appends curated oaths, quotes, and disciplinary rules into card fields with a single click.
 - **🏷️ Archival Wave Postmark & 3D Embossed Notary Seal System (v1.2)**:
   Vector SVG overlay engine for all card templates. Features authentic Archival Cancellation Waves (4 distressed wavy lines + circular date/authority seal) and 3D Embossed Notary Seals (36-point scalloped starburst with relief lighting filters). Supports preset anchor positions, custom pan/tilt/rotation, adjustable opacity, and 4 vintage ink tones.
+- **🖼️ Remastered Visual Assets & Preset Photo Libraries (v1.3)**:
+  Complete visual overhaul for all 4 templates: Template 1 upgraded with high-density millimeter coordinate grid and classified watermark overlay; Template 2 completely rebuilt with a 24K crystal gold vector Queen of Spades crest (`crest_gold.svg`), zero-halo vector stamps, and vector barcodes; Template 3 infused with authentic European vintage parchment texture (`parchment_texture.svg`) and a remastered guilloche security seal with 3D faceted star; Template 4 equipped with macro forensic exhibit assets. All templates now feature one-click built-in HD avatar/exhibit preset switchers.
 - **🎲 Multi-Language Creative Persona Bank**:
   Preset personas for each template across all 4 languages. Roll the dice (🎲) to load creative presets without overwriting existing photos.
 - **💾 Automatic Draft Autosave & Restore**:

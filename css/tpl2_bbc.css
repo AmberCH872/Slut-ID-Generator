@@ -15,28 +15,46 @@
 .bbc-kink-item {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 14px;
+    gap: 7px;
+    font-size: 14.5px;
     font-weight: 800;
-    color: #111827;
-    line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    color: #0f172a;
+    line-height: 1.25;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 1.5px 4px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
 }
 
 .bbc-kink-box {
-    width: 18px;
-    height: 18px;
-    border: 2px solid #1f2937;
+    width: 17px;
+    height: 17px;
+    border: 2px solid #1e293b;
     background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 900;
-    color: #111827;
-    border-radius: 2px;
-    flex-shrink: 0; min-width: 18px; min-height: 18px;
+    color: #641b44;
+    border-radius: 3px;
+    flex-shrink: 0;
+    min-width: 17px;
+    min-height: 17px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.bbc-kink-box.checked {
+    background: #59173d;
+    border-color: #59173d;
+    color: #ffffff;
 }
 
 .bbc-kink-box.checked::after {
     content: "✓";
+    font-size: 11px;
+    font-weight: 900;
+    line-height: 1;
 }

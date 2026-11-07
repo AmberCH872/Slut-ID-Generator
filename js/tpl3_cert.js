@@ -218,6 +218,22 @@ function handleCertPhotoUpload(e) {
     handleImageUpload(e, 'cert-out-photo');
 }
 
+function setCertAvatarPreset(presetKey) {
+    const photoEl = document.getElementById('cert-out-photo');
+    if (!photoEl) return;
+    let assetPath = 'assets/tpl3/photo_default.png';
+    if (presetKey === 'collar') {
+        assetPath = 'assets/tpl1/avatar_collar_uniform.png';
+    }
+    photoEl.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(assetPath) : assetPath;
+    const file = document.getElementById('cert-in-photo-file');
+    if (file) file.value = '';
+    if (typeof showToast === 'function') {
+        showToast(typeof getI18n === 'function' ? getI18n('toast_preset_applied') : '✨ 预设头像与证物素材已成功应用！');
+    }
+    if (typeof triggerAutosave === 'function') triggerAutosave();
+}
+
 function handleCertQrUpload(e) {
     const file = e.target?.files?.[0];
     if (!file) return;

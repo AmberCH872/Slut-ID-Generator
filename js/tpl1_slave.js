@@ -64,6 +64,33 @@ function resetScPhoto() {
     updateScPhotoTransform();
 }
 
+function setScAvatarPreset(presetKey) {
+    const photo = document.getElementById('sc-out-photo');
+    if (!photo) return;
+    let assetPath = 'assets/tpl1/avatar_default.png';
+    if (presetKey === 'collar') {
+        assetPath = 'assets/tpl1/avatar_collar_uniform.png';
+    } else if (presetKey === 'noir') {
+        assetPath = 'assets/tpl1/avatar_censored_noir.png';
+    }
+    photo.src = (typeof getAssetDataUri === 'function') ? getAssetDataUri(assetPath) : assetPath;
+    const zoom = document.getElementById('sc-in-zoom');
+    const panX = document.getElementById('sc-in-pan-x');
+    const panY = document.getElementById('sc-in-pan-y');
+    const rot = document.getElementById('sc-in-rot');
+    const file = document.getElementById('sc-in-photo-file');
+    if (zoom) zoom.value = '1.0';
+    if (panX) panX.value = '0';
+    if (panY) panY.value = '0';
+    if (rot) rot.value = '0';
+    if (file) file.value = '';
+    updateScPhotoTransform();
+    if (typeof showToast === 'function') {
+        showToast(typeof getI18n === 'function' ? getI18n('toast_preset_applied') : '✨ 预设头像与证物素材已成功应用！');
+    }
+    if (typeof triggerAutosave === 'function') triggerAutosave();
+}
+
 function toggleScSticker() {
     const chk = document.getElementById('sc-in-sticker-enable');
     const sticker = document.getElementById('sc-out-sticker');

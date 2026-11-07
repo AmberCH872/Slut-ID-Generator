@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 65" width="150" height="65">
+  <defs>
+    <filter id="stampRough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  <g transform="rotate(-4 75 32)" filter="url(#stampRough)" opacity="0.9">
+    <!-- Double border rectangle stamp -->
+    <rect x="4" y="4" width="142" height="57" rx="5" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="140, 2, 40, 1" />
+    <rect x="8" y="8" width="134" height="49" rx="3" fill="none" stroke="#dc2626" stroke-width="1.2" />
+    <!-- Seal Japanese / Chinese Text -->
+    <text x="75" y="32" text-anchor="middle" font-family="'Noto Serif SC', 'Songti SC', serif" font-size="20" font-weight="900" fill="#dc2626" letter-spacing="6">検閱濟</text>
+    <text x="75" y="48" text-anchor="middle" font-family="'Noto Sans SC', sans-serif" font-size="9" font-weight="bold" fill="#dc2626" letter-spacing="2">SPECIAL DEVIL AUTH</text>
+  </g>
+</svg>

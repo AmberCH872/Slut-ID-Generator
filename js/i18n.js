@@ -14,6 +14,16 @@ let currentLang = 'en';
 
 const I18N_DICTIONARY = {
     "zh-CN": {
+        "lbl_preset_avatars": "内置高清预设头像",
+        "btn_preset_uniform": "经典支配",
+        "btn_preset_collar": "冷艳项圈",
+        "btn_preset_noir": "绝密档案",
+        "btn_preset_bbc_default": "经典黑桃",
+        "btn_preset_cert_default": "公证档案",
+        "lbl_preset_bimbo_photos": "内置高清预设写真与证物",
+        "btn_preset_bimbo_default": "恶魔魅魔",
+        "btn_preset_bimbo_fallen": "沦陷实录",
+        "toast_preset_applied": "✨ 预设头像与证物素材已成功应用！",
         "btn_inspire_lib": "灵感库",
         "btn_inspire_apply": "填入此句 ➔",
         "modal_inspire_title": "💡 誓言与条款灵感语录库",
@@ -303,6 +313,16 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用规范"
     },
     "zh-TW": {
+        "lbl_preset_avatars": "內建高畫質預設頭像",
+        "btn_preset_uniform": "經典支配",
+        "btn_preset_collar": "冷艷項圈",
+        "btn_preset_noir": "絕密檔案",
+        "btn_preset_bbc_default": "經典黑桃",
+        "btn_preset_cert_default": "公證檔案",
+        "lbl_preset_bimbo_photos": "內建高畫質預設寫真與證物",
+        "btn_preset_bimbo_default": "惡魔魅魔",
+        "btn_preset_bimbo_fallen": "淪陷實錄",
+        "toast_preset_applied": "✨ 預設頭像與證物素材已成功套用！",
         "btn_inspire_lib": "靈感庫",
         "btn_inspire_apply": "填入此句 ➔",
         "modal_inspire_title": "💡 誓言與條款靈感語錄庫",
@@ -592,6 +612,16 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES / 使用規範"
     },
     "en": {
+        "lbl_preset_avatars": "HD Preset Avatars",
+        "btn_preset_uniform": "Classic Suit",
+        "btn_preset_collar": "Choker Collar",
+        "btn_preset_noir": "Noir File",
+        "btn_preset_bbc_default": "Classic Spade",
+        "btn_preset_cert_default": "Official Record",
+        "lbl_preset_bimbo_photos": "HD Preset Photos & Exhibits",
+        "btn_preset_bimbo_default": "Devil Succubus",
+        "btn_preset_bimbo_fallen": "Fallen Exhibit",
+        "toast_preset_applied": "✨ Preset avatar & exhibit assets applied!",
         "btn_inspire_lib": "Inspiration",
         "btn_inspire_apply": "Apply Quote ➔",
         "modal_inspire_title": "💡 Dedication & Vow Inspiration Library",
@@ -881,6 +911,16 @@ const I18N_DICTIONARY = {
         "bimbo_card_label_rules_title": "USAGE RULES & CONDUCT"
     },
     "ja": {
+        "lbl_preset_avatars": "高画質プリセットアバター",
+        "btn_preset_uniform": "支配制服",
+        "btn_preset_collar": "冷艶首輪",
+        "btn_preset_noir": "極秘檔案",
+        "btn_preset_bbc_default": "スペード正装",
+        "btn_preset_cert_default": "公証檔案",
+        "lbl_preset_bimbo_photos": "高画質プリセット写真・証拠品",
+        "btn_preset_bimbo_default": "悪魔サキュバス",
+        "btn_preset_bimbo_fallen": "堕落実録",
+        "toast_preset_applied": "✨ プリセット写真・証拠品を適用しました！",
         "btn_inspire_lib": "名言集",
         "btn_inspire_apply": "適用する ➔",
         "modal_inspire_title": "💡 誓約・条項インスピレーション集",
