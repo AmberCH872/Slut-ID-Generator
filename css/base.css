@@ -113,6 +113,141 @@ input[type="range"] {
     transition: width 0.08s ease-out, height 0.08s ease-out;
 }
 
+/* Universal Photo Censorship & Privacy Stickers */
+.censor-sticker-container {
+    position: absolute;
+    pointer-events: none;
+    z-index: 20;
+    width: 112%;
+    left: -6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.05s ease-out, transform 0.05s ease-out;
+}
+
+/* Style 1: Classic Black Bar */
+.censor-style-bar {
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.35em;
+    height: 42px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Style 2: Pink Succubus / Bimbo Heart Mask */
+.censor-style-heart {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.95), rgba(244, 63, 94, 0.95));
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.25em;
+    border-radius: 9999px;
+    box-shadow: 0 4px 18px rgba(236, 72, 153, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    height: 40px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Style 3: Archival Barcode Caution Tape */
+.censor-style-barcode {
+    background: repeating-linear-gradient(45deg, #eab308, #eab308 12px, #000000 12px, #000000 24px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 0.3em;
+    height: 38px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    border-top: 2px solid #ca8a04;
+    border-bottom: 2px solid #ca8a04;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 0 5px #000;
+}
+
+/* Style 4: Pixelated Privacy Mosaic / Blur */
+.censor-style-mosaic {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px) contrast(1.4) brightness(0.9);
+    -webkit-backdrop-filter: blur(14px) contrast(1.4) brightness(0.9);
+    border: 1.5px dashed rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    height: 48px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Touch Rule-of-Thirds 9-Grid & Crosshairs Overlay */
+.touch-grid-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.touch-grid-line-h {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+.touch-grid-line-1 { top: 33.333%; }
+.touch-grid-line-2 { top: 66.666%; }
+
+.touch-grid-line-v {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+.touch-grid-line-3 { left: 33.333%; }
+.touch-grid-line-4 { left: 66.666%; }
+
+.touch-grid-crosshair {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.touch-grid-crosshair::before,
+.touch-grid-crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(239, 68, 68, 0.85);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+.touch-grid-crosshair::before {
+    left: 0; right: 0; top: 6px; height: 2px;
+}
+.touch-grid-crosshair::after {
+    top: 0; bottom: 0; left: 6px; width: 2px;
+}
+
 /* Mobile responsive rules (< 768px) */
 @media (max-width: 767px) {
     body[data-mobile-mode="edit"] #editor-aside {
@@ -121,18 +256,184 @@ input[type="range"] {
         height: 100% !important;
         padding-bottom: 96px !important; /* Space for floating bottom action bar */
     }
+    
+    /* PiP Floating Window in Edit Mode */
     body[data-mobile-mode="edit"] #canvas-area-wrapper {
+        display: flex !important;
+        position: fixed !important;
+        bottom: 66px !important;
+        right: 12px !important;
+        width: 180px !important;
+        height: 114px !important;
+        z-index: 45 !important;
+        border-radius: 12px !important;
+        border: 1.5px solid rgba(239, 68, 68, 0.75) !important;
+        background: rgba(3, 7, 18, 0.95) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        box-shadow: 0 10px 28px -4px rgba(0, 0, 0, 0.85), 0 0 18px rgba(239, 68, 68, 0.3) !important;
+        overflow: hidden !important;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, width 0.2s ease, height 0.2s ease !important;
+    }
+
+    /* In Expanded PiP: canvas-top-bar covers the window with zero background so buttons float anywhere */
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #canvas-top-bar {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 25 !important;
+        pointer-events: none !important;
+    }
+
+    /* Hide standard desktop toolbar elements in mobile edit PiP mode */
+    body[data-mobile-mode="edit"] #canvas-top-bar > div:not(#pip-controls-bar) {
         display: none !important;
     }
 
+    body[data-mobile-mode="edit"] #pip-controls-bar {
+        display: flex !important;
+    }
+
+    /* Preview card container completely fills the mini window edge-to-edge */
+    body[data-mobile-mode="edit"] #canvas-main {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* Expanded PiP: Hide title, buttons float at bottom-left and bottom-right respectively with light frosted-glass */
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #pip-title-badge {
+        display: none !important;
+    }
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #pip-controls-bar {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        pointer-events: none !important;
+    }
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #pip-btn-expand {
+        position: absolute !important;
+        bottom: 7px !important;
+        left: 7px !important;
+        display: flex !important;
+        pointer-events: auto !important;
+        z-index: 25 !important;
+    }
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #pip-btn-collapse {
+        position: absolute !important;
+        bottom: 7px !important;
+        right: 7px !important;
+        display: flex !important;
+        pointer-events: auto !important;
+        z-index: 25 !important;
+    }
+    body[data-mobile-mode="edit"]:not(.pip-collapsed) #pip-btn-flip {
+        position: absolute !important;
+        top: 7px !important;
+        left: 7px !important;
+        display: flex !important;
+        pointer-events: auto !important;
+        z-index: 25 !important;
+    }
+
+    /* Collapsed PiP State: Capsule Pill with '实时预览' title */
+    body[data-mobile-mode="edit"].pip-collapsed #canvas-area-wrapper {
+        width: auto !important;
+        min-width: 106px !important;
+        max-width: 144px !important;
+        height: 32px !important;
+        border-radius: 9999px !important;
+        padding: 0 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8) !important;
+        cursor: pointer !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #canvas-main {
+        display: none !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #canvas-top-bar {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: 32px !important;
+        min-height: 32px !important;
+        border-bottom: none !important;
+        border-radius: 9999px !important;
+        padding: 0 8px 0 10px !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+        pointer-events: auto !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #pip-controls-bar {
+        width: 100% !important;
+        height: 100% !important;
+        position: static !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 8px !important;
+        pointer-events: auto !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #pip-title-badge {
+        display: flex !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #pip-btn-flip,
+    body[data-mobile-mode="edit"].pip-collapsed #pip-btn-expand {
+        display: none !important;
+    }
+    body[data-mobile-mode="edit"].pip-collapsed #pip-btn-collapse {
+        display: flex !important;
+        position: static !important;
+        bottom: auto !important;
+        right: auto !important;
+        width: 22px !important;
+        height: 22px !important;
+        font-size: 11px !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        color: #18181b !important;
+        border-radius: 9999px !important;
+        pointer-events: auto !important;
+    }
+
+    /* Keyboard Avoidance in Mobile Edit Mode */
+    body[data-mobile-mode="edit"].keyboard-open #canvas-area-wrapper {
+        opacity: 0.2 !important;
+        pointer-events: none !important;
+        transform: translateY(12px) scale(0.92) !important;
+    }
+
+    /* Mobile Preview Mode (Full Screen) */
     body[data-mobile-mode="preview"] #editor-aside {
         display: none !important;
     }
     body[data-mobile-mode="preview"] #canvas-area-wrapper {
         display: flex !important;
+        position: static !important;
         width: 100% !important;
         height: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
         padding-bottom: 76px !important; /* Space for floating bottom action bar */
+    }
+    body[data-mobile-mode="preview"] #pip-controls-bar,
+    body[data-mobile-mode="preview"] #pip-btn-flip {
+        display: none !important;
     }
 
     /* Prevent iOS auto-zoom on input focus */
@@ -173,6 +474,29 @@ input[type="range"] {
     }
     #canvas-area-wrapper {
         display: flex !important;
+        position: relative !important;
+        width: auto !important;
+        height: 100% !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        bottom: auto !important;
+        right: auto !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+    }
+    #canvas-top-bar {
+        height: 3rem !important;
+        border-bottom: 1px solid rgba(31, 41, 55, 0.8) !important;
+        background: rgba(3, 7, 18, 0.95) !important;
+    }
+    #canvas-top-bar > div:not(#pip-controls-bar) {
+        display: flex !important;
+    }
+    #pip-controls-bar,
+    #pip-btn-flip {
+        display: none !important;
     }
     #mobile-bottom-bar {
         display: none !important;

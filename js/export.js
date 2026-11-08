@@ -90,6 +90,193 @@ function updatePhotoTransform(pfx) {
     }
 }
 
+// Universal Censorship & Privacy Stickers System
+const activeCensorStyles = {
+    sc: 'bar',
+    bbc: 'none',
+    bimbo: 'none',
+    postcard: 'none'
+};
+
+function setCensorStyle(pfx, style) {
+    activeCensorStyles[pfx] = style;
+    const sticker = document.getElementById(`${pfx}-out-sticker`);
+    const controls = document.getElementById(`${pfx}-censor-controls`);
+    const styleLabel = document.getElementById(`${pfx}-val-censor-style`);
+    const styles = ['none', 'bar', 'heart', 'barcode', 'mosaic'];
+
+    // Update button states
+    styles.forEach(s => {
+        const btn = document.getElementById(`${pfx}-censor-btn-${s}`);
+        if (!btn) return;
+        if (s === style) {
+            btn.className = 'py-1 px-1 rounded bg-red-600 text-white font-bold transition flex flex-col items-center justify-center shadow-sm';
+        } else {
+            btn.className = 'py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center';
+        }
+    });
+
+    if (styleLabel) {
+        const labelMap = {
+            none: typeof t === 'function' ? t('censor_style_none') : '无',
+            bar: typeof t === 'function' ? t('censor_style_bar') : '黑条',
+            heart: typeof t === 'function' ? t('censor_style_heart') : '心形',
+            barcode: typeof t === 'function' ? t('censor_style_barcode') : '条码',
+            mosaic: typeof t === 'function' ? t('censor_style_mosaic') : '模糊'
+        };
+        styleLabel.innerText = labelMap[style] || style;
+    }
+
+    if (controls) {
+        controls.classList.toggle('hidden', style === 'none');
+    }
+
+    if (sticker) {
+        if (style === 'none') {
+            sticker.style.display = 'none';
+        } else {
+            sticker.style.display = 'flex';
+            sticker.className = `censor-sticker-container censor-style-${style}`;
+            updateCensorText(pfx);
+            updateCensorTransform(pfx);
+        }
+    }
+
+    if (pfx === 'sc') {
+        const chk = document.getElementById('sc-in-sticker-enable');
+        if (chk) chk.checked = (style !== 'none');
+    }
+}
+
+function updateCensorText(pfx) {
+    const input = document.getElementById(`${pfx}-in-censor-text`) || document.getElementById(`${pfx}-in-sticker-text`);
+    const sticker = document.getElementById(`${pfx}-out-sticker`);
+    if (input && sticker) {
+        const style = activeCensorStyles[pfx] || 'bar';
+        if (style === 'mosaic') {
+            sticker.innerText = input.value || 'CLASSIFIED';
+        } else {
+            sticker.innerText = input.value;
+        }
+    }
+}
+
+function updateCensorTransform(pfx) {
+    const sticker = document.getElementById(`${pfx}-out-sticker`);
+    if (!sticker) return;
+    const ySlider = document.getElementById(`${pfx}-in-censor-y`) || document.getElementById(`${pfx}-in-sticker-y`);
+    const rotSlider = document.getElementById(`${pfx}-in-censor-rot`);
+    const yVal = document.getElementById(`${pfx}-val-censor-y`) || document.getElementById(`${pfx}-val-sticker-y`);
+    const rotVal = document.getElementById(`${pfx}-val-censor-rot`);
+
+    const y = ySlider ? parseInt(ySlider.value, 10) : 42;
+    const rot = rotSlider ? parseInt(rotSlider.value, 10) : -3;
+
+    sticker.style.top = `${y}%`;
+    sticker.style.transform = `rotate(${rot}deg)`;
+
+    if (yVal) yVal.innerText = `${y}%`;
+    if (rotVal) rotVal.innerText = `${rot}°`;
+}
+
+function initPhotoTouchGestures() {
+    const pfxs = ['sc', 'bbc', 'bimbo', 'postcard'];
+    pfxs.forEach(pfx => {
+        const img = document.getElementById(`${pfx}-out-photo`);
+        if (!img) return;
+        const container = img.parentElement;
+        if (!container) return;
+
+        let startX = 0, startY = 0;
+        let initialPanX = 0, initialPanY = 0;
+        let startDist = 0, initialZoom = 1.0;
+        let isTouching = false;
+        let gridTimer = null;
+
+        const showGrid = () => {
+            const grid = document.getElementById(`${pfx}-touch-grid`);
+            if (grid) {
+                grid.classList.remove('hidden');
+                grid.style.opacity = '1';
+                if (gridTimer) clearTimeout(gridTimer);
+            }
+        };
+
+        const hideGrid = () => {
+            const grid = document.getElementById(`${pfx}-touch-grid`);
+            if (grid) {
+                gridTimer = setTimeout(() => {
+                    grid.style.opacity = '0';
+                    setTimeout(() => grid.classList.add('hidden'), 300);
+                }, 600);
+            }
+        };
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isTouching = true;
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                initialPanX = parseInt(document.getElementById(`${pfx}-in-pan-x`)?.value || '0', 10);
+                initialPanY = parseInt(document.getElementById(`${pfx}-in-pan-y`)?.value || '0', 10);
+                showGrid();
+            } else if (e.touches.length === 2) {
+                isTouching = true;
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                startDist = Math.hypot(dx, dy);
+                initialZoom = parseFloat(document.getElementById(`${pfx}-in-zoom`)?.value || '1');
+                showGrid();
+            }
+        }, { passive: false });
+
+        container.addEventListener('touchmove', (e) => {
+            if (!isTouching) return;
+            e.preventDefault();
+
+            if (e.touches.length === 1) {
+                const dx = e.touches[0].clientX - startX;
+                const dy = e.touches[0].clientY - startY;
+                const panXInput = document.getElementById(`${pfx}-in-pan-x`);
+                const panYInput = document.getElementById(`${pfx}-in-pan-y`);
+                if (panXInput && panYInput) {
+                    const minX = parseInt(panXInput.min, 10) || -150;
+                    const maxX = parseInt(panXInput.max, 10) || 150;
+                    const minY = parseInt(panYInput.min, 10) || -150;
+                    const maxY = parseInt(panYInput.max, 10) || 150;
+
+                    panXInput.value = Math.max(minX, Math.min(maxX, Math.round(initialPanX + dx)));
+                    panYInput.value = Math.max(minY, Math.min(maxY, Math.round(initialPanY + dy)));
+                    updatePhotoTransform(pfx);
+                }
+            } else if (e.touches.length === 2) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const currentDist = Math.hypot(dx, dy);
+                if (startDist > 0) {
+                    const ratio = currentDist / startDist;
+                    const zoomInput = document.getElementById(`${pfx}-in-zoom`);
+                    if (zoomInput) {
+                        const minZ = parseFloat(zoomInput.min) || 0.5;
+                        const maxZ = parseFloat(zoomInput.max) || 2.5;
+                        zoomInput.value = Math.max(minZ, Math.min(maxZ, (initialZoom * ratio))).toFixed(2);
+                        updatePhotoTransform(pfx);
+                    }
+                }
+            }
+        }, { passive: false });
+
+        container.addEventListener('touchend', () => {
+            isTouching = false;
+            hideGrid();
+        });
+        container.addEventListener('touchcancel', () => {
+            isTouching = false;
+            hideGrid();
+        });
+    });
+}
+
 async function triggerExport(node, defaultFilename, scaleRatio, bgColor, originalWidth, originalHeight, templateContext = {}) {
     const overlay = document.getElementById('loading-overlay');
     const loadingText = document.getElementById('loading-text');

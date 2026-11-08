@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-v2.0-blueviolet.svg?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v2.1-blueviolet.svg?style=flat-square" alt="Version" />
   <img src="https://img.shields.io/badge/Resolution-300_PPI_(1011×638)-red.svg?style=flat-square" alt="Resolution" />
   <img src="https://img.shields.io/badge/Privacy-100%25_Client--Side-brightgreen.svg?style=flat-square" alt="Privacy" />
   <img src="https://img.shields.io/badge/i18n-zh--CN_|_zh--TW_|_en_|_ja-blue.svg?style=flat-square" alt="i18n" />
@@ -57,6 +57,10 @@ Built with pure vanilla web technologies (HTML5, TailwindCSS, ES6 modules), it r
   Preset personas for each template across all 4 languages. Roll the dice (🎲) to load creative presets without overwriting existing photos.
 - **💾 Automatic Draft Autosave & Restore**:
   Integrated debounced `localStorage` autosave engine to ensure form edits are seamlessly restored upon refreshing or returning.
+- **📱 Mobile PiP Live Preview & Adaptive Input Engine (v2.1)**:
+  On mobile devices in Edit mode, a floating Picture-in-Picture (PiP) mini card preview hovers smoothly in the bottom-right corner with zero-latency live visual sync as you type. Features single-tap expansion into full preview, one-tap flip for double-sided templates, and collapse into a sleek translucent pill. Intelligently dims and avoids obstruction when the on-screen virtual keyboard appears. Equipped with a **Character Limit & Overflow Warning Engine** that alerts users in real-time when inputs approach or exceed safe card layout thresholds.
+- **🛡️ Zero-Leakage Privacy Banner & Universal Censorship Studio (v2.1)**:
+  Every template's photo section features a reassuring `🛡️ 100% Client-Side Offline Processing · Physical Zero-Upload Guarantee` banner, eliminating user hesitation when importing private images. Features a **Rule-of-Thirds 9-Grid Overlay** with touch gesture panning and pinch-to-zoom for precise framing. The unified **Censorship & Privacy Studio** provides 5 censorship styles (Confidential Bar, Succubus Heart, Forensic Barcode, Gaussian Mosaic, and None) with customizable slogan text, horizontal/vertical pan offsets, and tilt rotation sliders.
 - **📱 Responsive Mobile & Touch Viewport**:
   Segmented switch between form editing and full-screen card preview on mobile devices, with smooth touch zoom and panning.
 

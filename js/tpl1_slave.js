@@ -93,33 +93,30 @@ function setScAvatarPreset(presetKey) {
 
 function toggleScSticker() {
     const chk = document.getElementById('sc-in-sticker-enable');
-    const sticker = document.getElementById('sc-out-sticker');
-    const ctrl = document.getElementById('sc-sticker-controls');
-    if (chk && sticker) {
-        sticker.style.display = chk.checked ? 'flex' : 'none';
-    }
-    if (chk && ctrl) {
-        ctrl.style.display = chk.checked ? 'grid' : 'none';
+    if (chk && typeof setCensorStyle === 'function') {
+        setCensorStyle('sc', chk.checked ? 'bar' : 'none');
     }
 }
 
 function updateScStickerText() {
-    const input = document.getElementById('sc-in-sticker-text');
-    const sticker = document.getElementById('sc-out-sticker');
-    if (input && sticker) {
-        sticker.innerText = input.value;
+    if (typeof updateCensorText === 'function') {
+        updateCensorText('sc');
+    } else {
+        const input = document.getElementById('sc-in-sticker-text');
+        const sticker = document.getElementById('sc-out-sticker');
+        if (input && sticker) sticker.innerText = input.value;
     }
 }
 
 function updateScStickerPos() {
-    const slider = document.getElementById('sc-in-sticker-y');
-    const sticker = document.getElementById('sc-out-sticker');
-    const valText = document.getElementById('sc-val-sticker-y');
-    if (slider && sticker) {
-        sticker.style.top = `${slider.value}%`;
-    }
-    if (slider && valText) {
-        valText.innerText = `${slider.value}%`;
+    if (typeof updateCensorTransform === 'function') {
+        updateCensorTransform('sc');
+    } else {
+        const slider = document.getElementById('sc-in-sticker-y');
+        const sticker = document.getElementById('sc-out-sticker');
+        const valText = document.getElementById('sc-val-sticker-y');
+        if (slider && sticker) sticker.style.top = `${slider.value}%`;
+        if (slider && valText) valText.innerText = `${slider.value}%`;
     }
 }
 

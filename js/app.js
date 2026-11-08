@@ -18,6 +18,15 @@ window.addEventListener('DOMContentLoaded', () => {
     updateBimboQR();
     initTouchZoom();
     setMobileMode('edit');
+    if (typeof initPhotoTouchGestures === 'function') {
+        initPhotoTouchGestures();
+    }
+    if (typeof initMobilePiP === 'function') {
+        initMobilePiP();
+    }
+    if (typeof initFieldOverflowWarnings === 'function') {
+        initFieldOverflowWarnings();
+    }
     if (typeof initI18n === 'function') {
         initI18n();
     }
@@ -138,6 +147,10 @@ function switchTemplate(tpl) {
     if (postcardSelector) {
         postcardSelector.classList.toggle('hidden', tpl !== 'postcard');
     }
+    const pipFlip = document.getElementById('pip-btn-flip');
+    if (pipFlip) {
+        pipFlip.classList.toggle('hidden', tpl !== 'bimbo' && tpl !== 'postcard');
+    }
 
     if (typeof loadDefaultPersonaForLanguage === 'function' && typeof currentLang !== 'undefined') {
         loadDefaultPersonaForLanguage(tpl, currentLang);
@@ -162,6 +175,8 @@ function switchTemplate(tpl) {
     fitCurrentScreen();
 }
 
+let isPipCollapsed = false;
+
 function setMobileMode(mode) {
     mobileMode = mode;
     document.body.setAttribute('data-mobile-mode', mode);
@@ -172,6 +187,8 @@ function setMobileMode(mode) {
     const btnPrev = document.getElementById('m-btn-preview');
     const floatBtnEdit = document.getElementById('m-float-btn-edit');
     const floatBtnPrev = document.getElementById('m-float-btn-prev');
+    const pipBar = document.getElementById('pip-controls-bar');
+    const pipFlip = document.getElementById('pip-btn-flip');
 
     const activeClasses = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-red-600 text-white shadow';
     const inactiveClasses = 'py-2 px-3 rounded-lg text-xs font-black transition flex items-center justify-center gap-1.5 bg-gray-900 text-gray-300 border border-gray-800';
@@ -179,16 +196,26 @@ function setMobileMode(mode) {
     const floatActive = 'flex-1 py-2 px-2.5 rounded-xl text-xs font-black transition flex items-center justify-center gap-1 bg-red-600 text-white shadow';
     const floatInactive = 'flex-1 py-2 px-2.5 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1 bg-gray-900 text-gray-300 border border-gray-800';
 
+    if (pipFlip) {
+        pipFlip.classList.toggle('hidden', currentTemplate !== 'bimbo' && currentTemplate !== 'postcard');
+    }
+
     if (mode === 'edit') {
         aside?.classList.remove('hidden');
-        area?.classList.add('hidden');
+        area?.classList.remove('hidden');
+        if (pipBar) {
+            pipBar.classList.toggle('hidden', window.innerWidth >= 768);
+        }
         if (btnEdit) btnEdit.className = activeClasses;
         if (btnPrev) btnPrev.className = inactiveClasses;
         if (floatBtnEdit) floatBtnEdit.className = floatActive;
         if (floatBtnPrev) floatBtnPrev.className = floatInactive;
+        fitCurrentScreen();
+        setTimeout(fitCurrentScreen, 50);
     } else {
         aside?.classList.add('hidden');
         area?.classList.remove('hidden');
+        if (pipBar) pipBar.classList.add('hidden');
         if (btnPrev) btnPrev.className = activeClasses;
         if (btnEdit) btnEdit.className = inactiveClasses;
         if (floatBtnPrev) floatBtnPrev.className = floatActive;
@@ -197,6 +224,135 @@ function setMobileMode(mode) {
         setTimeout(fitCurrentScreen, 30);
         setTimeout(fitCurrentScreen, 150);
     }
+}
+
+function togglePipCollapse(forceState) {
+    if (typeof forceState === 'boolean') {
+        isPipCollapsed = forceState;
+    } else {
+        isPipCollapsed = !isPipCollapsed;
+    }
+    document.body.classList.toggle('pip-collapsed', isPipCollapsed);
+    const btn = document.getElementById('pip-btn-collapse');
+    if (btn) {
+        btn.innerText = isPipCollapsed ? '➕' : '➖';
+        btn.title = isPipCollapsed ? '展开画中画' : '缩小折叠';
+    }
+    if (!isPipCollapsed) {
+        fitCurrentScreen();
+    }
+}
+
+function pipFlipActiveCard() {
+    if (currentTemplate === 'bimbo') {
+        if (typeof flipBimboCard === 'function') flipBimboCard();
+    } else if (currentTemplate === 'postcard') {
+        if (typeof flipPostcardCard === 'function') flipPostcardCard();
+    }
+}
+
+function initMobilePiP() {
+    const main = document.getElementById('canvas-main');
+    if (main) {
+        main.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && mobileMode === 'edit' && !isPipCollapsed) {
+                if (!e.target.closest('#canvas-top-bar') && !e.target.closest('#pip-btn-flip')) {
+                    setMobileMode('preview');
+                }
+            }
+        });
+    }
+
+    const wrapper = document.getElementById('canvas-area-wrapper');
+    if (wrapper) {
+        wrapper.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && mobileMode === 'edit' && isPipCollapsed) {
+                if (!e.target.closest('#pip-btn-collapse')) {
+                    togglePipCollapse(false);
+                }
+            }
+        });
+    }
+
+    const aside = document.getElementById('editor-aside');
+    if (aside) {
+        aside.addEventListener('focusin', () => {
+            if (window.innerWidth < 768 && mobileMode === 'edit') {
+                document.body.classList.add('keyboard-open');
+            }
+        });
+        aside.addEventListener('focusout', () => {
+            document.body.classList.remove('keyboard-open');
+        });
+    }
+}
+
+function initFieldOverflowWarnings() {
+    const fieldsWithThresholds = [
+        { id: 'sc-in-name', max: 14 },
+        { id: 'sc-in-badge-code', max: 20 },
+        { id: 'sc-in-vow', max: 55 },
+        { id: 'sc-in-prop-1', max: 24 },
+        { id: 'sc-in-prop-2', max: 24 },
+        { id: 'sc-in-prop-3', max: 24 },
+        { id: 'sc-in-prop-4', max: 24 },
+
+        { id: 'bbc-in-name', max: 14 },
+        { id: 'bbc-in-id-num', max: 22 },
+        { id: 'bbc-in-address', max: 32 },
+
+        { id: 'cert-in-name', max: 14 },
+        { id: 'cert-in-master', max: 14 },
+        { id: 'cert-in-code', max: 22 },
+
+        { id: 'bimbo-in-name', max: 14 },
+        { id: 'bimbo-in-code', max: 20 },
+        { id: 'bimbo-in-title', max: 16 },
+
+        { id: 'postcard-in-front-title', max: 16 },
+        { id: 'postcard-in-recipient', max: 14 },
+        { id: 'postcard-in-sender', max: 14 }
+    ];
+
+    fieldsWithThresholds.forEach(({ id, max }) => {
+        const input = document.getElementById(id);
+        if (!input) return;
+
+        let badge = document.getElementById(`${id}-overflow-badge`);
+        if (!badge) {
+            badge = document.createElement('div');
+            badge.id = `${id}-overflow-badge`;
+            badge.className = 'text-[10px] font-mono mt-0.5 text-right transition-colors duration-150 text-gray-500 hidden';
+            if (input.nextSibling) {
+                input.parentNode.insertBefore(badge, input.nextSibling);
+            } else {
+                input.parentNode.appendChild(badge);
+            }
+        }
+
+        const updateCount = () => {
+            const len = input.value ? input.value.length : 0;
+            if (len === 0) {
+                badge.innerText = '';
+                badge.classList.add('hidden');
+                return;
+            }
+            badge.classList.remove('hidden');
+            if (len <= max * 0.85) {
+                badge.className = 'text-[10px] font-mono mt-0.5 text-right transition-colors text-gray-500';
+                badge.innerText = `${len}/${max}`;
+            } else if (len <= max) {
+                badge.className = 'text-[10px] font-mono mt-0.5 text-right transition-colors text-amber-400 font-bold';
+                badge.innerText = `${len}/${max} (${typeof t === 'function' ? t('overflow_warn_near') : '接近上限'})`;
+            } else {
+                badge.className = 'text-[10px] font-mono mt-0.5 text-right transition-colors text-red-400 font-black animate-pulse';
+                badge.innerText = `${len}/${max} (${typeof t === 'function' ? t('overflow_warn_exceeded') : '已超长可能溢出'})`;
+            }
+        };
+
+        input.addEventListener('input', updateCount);
+        input.addEventListener('focus', updateCount);
+    });
 }
 
 let touchStartDist = 0;
@@ -277,6 +433,17 @@ function fitCurrentScreen() {
         return;
     }
 
+    const [cardW, cardH] = getActiveCardDimensions();
+
+    // In mobile edit PiP mode, let preview card fill the mini window edge-to-edge
+    if (window.innerWidth < 768 && mobileMode === 'edit' && !isPipCollapsed) {
+        const scaleW = w / cardW;
+        const scaleH = h / cardH;
+        currentScale = Math.min(scaleW, scaleH);
+        applyCurrentScale();
+        return;
+    }
+
     const style = window.getComputedStyle(main);
     const padL = parseFloat(style.paddingLeft) || 0;
     const padR = parseFloat(style.paddingRight) || 0;
@@ -284,15 +451,14 @@ function fitCurrentScreen() {
     const padB = parseFloat(style.paddingBottom) || 0;
 
     // 8px breathing room prevents subpixel rounding jitter
-    const availableW = Math.max(160, w - padL - padR - 8);
-    const availableH = Math.max(160, h - padT - padB - 8);
+    const availableW = Math.max(100, w - padL - padR - 8);
+    const availableH = Math.max(60, h - padT - padB - 8);
 
-    const [cardW, cardH] = getActiveCardDimensions();
     const scaleW = availableW / cardW;
     const scaleH = availableH / cardH;
 
     const idealScale = Math.min(scaleW, scaleH);
-    currentScale = Math.max(0.18, Math.min(1.0, Math.floor(idealScale * 100) / 100));
+    currentScale = Math.max(0.08, Math.min(1.0, Math.floor(idealScale * 100) / 100));
     applyCurrentScale();
 }
 

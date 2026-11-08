@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/版本-v2.0-blueviolet.svg?style=flat-square" alt="版本" />
+  <img src="https://img.shields.io/badge/版本-v2.1-blueviolet.svg?style=flat-square" alt="版本" />
   <img src="https://img.shields.io/badge/解析度-300_PPI_(1011×638)-red.svg?style=flat-square" alt="解析度" />
   <img src="https://img.shields.io/badge/隱私-100%25_純本地運行-brightgreen.svg?style=flat-square" alt="隱私安全" />
   <img src="https://img.shields.io/badge/多語言-中_|_繁_|_英_|_日-blue.svg?style=flat-square" alt="i18n" />
@@ -57,6 +57,10 @@
   為 4 款模版各自準備了 4 種語言的靈感人設。點擊骰子（🎲）即可一鍵填入精彩設定，且絕不覆蓋當前已上傳的照片。
 - **💾 本地草稿自動暫存與復原**：
   內建防抖 LocalStorage 暫存引擎，表單編輯即時自動記錄，重新整理或回訪時能自動還原上次草稿。
+- **📱 行動端子母畫面即時微縮預覽與自適應排版引擎 (v2.1)**：
+  行動端支援全新的【子母畫面（PiP）浮動微縮卡片】即時預覽機制。在填寫表單時，右下角懸浮半透明 mini 卡片預覽窗，表單輸入即時同步渲染；支援點擊一鍵切換全螢幕預覽、雙面卡片即時翻轉、以及一鍵收起為極簡半透明膠囊 Pill；當虛擬鍵盤喚起時自動半透明避讓以防遮擋輸入。同時搭載**字元上限與溢出預警引擎**，核心欄位即時提示接近或超出字數上限，杜絕排版破版。
+- **🛡️ 純本地零洩漏隱私橫幅與多風格隱私遮擋工坊 (v2.1)**：
+  全模板照片位均常駐醒目「🛡️ 100% 純本地離線處理 · 物理級零上傳隱私保障」安全盾牌橫幅，徹底打消私密照片外洩顧慮。整合**九宮格黃金分割對齊構圖線**（Rule-of-Thirds 9-Grid Overlay）與手勢觸控平移/雙指捏合縮放；全模板通用**隱私遮擋工坊（Censorship & Privacy Studio）**，支援機密黑條（Bar）、魅魔心形（Heart）、檔案條碼（Barcode）、高斯馬賽克模糊（Mosaic）與無遮擋 5 種風格，配備自訂標語文字、水平/垂直位移與傾斜旋轉微調滑桿。
 - **📱 行動端自適應視口與手勢縮放**：
   手機端支援【表單填寫】與【即時預覽】快速切換，支援手勢平移與雙指捏合縮放畫布。
 

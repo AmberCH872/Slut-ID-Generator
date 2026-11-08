@@ -41,7 +41,7 @@
             <div class="flex flex-col">
                 <div class="flex items-center gap-1.5">
                     <span class="font-black text-white text-sm sm:text-base leading-tight tracking-wide" data-i18n="header_title">卡片工坊</span>
-                    <span class="text-[10px] font-mono font-bold bg-amber-900/60 text-amber-300 border border-amber-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v2.0</span>
+                    <span class="text-[10px] font-mono font-bold bg-amber-900/60 text-amber-300 border border-amber-700/50 px-1.5 py-0.5 rounded-md shadow-sm">v2.1</span>
                 </div>
                 <span class="text-[10px] text-gray-400 font-mono hidden md:inline" data-i18n="header_subtitle">标准组件化 · 极清离线制图 · 手机/电脑自适应</span>
             </div>
@@ -275,6 +275,21 @@
                         </h2>
                         <button type="button" onclick="resetScPhoto()" class="text-[11px] text-red-400 hover:text-red-300" data-i18n="btn_reset_photo">重置头像</button>
                     </div>
+
+                    <!-- 物理级零上传隐私保障提示 -->
+                    <div class="bg-gradient-to-r from-emerald-950/70 via-gray-900 to-emerald-950/70 border border-emerald-600/40 rounded-xl p-2.5 flex items-start gap-2 shadow-sm text-xs">
+                        <span class="text-base leading-none">🛡️</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-bold text-emerald-300 flex items-center gap-1.5 flex-wrap">
+                                <span data-i18n="sec_privacy_title">100% 纯本地离线处理 · 物理级零上传隐私保障</span>
+                                <span class="text-[10px] bg-emerald-900/80 text-emerald-200 border border-emerald-700/60 px-1 py-0.2 rounded font-mono" data-i18n="sec_privacy_offline_tag">离线安全</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 mt-0.5 leading-relaxed" data-i18n="sec_privacy_desc">
+                                所有真人自拍、私密照片与定制文字均在您的浏览器本地内存中合成，绝不经过任何公网服务器，断网亦可无忧使用。
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- 内置高清预设头像 -->
                     <div class="space-y-1.5 mb-2">
                         <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_avatars">内置高清预设头像</label>
@@ -294,8 +309,10 @@
                         </div>
                     </div>
                     <div>
+                        <label class="block text-[11px] font-medium text-gray-400 mb-1" data-i18n="lbl_upload_photo_selfie">📷 上传本地 / 真人自拍照片</label>
                         <input type="file" id="sc-in-photo-file" accept="image/*" onchange="handleScPhotoUpload(event)"
                             class="block w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
+                        <div class="text-[10px] text-gray-400 mt-1" data-i18n="lbl_touch_crop_hint">💡 触控提示：支持双指捏合缩放、单指拖拽平移</div>
                     </div>
 
                     <!-- 头像微调滑块 -->
@@ -334,26 +351,62 @@
                         </div>
                     </div>
 
-                    <!-- 遮眼黑条贴纸开关 -->
+                    <!-- 情趣隐私打码与贴纸套件 -->
                     <div class="pt-2 border-t border-gray-800 space-y-2">
-                        <label class="text-xs font-medium text-gray-300 flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="sc-in-sticker-enable" checked onchange="toggleScSticker()"
-                                class="rounded bg-gray-950 border-gray-700 text-red-600 focus:ring-0">
-                            <span data-i18n="lbl_sticker_censor_bar">启用眼睛处遮罩黑条贴纸</span>
-                        </label>
-                        <div id="sc-sticker-controls" class="grid grid-cols-2 gap-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                                <span>🎭</span> <span data-i18n="sec_censorship_studio">情趣隐私打码与贴纸套件</span>
+                            </label>
+                            <span class="text-[10px] text-amber-400 font-mono" id="sc-val-censor-style">黑条</span>
+                        </div>
+                        <input type="checkbox" id="sc-in-sticker-enable" checked class="hidden">
+                        
+                        <div class="grid grid-cols-5 gap-1 text-[10px]">
+                            <button type="button" onclick="setCensorStyle('sc', 'none')" id="sc-censor-btn-none"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>🚫</span><span class="scale-90" data-i18n="censor_style_none">无</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('sc', 'bar')" id="sc-censor-btn-bar"
+                                class="py-1 px-1 rounded bg-red-600 text-white font-bold transition flex flex-col items-center justify-center shadow-sm">
+                                <span>🖤</span><span class="scale-90" data-i18n="censor_style_bar">黑条</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('sc', 'heart')" id="sc-censor-btn-heart"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>💖</span><span class="scale-90" data-i18n="censor_style_heart">心形</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('sc', 'barcode')" id="sc-censor-btn-barcode"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>📦</span><span class="scale-90" data-i18n="censor_style_barcode">条码</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('sc', 'mosaic')" id="sc-censor-btn-mosaic"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>🌫️</span><span class="scale-90" data-i18n="censor_style_mosaic">模糊</span>
+                            </button>
+                        </div>
+
+                        <div id="sc-censor-controls" class="space-y-2 bg-gray-950/70 p-2 rounded-lg border border-gray-800/80">
                             <div>
-                                <label class="block text-[11px] text-gray-400" data-i18n="lbl_sticker_text">贴纸文字</label>
+                                <label class="block text-[11px] text-gray-400" data-i18n="lbl_censor_text">贴纸文字</label>
                                 <input type="text" id="sc-in-sticker-text" value="雌  犬" oninput="updateScStickerText()"
-                                    class="w-full bg-gray-950 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                    class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
                             </div>
-                            <div>
-                                <div class="flex justify-between text-[11px] text-gray-400">
-                                    <span data-i18n="lbl_sticker_pos_y">垂直高度位置</span>
-                                    <span id="sc-val-sticker-y">45%</span>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_pos_y">垂直位置 (Y)</span>
+                                        <span id="sc-val-sticker-y">45%</span>
+                                    </div>
+                                    <input type="range" id="sc-in-sticker-y" min="15" max="85" step="1" value="45" oninput="updateScStickerPos()"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-red-500 mt-1">
                                 </div>
-                                <input type="range" id="sc-in-sticker-y" min="15" max="85" step="1" value="45" oninput="updateScStickerPos()"
-                                    class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-red-500 mt-2">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_rot">旋转角度</span>
+                                        <span id="sc-val-censor-rot">-3°</span>
+                                    </div>
+                                    <input type="range" id="sc-in-censor-rot" min="-30" max="30" step="1" value="-3" oninput="updateScStickerPos()"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-red-500 mt-1">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -643,6 +696,21 @@
                         </h2>
                         <button type="button" onclick="resetBbcPhoto()" class="text-[11px] text-purple-400 hover:text-purple-300" data-i18n="btn_reset_photo">重置照片</button>
                     </div>
+
+                    <!-- 物理级零上传隐私保障提示 -->
+                    <div class="bg-gradient-to-r from-emerald-950/70 via-gray-900 to-emerald-950/70 border border-emerald-600/40 rounded-xl p-2.5 flex items-start gap-2 shadow-sm text-xs">
+                        <span class="text-base leading-none">🛡️</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-bold text-emerald-300 flex items-center gap-1.5 flex-wrap">
+                                <span data-i18n="sec_privacy_title">100% 纯本地离线处理 · 物理级零上传隐私保障</span>
+                                <span class="text-[10px] bg-emerald-900/80 text-emerald-200 border border-emerald-700/60 px-1 py-0.2 rounded font-mono" data-i18n="sec_privacy_offline_tag">离线安全</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 mt-0.5 leading-relaxed" data-i18n="sec_privacy_desc">
+                                所有真人自拍、私密照片与定制文字均在您的浏览器本地内存中合成，绝不经过任何公网服务器，断网亦可无忧使用。
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- 内置高清预设头像 -->
                     <div class="space-y-1.5 mb-2">
                         <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_avatars">内置高清预设头像</label>
@@ -658,8 +726,10 @@
                         </div>
                     </div>
                     <div>
+                        <label class="block text-[11px] font-medium text-gray-400 mb-1" data-i18n="lbl_upload_photo_selfie">📷 上传本地 / 真人自拍照片</label>
                         <input type="file" id="bbc-in-photo-file" accept="image/*" onchange="handleBbcPhotoUpload(event)"
                             class="block w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
+                        <div class="text-[10px] text-gray-400 mt-1" data-i18n="lbl_touch_crop_hint">💡 触控提示：支持双指捏合缩放、单指拖拽平移</div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 pt-1">
                         <div>
@@ -693,6 +763,65 @@
                             </div>
                             <input type="range" id="bbc-in-rot" min="-180" max="180" step="1" value="0" oninput="updateBbcPhotoTransform()"
                                 class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                        </div>
+                    </div>
+
+                    <!-- 情趣隐私打码与贴纸套件 -->
+                    <div class="pt-2 border-t border-gray-800 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                                <span>🎭</span> <span data-i18n="sec_censorship_studio">情趣隐私打码与贴纸套件</span>
+                            </label>
+                            <span class="text-[10px] text-gray-400 font-mono" id="bbc-val-censor-style">无</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-5 gap-1 text-[10px]">
+                            <button type="button" onclick="setCensorStyle('bbc', 'none')" id="bbc-censor-btn-none"
+                                class="py-1 px-1 rounded bg-red-600 text-white font-bold transition flex flex-col items-center justify-center shadow-sm">
+                                <span>🚫</span><span class="scale-90" data-i18n="censor_style_none">无</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('bbc', 'bar')" id="bbc-censor-btn-bar"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>🖤</span><span class="scale-90" data-i18n="censor_style_bar">黑条</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('bbc', 'heart')" id="bbc-censor-btn-heart"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>💖</span><span class="scale-90" data-i18n="censor_style_heart">心形</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('bbc', 'barcode')" id="bbc-censor-btn-barcode"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>📦</span><span class="scale-90" data-i18n="censor_style_barcode">条码</span>
+                            </button>
+                            <button type="button" onclick="setCensorStyle('bbc', 'mosaic')" id="bbc-censor-btn-mosaic"
+                                class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                <span>🌫️</span><span class="scale-90" data-i18n="censor_style_mosaic">模糊</span>
+                            </button>
+                        </div>
+
+                        <div id="bbc-censor-controls" class="space-y-2 bg-gray-950/70 p-2 rounded-lg border border-gray-800/80 hidden">
+                            <div>
+                                <label class="block text-[11px] text-gray-400" data-i18n="lbl_censor_text">贴纸文字</label>
+                                <input type="text" id="bbc-in-censor-text" value="Q♠ SUB" oninput="updateCensorText('bbc')"
+                                    class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_pos_y">垂直位置 (Y)</span>
+                                        <span id="bbc-val-censor-y">42%</span>
+                                    </div>
+                                    <input type="range" id="bbc-in-censor-y" min="15" max="85" step="1" value="42" oninput="updateCensorTransform('bbc')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500 mt-1">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_rot">旋转角度</span>
+                                        <span id="bbc-val-censor-rot">-3°</span>
+                                    </div>
+                                    <input type="range" id="bbc-in-censor-rot" min="-30" max="30" step="1" value="-3" oninput="updateCensorTransform('bbc')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-purple-500 mt-1">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -1071,6 +1200,21 @@
                             <span class="w-2 h-2 rounded-full bg-blue-500"></span> <span data-i18n="sec_cert_photo_qr_seal">证件照、二维码与印章</span>
                         </h2>
                     </div>
+
+                    <!-- 物理级零上传隐私保障提示 -->
+                    <div class="bg-gradient-to-r from-emerald-950/70 via-gray-900 to-emerald-950/70 border border-emerald-600/40 rounded-xl p-2.5 flex items-start gap-2 shadow-sm text-xs">
+                        <span class="text-base leading-none">🛡️</span>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-bold text-emerald-300 flex items-center gap-1.5 flex-wrap">
+                                <span data-i18n="sec_privacy_title">100% 纯本地离线处理 · 物理级零上传隐私保障</span>
+                                <span class="text-[10px] bg-emerald-900/80 text-emerald-200 border border-emerald-700/60 px-1 py-0.2 rounded font-mono" data-i18n="sec_privacy_offline_tag">离线安全</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 mt-0.5 leading-relaxed" data-i18n="sec_privacy_desc">
+                                所有真人自拍、私密照片与定制文字均在您的浏览器本地内存中合成，绝不经过任何公网服务器，断网亦可无忧使用。
+                            </p>
+                        </div>
+                    </div>
+
                     <div>
                         <!-- 内置高清预设头像 -->
                         <div class="space-y-1.5 mb-2">
@@ -1087,7 +1231,7 @@
                             </div>
                         </div>
                         <div class="flex items-center justify-between mb-1">
-                            <label class="text-xs font-medium text-gray-400" data-i18n="lbl_cert_photo_head">证件免冠照片</label>
+                            <label class="text-xs font-medium text-gray-400" data-i18n="lbl_upload_photo_selfie">📷 上传本地 / 真人自拍照片</label>
                             <label class="text-xs text-gray-400 flex items-center gap-1.5 cursor-pointer">
                                 <input type="checkbox" id="cert-toggle-photo" checked onchange="toggleCertPhoto()"
                                     class="rounded bg-gray-950 border-gray-700 text-blue-600 focus:ring-0">
@@ -1389,6 +1533,21 @@
                             </h2>
                             <button type="button" onclick="resetBimboPhoto()" class="text-[11px] text-pink-400 hover:text-pink-300" data-i18n="btn_reset_photo">重置照片</button>
                         </div>
+
+                        <!-- 物理级零上传隐私保障提示 -->
+                        <div class="bg-gradient-to-r from-emerald-950/70 via-gray-900 to-emerald-950/70 border border-emerald-600/40 rounded-xl p-2.5 flex items-start gap-2 shadow-sm text-xs">
+                            <span class="text-base leading-none">🛡️</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-bold text-emerald-300 flex items-center gap-1.5 flex-wrap">
+                                    <span data-i18n="sec_privacy_title">100% 纯本地离线处理 · 物理级零上传隐私保障</span>
+                                    <span class="text-[10px] bg-emerald-900/80 text-emerald-200 border border-emerald-700/60 px-1 py-0.2 rounded font-mono" data-i18n="sec_privacy_offline_tag">离线安全</span>
+                                </div>
+                                <p class="text-[11px] text-gray-300 mt-0.5 leading-relaxed" data-i18n="sec_privacy_desc">
+                                    所有真人自拍、私密照片与定制文字均在您的浏览器本地内存中合成，绝不经过任何公网服务器，断网亦可无忧使用。
+                                </p>
+                            </div>
+                        </div>
+
                         <!-- 内置高清预设写真与证物 -->
                         <div class="space-y-1.5 mb-2">
                             <label class="block text-[11px] font-medium text-gray-400" data-i18n="lbl_preset_bimbo_photos">内置高清预设写真与证物</label>
@@ -1404,8 +1563,10 @@
                             </div>
                         </div>
                         <div>
+                            <label class="block text-[11px] font-medium text-gray-400 mb-1" data-i18n="lbl_upload_photo_selfie">📷 上传本地 / 真人自拍照片</label>
                             <input type="file" id="bimbo-in-photo-file" accept="image/*" onchange="handleBimboPhotoUpload(event)"
                                 class="block w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-gray-800 file:text-gray-200 hover:file:bg-gray-700 cursor-pointer">
+                            <div class="text-[10px] text-gray-400 mt-1" data-i18n="lbl_touch_crop_hint">💡 触控提示：支持双指捏合缩放、单指拖拽平移</div>
                         </div>
                         <div class="grid grid-cols-2 gap-3 pt-1">
                             <div>
@@ -1441,7 +1602,66 @@
                                     class="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-pink-500">
                             </div>
                         </div>
+
+                        <!-- 情趣隐私打码与贴纸套件 -->
+                        <div class="pt-2 border-t border-gray-800 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                                    <span>🎭</span> <span data-i18n="sec_censorship_studio">情趣隐私打码与贴纸套件</span>
+                                </label>
+                                <span class="text-[10px] text-gray-400 font-mono" id="bimbo-val-censor-style">无</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-5 gap-1 text-[10px]">
+                                <button type="button" onclick="setCensorStyle('bimbo', 'none')" id="bimbo-censor-btn-none"
+                                    class="py-1 px-1 rounded bg-red-600 text-white font-bold transition flex flex-col items-center justify-center shadow-sm">
+                                    <span>🚫</span><span class="scale-90" data-i18n="censor_style_none">无</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('bimbo', 'bar')" id="bimbo-censor-btn-bar"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>🖤</span><span class="scale-90" data-i18n="censor_style_bar">黑条</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('bimbo', 'heart')" id="bimbo-censor-btn-heart"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>💖</span><span class="scale-90" data-i18n="censor_style_heart">心形</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('bimbo', 'barcode')" id="bimbo-censor-btn-barcode"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>📦</span><span class="scale-90" data-i18n="censor_style_barcode">条码</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('bimbo', 'mosaic')" id="bimbo-censor-btn-mosaic"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>🌫️</span><span class="scale-90" data-i18n="censor_style_mosaic">模糊</span>
+                                </button>
+                            </div>
+
+                            <div id="bimbo-censor-controls" class="space-y-2 bg-gray-950/70 p-2 rounded-lg border border-gray-800/80 hidden">
+                                <div>
+                                    <label class="block text-[11px] text-gray-400" data-i18n="lbl_censor_text">贴纸文字</label>
+                                    <input type="text" id="bimbo-in-censor-text" value="BIMBO" oninput="updateCensorText('bimbo')"
+                                        class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_pos_y">垂直位置 (Y)</span>
+                                        <span id="bimbo-val-censor-y">42%</span>
+                                    </div>
+                                    <input type="range" id="bimbo-in-censor-y" min="15" max="85" step="1" value="42" oninput="updateCensorTransform('bimbo')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-pink-500 mt-1">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_rot">旋转角度</span>
+                                        <span id="bimbo-val-censor-rot">-3°</span>
+                                    </div>
+                                    <input type="range" id="bimbo-in-censor-rot" min="-30" max="30" step="1" value="-3" oninput="updateCensorTransform('bimbo')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-pink-500 mt-1">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
                     <!-- 妓女个人档案 -->
                     <div class="bg-gray-900/60 border border-gray-800/80 rounded-xl p-3 space-y-3">
@@ -1770,6 +1990,20 @@
                             </span>
                         </div>
 
+                        <!-- 物理级零上传隐私保障提示 -->
+                        <div class="bg-gradient-to-r from-emerald-950/70 via-gray-900 to-emerald-950/70 border border-emerald-600/40 rounded-xl p-2.5 flex items-start gap-2 shadow-sm text-xs">
+                            <span class="text-base leading-none">🛡️</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="font-bold text-emerald-300 flex items-center gap-1.5 flex-wrap">
+                                    <span data-i18n="sec_privacy_title">100% 纯本地离线处理 · 物理级零上传隐私保障</span>
+                                    <span class="text-[10px] bg-emerald-900/80 text-emerald-200 border border-emerald-700/60 px-1 py-0.2 rounded font-mono" data-i18n="sec_privacy_offline_tag">离线安全</span>
+                                </div>
+                                <p class="text-[11px] text-gray-300 mt-0.5 leading-relaxed" data-i18n="sec_privacy_desc">
+                                    所有真人自拍、私密照片与定制文字均在您的浏览器本地内存中合成，绝不经过任何公网服务器，断网亦可无忧使用。
+                                </p>
+                            </div>
+                        </div>
+
                         <!-- 快速预设立绘快选 -->
                         <div class="space-y-1.5">
                             <label class="text-[11px] font-bold text-amber-300 block" data-i18n="postcard_preset_photo_lbl">内置高清预设立绘与写真</label>
@@ -1800,10 +2034,11 @@
                         <!-- 自定义本地照片上传 -->
                         <div class="flex items-center gap-2 pt-1">
                             <label class="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold py-2 px-3 rounded-lg border border-gray-700 text-center cursor-pointer transition flex items-center justify-center gap-1.5">
-                                <span>📁</span> <span data-i18n="lbl_upload_photo">上传本地自定义照片</span>
-                                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'postcard-out-photo')">
+                                <span>📁</span> <span data-i18n="lbl_upload_photo_selfie">📷 上传本地 / 真人自拍照片</span>
+                                <input type="file" id="postcard-in-photo-file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'postcard-out-photo')">
                             </label>
                         </div>
+                        <div class="text-[10px] text-gray-400 mt-0.5" data-i18n="lbl_touch_crop_hint">💡 触控提示：支持双指捏合缩放、单指拖拽平移</div>
 
                         <!-- 照片微调缩放/位移滑块 -->
                         <div class="space-y-2 bg-gray-950/70 p-2.5 rounded-lg border border-gray-800/80">
@@ -1842,6 +2077,65 @@
                                     oninput="updatePhotoTransform('postcard')" class="w-full accent-amber-500 h-1 bg-gray-800 rounded-lg cursor-pointer">
                             </div>
                         </div>
+
+                        <!-- 情趣隐私打码与贴纸套件 -->
+                        <div class="pt-2 border-t border-gray-800 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <label class="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                                    <span>🎭</span> <span data-i18n="sec_censorship_studio">情趣隐私打码与贴纸套件</span>
+                                </label>
+                                <span class="text-[10px] text-gray-400 font-mono" id="postcard-val-censor-style">无</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-5 gap-1 text-[10px]">
+                                <button type="button" onclick="setCensorStyle('postcard', 'none')" id="postcard-censor-btn-none"
+                                    class="py-1 px-1 rounded bg-red-600 text-white font-bold transition flex flex-col items-center justify-center shadow-sm">
+                                    <span>🚫</span><span class="scale-90" data-i18n="censor_style_none">无</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('postcard', 'bar')" id="postcard-censor-btn-bar"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>🖤</span><span class="scale-90" data-i18n="censor_style_bar">黑条</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('postcard', 'heart')" id="postcard-censor-btn-heart"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>💖</span><span class="scale-90" data-i18n="censor_style_heart">心形</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('postcard', 'barcode')" id="postcard-censor-btn-barcode"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>📦</span><span class="scale-90" data-i18n="censor_style_barcode">条码</span>
+                                </button>
+                                <button type="button" onclick="setCensorStyle('postcard', 'mosaic')" id="postcard-censor-btn-mosaic"
+                                    class="py-1 px-1 rounded bg-gray-900 text-gray-400 hover:text-white border border-gray-800 font-bold transition flex flex-col items-center justify-center">
+                                    <span>🌫️</span><span class="scale-90" data-i18n="censor_style_mosaic">模糊</span>
+                                </button>
+                            </div>
+
+                            <div id="postcard-censor-controls" class="space-y-2 bg-gray-950/70 p-2 rounded-lg border border-gray-800/80 hidden">
+                                <div>
+                                    <label class="block text-[11px] text-gray-400" data-i18n="lbl_censor_text">贴纸文字</label>
+                                    <input type="text" id="postcard-in-censor-text" value="POSTCARD" oninput="updateCensorText('postcard')"
+                                        class="w-full bg-gray-900 border border-gray-700 rounded px-2 py-1 text-xs text-white">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_pos_y">垂直位置 (Y)</span>
+                                        <span id="postcard-val-censor-y">42%</span>
+                                    </div>
+                                    <input type="range" id="postcard-in-censor-y" min="15" max="85" step="1" value="42" oninput="updateCensorTransform('postcard')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500 mt-1">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[11px] text-gray-400">
+                                        <span data-i18n="lbl_censor_rot">旋转角度</span>
+                                        <span id="postcard-val-censor-rot">-3°</span>
+                                    </div>
+                                    <input type="range" id="postcard-in-censor-rot" min="-30" max="30" step="1" value="-3" oninput="updateCensorTransform('postcard')"
+                                        class="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-amber-500 mt-1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                         <!-- 相框风格切换 -->
                         <div class="space-y-1.5 pt-1">
@@ -2085,7 +2379,7 @@
 
             <!-- 底部版本标识与离线指示 -->
             <div class="pt-3 pb-1 text-center text-[10px] text-gray-500 font-mono select-none border-t border-gray-900/80 mt-2">
-                <span>Proof Gen <strong class="text-amber-400">v2.0</strong> · Offline First</span>
+                <span>Proof Gen <strong class="text-amber-400">v2.1</strong> · Offline First</span>
             </div>
 
         </aside>
@@ -2094,7 +2388,24 @@
         <div id="canvas-area-wrapper" class="flex-1 flex flex-col h-full overflow-hidden relative">
 
             <!-- 画布顶部控制工具条 (独立置顶，永不遮挡卡片) -->
-            <div class="h-12 bg-gray-950/95 border-b border-gray-800/80 px-2 sm:px-4 flex items-center justify-between shrink-0 z-30 no-print gap-1.5 overflow-x-auto custom-scrollbar">
+            <div id="canvas-top-bar" class="h-12 bg-gray-950/95 border-b border-gray-800/80 px-2 sm:px-4 flex items-center justify-between shrink-0 z-30 no-print gap-1.5 overflow-x-auto custom-scrollbar">
+                <!-- 移动端画中画实时控制条 (仅移动端编辑模式下显示) -->
+                <div id="pip-controls-bar" class="hidden flex items-center justify-between w-full text-xs">
+                    <!-- 胶囊状态标题 (仅缩小状态显示) -->
+                    <div id="pip-title-badge" class="flex items-center gap-1.5 font-bold text-red-400 shrink-0">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                        <span data-i18n="pip_live_preview">实时预览</span>
+                    </div>
+                    <!-- 左下角浮动按钮: 放大全屏预览 (浅色半透明背景，纯图标) -->
+                    <button type="button" onclick="setMobileMode('preview')" id="pip-btn-expand"
+                        class="w-7 h-7 flex items-center justify-center bg-white/85 hover:bg-white text-zinc-900 border border-white/70 shadow-md rounded-full text-xs font-black active:scale-90 transition-transform shrink-0 backdrop-blur-md"
+                        title="放大全屏预览" data-i18n-title="pip_tap_to_expand">🔍</button>
+                    <!-- 右下角浮动按钮: 缩小折叠 (浅色半透明背景，纯图标) -->
+                    <button type="button" onclick="togglePipCollapse()" id="pip-btn-collapse"
+                        class="w-7 h-7 flex items-center justify-center bg-white/85 hover:bg-white text-zinc-900 border border-white/70 shadow-md rounded-full text-xs font-black active:scale-90 transition-transform shrink-0 backdrop-blur-md"
+                        title="缩小折叠" data-i18n-title="pip_toggle_collapse">➖</button>
+                </div>
+
                 <div class="flex items-center gap-1.5 shrink-0">
                     <div id="bimbo-side-selector" class="hidden flex items-center bg-gray-900 border border-pink-700/60 rounded-lg p-0.5 text-xs shadow-sm">
                         <button type="button" id="bimbo-side-btn-front" onclick="switchBimboSide('front')" class="px-2 py-1 rounded-md font-bold bg-pink-600 text-white shadow-sm transition" data-i18n="side_front">正面</button>
@@ -2121,6 +2432,11 @@
                     </button>
                 </div>
             </div>
+
+            <!-- 移动端画中画专属 3D 翻转浮动按钮 (双面卡片专属，浮动于左上角，浅色半透明背景) -->
+            <button type="button" onclick="pipFlipActiveCard()" id="pip-btn-flip"
+                class="w-7 h-7 flex items-center justify-center bg-white/85 hover:bg-white text-amber-700 border border-white/70 rounded-full text-xs hidden active:scale-90 transition-transform shrink-0 shadow-md backdrop-blur-md z-30"
+                title="翻转卡片">🔄</button>
 
             <!-- 画布主体可滚动区域 -->
             <main id="canvas-main" class="flex-1 bg-gray-950 overflow-auto p-2.5 sm:p-4 md:p-8 flex custom-scrollbar relative">
@@ -2238,9 +2554,18 @@
                                     class="w-full h-full object-cover transition-transform"
                                     style="transform-origin: center center; object-position: center 20%;">
                                 
-                                <!-- 遮眼黑条贴纸 -->
-                                <div id="sc-out-sticker" style="top: 42%;">
+                                <!-- 遮眼隐私贴纸 -->
+                                <div id="sc-out-sticker" class="censor-sticker-container censor-style-bar" style="top: 45%;">
                                     雌  犬
+                                </div>
+
+                                <!-- 触控取景对齐辅助网格 -->
+                                <div id="sc-touch-grid" class="touch-grid-overlay hidden pointer-events-none">
+                                    <div class="touch-grid-line-h touch-grid-line-1"></div>
+                                    <div class="touch-grid-line-h touch-grid-line-2"></div>
+                                    <div class="touch-grid-line-v touch-grid-line-3"></div>
+                                    <div class="touch-grid-line-v touch-grid-line-4"></div>
+                                    <div class="touch-grid-crosshair"></div>
                                 </div>
                             </div>
                         </div>
@@ -2331,11 +2656,25 @@
                         </div>
 
                         <!-- 右侧区域：大幅证件照 (带黑色描边框) -->
-                        <div class="absolute top-[205px] right-[30px] w-[300px] h-[320px] bg-black border-[3.5px] border-black overflow-hidden shadow-md select-none"
+                        <div class="absolute top-[205px] right-[30px] w-[300px] h-[320px] bg-black border-[3.5px] border-black overflow-hidden shadow-md select-none relative"
                             style="z-index: 10;">
                             <img id="bbc-out-photo" src="assets/tpl2/photo_default.png" alt="ID Photo"
                                 class="w-full h-full object-cover transition-transform"
                                 style="transform-origin: center center; object-position: center 20%;">
+                            
+                            <!-- 遮眼隐私贴纸 -->
+                            <div id="bbc-out-sticker" class="censor-sticker-container hidden" style="top: 42%;">
+                                Q♠ SUB
+                            </div>
+
+                            <!-- 触控取景对齐辅助网格 -->
+                            <div id="bbc-touch-grid" class="touch-grid-overlay hidden pointer-events-none">
+                                <div class="touch-grid-line-h touch-grid-line-1"></div>
+                                <div class="touch-grid-line-h touch-grid-line-2"></div>
+                                <div class="touch-grid-line-v touch-grid-line-3"></div>
+                                <div class="touch-grid-line-v touch-grid-line-4"></div>
+                                <div class="touch-grid-crosshair"></div>
+                            </div>
                         </div>
 
                         <!-- 3. 签发信息横排元数据行 -->
@@ -2561,6 +2900,20 @@
                                     <img id="bimbo-out-photo" src="assets/tpl4/photo_default.png" alt="Photo"
                                         class="w-full h-full object-cover transition-transform origin-center"
                                         style="object-position: center 20%;">
+                                    
+                                    <!-- 遮眼隐私贴纸 -->
+                                    <div id="bimbo-out-sticker" class="censor-sticker-container hidden" style="top: 42%;">
+                                        BIMBO
+                                    </div>
+
+                                    <!-- 触控取景对齐辅助网格 -->
+                                    <div id="bimbo-touch-grid" class="touch-grid-overlay hidden pointer-events-none">
+                                        <div class="touch-grid-line-h touch-grid-line-1"></div>
+                                        <div class="touch-grid-line-h touch-grid-line-2"></div>
+                                        <div class="touch-grid-line-v touch-grid-line-3"></div>
+                                        <div class="touch-grid-line-v touch-grid-line-4"></div>
+                                        <div class="touch-grid-crosshair"></div>
+                                    </div>
                                 </div>
                                 <div class="mt-3 w-full bg-pink-950/95 border-2 border-pink-400/80 rounded-xl py-1.5 px-3 text-center shadow-md">
                                     <span class="text-pink-100 font-mono text-[13.5px] font-black tracking-wider"><span data-i18n="bimbo_card_label_code">编码：</span><span id="bimbo-out-code">MAKIMA-DEVIL-001</span></span>
@@ -2700,9 +3053,23 @@
                             <div id="postcard-front-node" class="postcard-card-face postcard-card-face-front">
                                 <div id="postcard-front-container" class="postcard-front-container frame-full">
                                     <!-- 背景/照片层 -->
-                                    <div class="absolute inset-0 overflow-hidden bg-black flex items-center justify-center">
+                                    <div class="absolute inset-0 overflow-hidden bg-black flex items-center justify-center relative">
                                         <img id="postcard-out-photo" src="assets/tpl4/photo_fallen.png" alt="Postcard Front Art"
                                             class="w-full h-full object-cover transition-transform origin-center">
+
+                                        <!-- 遮眼隐私贴纸 -->
+                                        <div id="postcard-out-sticker" class="censor-sticker-container hidden" style="top: 42%;">
+                                            POSTCARD
+                                        </div>
+
+                                        <!-- 触控取景对齐辅助网格 -->
+                                        <div id="postcard-touch-grid" class="touch-grid-overlay hidden pointer-events-none">
+                                            <div class="touch-grid-line-h touch-grid-line-1"></div>
+                                            <div class="touch-grid-line-h touch-grid-line-2"></div>
+                                            <div class="touch-grid-line-v touch-grid-line-3"></div>
+                                            <div class="touch-grid-line-v touch-grid-line-4"></div>
+                                            <div class="touch-grid-crosshair"></div>
+                                        </div>
                                     </div>
                                     <!-- 滤镜覆盖层 -->
                                     <div id="postcard-photo-overlay" class="postcard-photo-overlay filter-normal"></div>
